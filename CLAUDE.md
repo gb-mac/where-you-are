@@ -85,11 +85,29 @@ game/
 - **Months 7–9**: Multiplayer — host migration, P2P sync
 - **Months 10–12**: Polish & Early Access launch
 
+## Multi-Agent Workflow
+
+This project uses multiple Claude Code instances running in parallel terminals, each owning a domain. All agents read this file first.
+
+| Agent | Terminal | Context file | Output dir |
+|-------|----------|-------------|------------|
+| **Core** (you) | Main | `CLAUDE.md` | `Source/`, `Config/` |
+| **Narrative** | Terminal 2 | `docs/narrative/AGENT.md` | `docs/narrative/` |
+| **Art Direction** | Terminal 3 | `docs/art-direction/AGENT.md` | `docs/art-direction/` |
+| **AI Pipeline** | Terminal 4 | `docs/ai-pipeline/AGENT.md` | `ai-pipeline/`, `docs/ai-pipeline/` |
+| **Economy** | Terminal 5 | `docs/economy/AGENT.md` | `docs/economy/` |
+
+- Major decisions → `decisions-log.md`
+- Weekly summaries → `sync-meetings/YYYY-MM-DD-<agent>.md`
+
 ## Current Status
 
 - [x] Vulkan confirmed on CachyOS
-- [x] UE5 installed
-- [x] Git repo initialized
-- [ ] UE5 project scaffold (.uproject, Config/, Content/)
-- [ ] Core location/AR prototype
+- [x] UE5 5.5 installed
+- [x] Git repo initialized + pushed to github.com/gb-mac/where-you-are
+- [x] UE5 project scaffold (.uproject, Config/, Source/)
+- [x] Core location system (GPS → UE5 world space, fallback chain)
+- [x] 3rd person character + GameMode/GameState
+- [ ] UE5 project files generated + first build
+- [ ] Core AR prototype running in editor
 - [ ] AI pipeline CPU test
