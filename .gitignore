@@ -1,0 +1,25 @@
+# UE5 generated
+Binaries/
+Build/
+DerivedDataCache/
+Intermediate/
+Saved/
+*.VC.db
+*.opensdf
+*.opendb
+*.sdf
+*.sln
+*.suo
+*.xcworkspace
+*.xcodeproj
+/Config/DefaultEditorPerProjectUserSettings.ini
+
+# AI pipeline
+ai-pipeline/__pycache__/
+ai-pipeline/.venv/
+ai-pipeline/*.egg-info/
+*.pyc
+
+# OS
+.DS_Store
+Thumbs.db
