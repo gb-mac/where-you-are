@@ -12,9 +12,9 @@ public class WhereYouAre : ModuleRules
 			"CoreUObject",
 			"Engine",
 			"InputCore",
-			"EnhancedInput",
 			"OnlineSubsystem",
 			"OnlineSubsystemUtils",
+			"NetCore",
 		});
 
 		PrivateDependencyModuleNames.AddRange(new string[]
@@ -26,7 +26,13 @@ public class WhereYouAre : ModuleRules
 			"JsonUtilities",
 		});
 
-		// Location/GPS services (platform-specific additions later)
+		// Platform-specific GPS (mobile only)
+		if (Target.Platform == UnrealTargetPlatform.Android ||
+		    Target.Platform == UnrealTargetPlatform.IOS)
+		{
+			PrivateDependencyModuleNames.Add("LocationServices");
+		}
+
 		// AI inference module (NNE) - added when AI pipeline is wired in
 		// PrivateDependencyModuleNames.Add("NNERuntimeRDG");
 	}

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**"Where You Are"** — Commercial free-to-play AR game. Players start at their real-world GPS location and explore a digital twin overlay of the real world. Combines Division 2 / Elder Scrolls Online / GTA / Monster Hunter dynamics.
+**"Where You Are"** — Commercial free-to-play desktop 3rd-person shooter with AR. Players start at their real-world GPS location and explore a digital twin overlay of the real world. Combines Division 2 / Elder Scrolls Online / GTA / Monster Hunter dynamics.
 
 - Solo developer (gb_mac)
 - Revenue target: 1 year runway → Early Access
