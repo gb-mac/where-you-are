@@ -105,6 +105,46 @@
 
 ---
 
+## 2026-03-17 — Late Game Convergence System
+
+**Decision:** Late-game three-way collaboration between humans, Vael, and Coherent/Separated machines as preparation for the incoming third threat. Triggered by regional Alliance Judgment outcome. No formal faction — a condition players contribute to and earn access through. Four Convergence operation types: fortification completion runs, Convergence salvage (advance scout enemies), interpretation sessions (Vael/machine/human communication), joint defense operations. Four loot tiers: Human Faction → Machine Components → Vael Components → Convergence Gear (all three civilizations combined, purpose-built for the incoming threat). Separated Medical Unit late-game choice: return to the changed twin or remain outside. Post-EA first content drop = the third threat arrives at the most defensible location.
+
+**Rationale:** Player direction — late game dynamic where aliens and robot factions collaborate into better loot to prepare for the incoming threat. May end up fighting with the aliens against another force.
+
+**Affects:**
+- **Core agent**: Convergence operation mission type (joint — requires Coherent presence, Vael Probe activity, player Judgment contribution check). Advance scout enemy tier (new enemy type, distinct from all established factions). Convergence Salvage as new loot category. Convergence gear crafting requires all three input tiers simultaneously.
+- **Economy agent**: Four-tier loot progression with Convergence as the cap. Convergence gear stat profile: primary against advance scout damage types, secondary environmental resistance, tertiary joint-operation bonus. Convergence gear crafting recipe requires: Vael Components + Coherent materials + Signal/human crafting blueprint + Judgment-access unlock. Cannot be bought — must be made through the collaborative process.
+- **AI Pipeline agent**: Coherent units in Convergence zones have cooperative behavior profile (guidance gestures, resource flagging) in addition to standard indifferent/hostile profiles. Vael Probe late-game behavior: deposits at Record-significant locations, coordination overlay during joint defense operations. Advance scout enemy AI: unknown origin, different attack patterns than anything established — players have no prior knowledge to draw on.
+- **Art Direction agent**: Convergence gear visual design — visible joins between human/machine/Vael aesthetic elements. Not sleek, not alien, collaborative. The craftsmanship of multiple makers. Convergence operation marker type for AR mobile layer (distinct from Historical Markers). Advance scout visual design: not Fractured, not Coherent, not Vael — something new and wrong.
+- **Narrative**: Separated Medical Unit late-game conversation and choice is the most personal moment in the Convergence arc. Covenant fracture (theology validated but for wrong reasons) is a major late-game faction event. Riven Hollow intensification in response to Convergence is the late-game human threat escalation. Post-EA first content is the third threat's first major appearance — design seeds only, not specifics.
+
+**Open questions:**
+- Does Convergence gear degrade like standard armor, or does it require Convergence-specific maintenance? (Recommend: Convergence-specific maintenance — keeps players in the collaborative loop)
+- Can excommunicado players access Convergence operations? (Recommend: not until Restoration — the Vael's assessment reads the Record, and excommunicado is in it)
+- What do the advance scouts look like and what do they do? (Seed in late-game Convergence operations only — do not fully design until post-EA content planning)
+
+---
+
+## 2026-03-17 — Rolling Release Roadmap + Live Service Engagement Systems
+
+**Decision:** 18-month rolling release to month 24 Third Threat arrival. No expansion drops — continuous world evolution. Daily/weekly/monthly engagement loop. Three engagement systems: Growing Food (real-time crops tied to real-world GPS location and actual seasons), Making Munitions (real-time production runs, 4 quality tiers, 2–72 hours), Scavenging (AR layer daily nodes + field nodes + event nodes + seasonal nodes). Full 18-month content roadmap with story beat anchors at months 3, 6, 9, 12, 15, 18, 24.
+
+**Rationale:** Player direction — Linux-style rolling release over 18 months, next threat 2 years after release, growing food/making munitions/scavenging/daily-weekly quests for long-term engagement.
+
+**Affects:**
+- **Core agent**: Real-time crop growth tied to GPS location + real-world season/weather API. Munitions production as a time-gated background process. Daily scavenge node respawn timer system. Weekly world event trigger from world-state consequences (not random). Advance scout enemy tier progression over 18 months (light → probing → footholds → territory). Regional Judgment state divergence from month 10.
+- **Economy agent**: Daily/weekly quest reward tables per faction. Munitions production cost/output matrix by tier. Crop yield modifiers (physical visit bonus, seasonal multiplier, community plot sharing). Scavenge node loot tables by location type and season. Convergence gear maintenance cost (ongoing resource sink that keeps players in the collaborative loop).
+- **AI Pipeline agent**: Faction daily/weekly quest generation (procedural within faction-specific templates). World event consequence tracking (Surge → Holdout shrinkage if ignored). Named NPC arc progression tied to story beat months.
+- **AR layer (game-mobile repo)**: Crop status display and care interaction. Daily scavenge node display and collection. World event notifications. Advance scout incursion alerts. Vael Ship repositioning visual updates.
+- **Narrative**: Month 18 "world goes quiet" before month 24 arrival is the key dread beat — design this carefully. Year 1 anniversary global assessment event should feel earned not artificial. Dr. Osei's month 18 final broadcast is the narrative capstone of the 18-month arc.
+
+**Open questions:**
+- Does crop growth pause when the player is inactive for extended periods, or does it continue and potentially fail? (Recommend: continues but with decay — crops need attention, long absence has consequences but isn't catastrophic)
+- Can munitions production be stolen by other players or raided by Hollow? (Recommend: yes in Operative/Survivor modes — adds genuine risk to production investments)
+- What triggers the month 24 Third Threat arrival — is it a fixed date or a world-state threshold? (Recommend: world-state threshold with a fixed date floor — arrives when the Convergence reaches sufficient global completion, no earlier than month 24)
+
+---
+
 Decisions that affect other agents or lock in significant design choices.
 
 ---

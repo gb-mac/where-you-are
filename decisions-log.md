@@ -35,6 +35,12 @@ Record of major architectural and design decisions. Add an entry whenever a sign
 **Decision:** UE5 X=North, Y=East, Z=Up (1 UU = 1cm).
 **Reasoning:** Standard ENU convention; consistent with navigation/AR frameworks.
 
+### AR is a Companion Mobile App, Not Part of the Desktop Game
+**Decision:** AR overlay features are a separate mobile app (`~/Projects/game-mobile`), not part of the UE5 desktop game.
+**Reasoning:** Desktop UE5 cannot render AR camera overlays. The Ingress/Pokémon Go layer (dead drops, GPS item placement, Warden Markers, faction territory, Displacement Zones) requires a mobile device with a camera and GPS.
+**Impact:** Desktop game uses GPS only to set the world spawn origin. Mobile app handles all real-world AR interaction.
+**Cross-platform mechanic:** Items placed at GPS coordinates via the mobile app are claimable in the desktop game at the corresponding world-space position (via `FWYAGeoMath::GeoToWorld`), and desktop players can place items retrievable by mobile players. Both platforms read/write from the same shared item state backend — this is a core gameplay loop, not an edge case.
+
 ### Revenue Model: Free-to-Play
 **Decision:** F2P with in-game economy.
 **Reasoning:** Maximum player acquisition for an AR game requiring real-world location.

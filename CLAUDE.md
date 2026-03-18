@@ -4,7 +4,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**"Where You Are"** — Commercial free-to-play desktop 3rd-person shooter with AR. Players start at their real-world GPS location and explore a digital twin overlay of the real world. Combines Division 2 / Elder Scrolls Online / GTA / Monster Hunter dynamics.
+**"Where You Are"** — Commercial free-to-play desktop 3rd-person shooter. Players start at their real-world GPS location and explore a persistent online world. Combines Division 2 / Elder Scrolls Online / GTA / Monster Hunter dynamics.
+
+**This repo is the desktop UE5 game only.** The AR companion mobile app lives at `~/Projects/game-mobile`. Do not add AR overlay features here.
+
+### Platform Split
+| Platform | Repo | Role |
+|----------|------|------|
+| Desktop (UE5) | `~/Projects/game` (this repo) | 3rd-person shooter, main game |
+| Mobile (AR) | `~/Projects/game-mobile` | AR overlay, GPS item drops, dead drops, faction territory, Warden Markers |
+
+The desktop game uses the player's GPS location **only** to set the world spawn origin. All real-world AR overlay features (Snatch warnings, Displacement Zones, Historical Markers, item placement at GPS coordinates) are mobile-only.
+
+**Shared item state (critical):** Items dropped at GPS coordinates via the mobile app appear in the desktop game at the equivalent `FWYAGeoMath::GeoToWorld` position, and are claimable by desktop players. Desktop players can also place items retrievable by mobile players. Both platforms share a single authoritative item state backend. This cross-platform loop is core gameplay.
 
 - Solo developer (gb_mac)
 - Revenue target: 1 year runway → Early Access
