@@ -1,0 +1,154 @@
+[
+	{
+		"file": "/home/gb_mac/Projects/game/Source/WhereYouAre/Location/WYAGeoMath.cpp",
+		"arguments": [
+			"/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v23_clang-18.1.0-rockylinux8/x86_64-unknown-linux-gnu/bin/clang++",
+			"@/home/gb_mac/Projects/game/.vscode/compileCommands_WhereYouAre/WhereYouAre.1.rsp"
+		],
+		"directory": "/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Source"
+	},
+	{
+		"file": "/home/gb_mac/Projects/game/Source/WhereYouAre/Location/WYAGeoMath.h",
+		"arguments": [
+			"/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v23_clang-18.1.0-rockylinux8/x86_64-unknown-linux-gnu/bin/clang++",
+			"@/home/gb_mac/Projects/game/.vscode/compileCommands_WhereYouAre/WhereYouAre.1.rsp"
+		],
+		"directory": "/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Source"
+	},
+	{
+		"file": "/home/gb_mac/Projects/game/Source/WhereYouAre/Location/WYAGeoTypes.h",
+		"arguments": [
+			"/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v23_clang-18.1.0-rockylinux8/x86_64-unknown-linux-gnu/bin/clang++",
+			"@/home/gb_mac/Projects/game/.vscode/compileCommands_WhereYouAre/WhereYouAre.1.rsp"
+		],
+		"directory": "/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Source"
+	},
+	{
+		"file": "/home/gb_mac/Projects/game/Source/WhereYouAre/Location/WYAIPGeolocator.cpp",
+		"arguments": [
+			"/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v23_clang-18.1.0-rockylinux8/x86_64-unknown-linux-gnu/bin/clang++",
+			"@/home/gb_mac/Projects/game/.vscode/compileCommands_WhereYouAre/WhereYouAre.1.rsp"
+		],
+		"directory": "/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Source"
+	},
+	{
+		"file": "/home/gb_mac/Projects/game/Source/WhereYouAre/Location/WYAIPGeolocator.h",
+		"arguments": [
+			"/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v23_clang-18.1.0-rockylinux8/x86_64-unknown-linux-gnu/bin/clang++",
+			"@/home/gb_mac/Projects/game/.vscode/compileCommands_WhereYouAre/WhereYouAre.1.rsp"
+		],
+		"directory": "/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Source"
+	},
+	{
+		"file": "/home/gb_mac/Projects/game/Source/WhereYouAre/Location/WYALocationProvider.h",
+		"arguments": [
+			"/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v23_clang-18.1.0-rockylinux8/x86_64-unknown-linux-gnu/bin/clang++",
+			"@/home/gb_mac/Projects/game/.vscode/compileCommands_WhereYouAre/WhereYouAre.1.rsp"
+		],
+		"directory": "/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Source"
+	},
+	{
+		"file": "/home/gb_mac/Projects/game/Source/WhereYouAre/Location/WYALocationSubsystem.cpp",
+		"arguments": [
+			"/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v23_clang-18.1.0-rockylinux8/x86_64-unknown-linux-gnu/bin/clang++",
+			"@/home/gb_mac/Projects/game/.vscode/compileCommands_WhereYouAre/WhereYouAre.1.rsp"
+		],
+		"directory": "/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Source"
+	},
+	{
+		"file": "/home/gb_mac/Projects/game/Source/WhereYouAre/Location/WYALocationSubsystem.h",
+		"arguments": [
+			"/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v23_clang-18.1.0-rockylinux8/x86_64-unknown-linux-gnu/bin/clang++",
+			"@/home/gb_mac/Projects/game/.vscode/compileCommands_WhereYouAre/WhereYouAre.1.rsp"
+		],
+		"directory": "/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Source"
+	},
+	{
+		"file": "/home/gb_mac/Projects/game/Source/WhereYouAre/WYACharacter.cpp",
+		"arguments": [
+			"/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v23_clang-18.1.0-rockylinux8/x86_64-unknown-linux-gnu/bin/clang++",
+			"@/home/gb_mac/Projects/game/.vscode/compileCommands_WhereYouAre/WhereYouAre.1.rsp"
+		],
+		"directory": "/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Source"
+	},
+	{
+		"file": "/home/gb_mac/Projects/game/Source/WhereYouAre/WYACharacter.h",
+		"arguments": [
+			"/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v23_clang-18.1.0-rockylinux8/x86_64-unknown-linux-gnu/bin/clang++",
+			"@/home/gb_mac/Projects/game/.vscode/compileCommands_WhereYouAre/WhereYouAre.1.rsp"
+		],
+		"directory": "/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Source"
+	},
+	{
+		"file": "/home/gb_mac/Projects/game/Source/WhereYouAre/WYAGameMode.cpp",
+		"arguments": [
+			"/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v23_clang-18.1.0-rockylinux8/x86_64-unknown-linux-gnu/bin/clang++",
+			"@/home/gb_mac/Projects/game/.vscode/compileCommands_WhereYouAre/WhereYouAre.1.rsp"
+		],
+		"directory": "/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Source"
+	},
+	{
+		"file": "/home/gb_mac/Projects/game/Source/WhereYouAre/WYAGameMode.h",
+		"arguments": [
+			"/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v23_clang-18.1.0-rockylinux8/x86_64-unknown-linux-gnu/bin/clang++",
+			"@/home/gb_mac/Projects/game/.vscode/compileCommands_WhereYouAre/WhereYouAre.1.rsp"
+		],
+		"directory": "/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Source"
+	},
+	{
+		"file": "/home/gb_mac/Projects/game/Source/WhereYouAre/WYAGameState.cpp",
+		"arguments": [
+			"/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v23_clang-18.1.0-rockylinux8/x86_64-unknown-linux-gnu/bin/clang++",
+			"@/home/gb_mac/Projects/game/.vscode/compileCommands_WhereYouAre/WhereYouAre.1.rsp"
+		],
+		"directory": "/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Source"
+	},
+	{
+		"file": "/home/gb_mac/Projects/game/Source/WhereYouAre/WYAGameState.h",
+		"arguments": [
+			"/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v23_clang-18.1.0-rockylinux8/x86_64-unknown-linux-gnu/bin/clang++",
+			"@/home/gb_mac/Projects/game/.vscode/compileCommands_WhereYouAre/WhereYouAre.1.rsp"
+		],
+		"directory": "/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Source"
+	},
+	{
+		"file": "/home/gb_mac/Projects/game/Source/WhereYouAre/WYAPlayerController.cpp",
+		"arguments": [
+			"/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v23_clang-18.1.0-rockylinux8/x86_64-unknown-linux-gnu/bin/clang++",
+			"@/home/gb_mac/Projects/game/.vscode/compileCommands_WhereYouAre/WhereYouAre.1.rsp"
+		],
+		"directory": "/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Source"
+	},
+	{
+		"file": "/home/gb_mac/Projects/game/Source/WhereYouAre/WYAPlayerController.h",
+		"arguments": [
+			"/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v23_clang-18.1.0-rockylinux8/x86_64-unknown-linux-gnu/bin/clang++",
+			"@/home/gb_mac/Projects/game/.vscode/compileCommands_WhereYouAre/WhereYouAre.1.rsp"
+		],
+		"directory": "/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Source"
+	},
+	{
+		"file": "/home/gb_mac/Projects/game/Source/WhereYouAre/WhereYouAre.Build.cs",
+		"arguments": [
+			"/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v23_clang-18.1.0-rockylinux8/x86_64-unknown-linux-gnu/bin/clang++",
+			"@/home/gb_mac/Projects/game/.vscode/compileCommands_WhereYouAre/WhereYouAre.1.rsp"
+		],
+		"directory": "/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Source"
+	},
+	{
+		"file": "/home/gb_mac/Projects/game/Source/WhereYouAre/WhereYouAre.cpp",
+		"arguments": [
+			"/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v23_clang-18.1.0-rockylinux8/x86_64-unknown-linux-gnu/bin/clang++",
+			"@/home/gb_mac/Projects/game/.vscode/compileCommands_WhereYouAre/WhereYouAre.1.rsp"
+		],
+		"directory": "/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Source"
+	},
+	{
+		"file": "/home/gb_mac/Projects/game/Source/WhereYouAre/WhereYouAre.h",
+		"arguments": [
+			"/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v23_clang-18.1.0-rockylinux8/x86_64-unknown-linux-gnu/bin/clang++",
+			"@/home/gb_mac/Projects/game/.vscode/compileCommands_WhereYouAre/WhereYouAre.1.rsp"
+		],
+		"directory": "/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine/Engine/Source"
+	}
+]

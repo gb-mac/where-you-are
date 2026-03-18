@@ -61,8 +61,8 @@ The desktop game uses the player's GPS location **only** to set the world spawn 
 ## Build Commands
 
 ```bash
-# Set UE5 root (find yours with: find /opt /usr -name "UnrealEditor" 2>/dev/null)
-export UE5_ROOT=/opt/unreal-engine
+# UE5 is installed at:
+export UE5_ROOT=/home/gb_mac/.cache/yay/unreal-engine/src/unreal-engine
 
 # Generate project files / compile_commands.json
 ./scripts/generate-project.sh

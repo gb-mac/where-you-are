@@ -134,6 +134,22 @@ The Covenant describes this as preparation. The Signal describes it as neurologi
 
 No Ascendant has yet completed the process. Or if they have, they haven't come back to report. The Covenant considers this expected.
 
+**What the twin overlay reads — the underlayer violet**
+
+The Art Direction style guide flags that the twin's overlay reads something in Covenant members that isn't visible to the naked eye — a violet underlayer bleeds through the data layer around them. This is the narrative grounding for that visual.
+
+It is not spiritual recognition. It is a classification entry.
+
+Covenant practice — specifically the Ascendant process and the Keepers' habit of spending extended time near active Coherent work sites — has produced measurable neurological changes in long-term practitioners. The twin's distributed sensor network monitors everything near its construction zones with extreme precision: heat signatures, electromagnetic output, movement patterns, proximity duration. Humans who repeatedly enter and exit active work sites without triggering threat responses get logged. Humans who do it for months get classified.
+
+Ascendants specifically, after extended proximity exposure, begin emitting low-level electromagnetic resonance signatures that the twin's sensors register as anomalous — not machine-pattern, not standard biological. The twin has no category for "human who has been changed by proximity to us." It creates one. It flags them for ongoing monitoring. The violet is that flag, rendered visible in the overlay.
+
+The dramatic irony that only the Signal has come close to understanding: the Covenant believes the violet means they are *seen* — recognized, spiritually acknowledged, on the path toward merger. What's actually happening is that the twin has noticed them the way a scientist notices an unexpected result in the data. The Covenant is in a classification bucket alongside other anomalous biological readings. The twin did not choose them. It logged them.
+
+The violet does not mean the Covenant is wrong about everything. Prolonged twin-adjacent exposure is doing something to Ascendants that the Signal's neurology research hasn't fully characterized yet. The changes are real. The twin-resonance is real. What the twin intends by it — whether intent is even the right frame — is the question neither the Covenant nor the Signal can answer yet.
+
+What's certain: the violet is the twin's own notation system, not a gift. It sees the Covenant members near its work sites the way a city's camera network sees frequent visitors. They are in the record. That is not the same as being welcomed.
+
 **The moral dilemma unique to the Covenant**
 
 A Shepherd offers your Holdout contact community guaranteed safety — no Fractured, no Hollow raids, Coherent machines routed around the settlement — in exchange for the community agreeing not to interfere with a Coherent site two kilometers away. They don't explain what the site is for.

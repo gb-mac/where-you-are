@@ -3,6 +3,7 @@
 #include "WYACharacter.h"
 #include "WYAPlayerController.h"
 #include "Location/WYALocationSubsystem.h"
+#include "Quest/WYAQuestSubsystem.h"
 #include "Engine/World.h"
 
 AWYAGameMode::AWYAGameMode()
@@ -66,4 +67,28 @@ void AWYAGameMode::SpawnPlayer(APlayerController* PC)
 {
     // World origin = FVector::ZeroVector, which maps to the player's real-world start location
     RestartPlayer(PC);
+
+    // Kick off the main story (no-ops until narrative agent authors DT_MainStory)
+    if (UWYAQuestSubsystem* QuestSub = GetGameInstance()->GetSubsystem<UWYAQuestSubsystem>())
+    {
+        QuestSub->AdvanceMainStory(PC);
+    }
+
+    TryAssignOpeningSideQuest(PC);
+}
+
+void AWYAGameMode::TryAssignOpeningSideQuest(APlayerController* PC)
+{
+    UWYAQuestSubsystem* QuestSub = GetGameInstance()->GetSubsystem<UWYAQuestSubsystem>();
+    if (!QuestSub) return;
+
+    if (QuestSub->TryAssignSideQuest(PC)) return;
+
+    // AI still generating — retry once after 5s (11.6 t/s on Beelink, ~25s total)
+    if (UWorld* World = GetWorld())
+    {
+        World->GetTimerManager().SetTimer(SideQuestRetryHandle,
+            FTimerDelegate::CreateUObject(this, &AWYAGameMode::TryAssignOpeningSideQuest, PC),
+            5.0f, /*bLoop=*/false);
+    }
 }

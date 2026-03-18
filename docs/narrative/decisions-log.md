@@ -145,6 +145,54 @@
 
 ---
 
+## 2026-03-17 — Launch: First 90 Days Design
+
+**Decision:** Full first-90-days player journey designed. Core hook: "Your street. Your neighborhood. Your world — but wrong." Day 1 structure: GPS spawn → Fresh Fractured encounter → Holdout organic introduction → three hooks planted (community/emotional, Coherent mystery/intellectual, Snatch Event/visceral). Week-by-week retention design through month three. Month 3 capstone: first Behemoth Walk world event (community coordination test, both outcomes interesting). Foundation complete checklist at month 3 end.
+
+**Rationale:** Player direction — focus on first 3 months, hook people, solidify foundation before game kicks off.
+
+**Key design principles established:**
+- No tutorial island — the world IS the tutorial
+- Every system introduced through a story beat, not a UI prompt
+- The displacement experience in week 2 (early enough to be discovery, not punishment)
+- Warden oath offered mid-month 2 as a meaningful player choice, not forced
+- Dr. Osei's name seeded in month 3 Signal communications as a breadcrumb only
+- Behemoth Walk as month 3 world event: tests everything built in first 90 days
+- Record tells the player's story back to them — retention through personal history
+
+**Affects:**
+- **Core agent**: Day 1 spawn sequence (quiet neighborhood → first Fractured encounter within 60 seconds, no loading screen narrative). Tutorial delivered through world state not UI. Snatch Event in week 2 as near-mandatory experience. Warden oath dialogue flow at month 2 milestone. Month 3 Behemoth Walk world event trigger (regional, 48-hour advance warning).
+- **Economy agent**: Day 1 crop planting introduction (gentle, one plant, AR layer check-in taught). Week 1 AR daily scavenge node introduction. Month 2 munitions precision tier unlocked via Signal blueprint. First harvest timing tuned to month 2 for emotional payoff.
+- **AI Pipeline agent**: Day 1 Holdout NPC must feel like a person not a quest dispenser — specific problem, specific gratitude, remembers the player on day 2. Day 3 Sworn NPC introduction through helpful action not recruitment pitch. Month 2 Covenant Shepherd introduction through genuine offer not antagonism.
+- **Narrative**: Day 1 has three specific hooks planted (community/mystery/threat) — all must be present in first session. Month 2 named Fractured hunt is the Monster Hunter loop tutorial. Month 3 Composite hunt introduces three-ring health architecture through experience. Behemoth Walk outcome (stopped or not) both narratively valid — design consequences for both.
+
+**Open questions:**
+- What is the Holdout NPC's specific personal problem on day 1? (Needs specific character — recommend: a child who needs medicine from a dangerous location. Universal emotional hook, clear quest, appropriate risk level for day 1 gear)
+- How long is the displacement return journey tuned for? (Recommend: 2–4 hours across 2–3 sessions — long enough to feel like an adventure, short enough not to feel like punishment. Must have other players visible in the drop city to establish multiplayer awareness)
+- Does the month 3 Behemoth Walk fire in ALL regions simultaneously, or is it staggered? (Recommend: staggered by region — fires when the regional Fractured accumulation reaches threshold, so different regions experience it at different times. Creates word-of-mouth as some regions hit it earlier)
+
+---
+
+## 2026-03-17 — Pre-Launch Campaign, Arena Mode & Hand-to-Hand Combat
+
+**Decision:** Three systems designed together. Pre-launch: AR mobile app 3 months before desktop, Signal faction on real social media 6 weeks before mobile (ARG), pre-launch Record entries carry to desktop launch, first crops planted pre-launch. Arena: three modes (The Fracture/PvE waves, The Reckoning/PvP, The Proving Ground/PvPvE), Assessment Zone narrative justification, beta use for Fracture mode, ongoing casual layer post-launch. Hand-to-hand: Arkham Asylum freeflow system, wound integration changes combat options, Vanguard style variant for Warden players, environmental takedowns location-typed to real-world zone.
+
+**Rationale:** Player direction — pre-game to entice players, free-for-all arena for beta and time-limited play, Arkham Asylum hand-to-hand combat.
+
+**Affects:**
+- **Core agent**: Freeflow combat system (Strike/Counter/Evade/Takedown with combo meter). Counter indicator system above enemy heads. Wound state flags that modify combat options (reduced combo options, slower meter, limited takedowns). Environmental takedown trigger zones by location type. Vanguard style variant gated to Warden standing. Arena zone type with survival system suspension. Wave escalation system (Fresh→Augmented→Composite→Behemoth). PvP zone border crossing as consent mechanic.
+- **Economy agent**: Arena beta loot carries to main game. Wave completion rewards separate from open-world loot tables but same item pool. Reckoning Proving log as a separate sport record (not Warden Record). Pre-launch AR cache rewards that carry to desktop launch.
+- **AI Pipeline agent**: Human enemy combat AI profiles (Hollow crowd vs. Crew vs. Compact soldier vs. Vigil — four distinct fighting styles). Machine enemy combat profiles (Remnant fixed-pattern, Fractured territorial-lurch, Composite/component-modified). Mixed combat AI (human + machine simultaneously in Proving Ground). Stand-down NPC response system (some take it, some don't, they remember).
+- **AR layer (game-mobile repo)**: Pre-launch Signal ARG interface. Faction recruitment flow. Pre-launch daily quests. Crop planting before desktop launch. Assessment Zone markers.
+- **Narrative**: Signal ARG on real social media — requires real social media accounts and a content strategy. Pre-launch Record entries acknowledged in the Warden Sworn's day-3 dialogue. The Reckoning's "Proving" format (formal challenge, witnessed, in the Record) is how Warden disputes are formally resolved. Vanguard stand-down option and NPC memory is the code made physical in combat.
+
+**Open questions:**
+- Does the pre-launch ARG require a dedicated community manager, or is it seeded content that runs without live moderation? (Recommend: seeded content first, community manager available for major decoded reveals — don't promise responsiveness you can't sustain as solo dev)
+- Arena beta: is this a separate download or part of the mobile app? (Recommend: separate desktop download, lightweight, combat-only. Mobile app runs the AR layer alongside it.)
+- Can the Vanguard stand-down option be used in the Reckoning zone? (Recommend: yes, but it's rarely accepted there — the Reckoning is where people came to fight)
+
+---
+
 Decisions that affect other agents or lock in significant design choices.
 
 ---
@@ -376,5 +424,32 @@ Decisions that affect other agents or lock in significant design choices.
 **Open questions:**
 - Can players bait a roaming Behemoth into a Coherent work zone intentionally? (Yes — this should be possible and rewarding/risky)
 - Convergence: does the game signal this early enough for players to prepare, or is it a sudden crisis? (Design decision — recommend early signal, player choice to respond or not)
+
+---
+
+## 2026-03-17 — Art Direction: Faction Aesthetic Notes (Riven + Wardens)
+
+**Decision:** Two key aesthetic directions captured directly from player creative direction:
+
+**Riven:** "Human-dark base with the twin's language bleeding in at the edges — they're reaching toward it, not born of it. The cold creep is the tell."
+- Core visual principle: they are humans who want to become something else. The machine aesthetic is not integrated — it's encroaching. Deliberate modification at the edges (hands, faces, joints) while the center remains recognizably human.
+- The "cold creep" is the visual tell — what's been modified looks colder, more mechanical, slightly wrong in proportion. Not clean upgrades. Contamination that the wearer finds beautiful.
+- Art Direction brief: start from a dark human silhouette, then let the twin's geometric language invade at extremities. The gap between human origin and machine aspiration is the horror.
+
+**Wardens:** "Inherited institutional system, maintained by craft. Their tailors means the gear is made with intention — the construction quality itself is part of the identity. You can recognize Warden work by how it's built, not just the marks."
+- Core visual principle: quality as ideology. Warden gear is not ostentatious — it is crafted. The stitching, the fit, the functional reinforcement at stress points. Someone who knows what they're looking at can identify Warden work before they see the marks.
+- This is institutional pride expressed through craft, not wealth. Old Houses pass down techniques. Sworn learn to maintain what they carry. Gear that's been repaired correctly looks like Warden repair — distinct from field patching.
+- Art Direction brief: the build quality should read at a glance. Reference: well-maintained working gear with functional precision. The marks confirm what the construction already announced.
+
+**Rationale:** Player-provided creative direction. These are not derivative aesthetics — they are specific and should be the foundation of Art Direction agent work on these two factions.
+
+**Affects:**
+- **Art Direction agent**: These notes should anchor the Riven and Warden style sheets. Riven: creep/contamination logic for modification progression visual. Wardens: construction-quality-as-identity, distinct repair aesthetic.
+- **Core agent**: Riven NPC visual state should change with faction tier (more modification = higher rank). Warden gear condition should be visually maintained (not degraded like Hollow gear).
+- **Narrative**: Riven's aesthetic aspiration (toward the twin) vs their actual standing creates a visual irony — they want to be part of something that doesn't want them. The Wardens' craft tradition implies transmission — someone taught this. That teacher is a character worth finding.
+
+**Open questions:**
+- Does a Riven member's modification progression have mechanical consequences (stat changes, faction reaction changes)? (Flag for systems design)
+- Are Warden tailors/armorers NPCs the player can interact with, or background lore? (Recommend: key NPCs, questline hooks — the armorer who made a piece of gear is its provenance)
 
 ---

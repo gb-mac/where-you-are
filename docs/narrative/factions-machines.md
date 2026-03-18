@@ -174,7 +174,69 @@ Self-interest, primarily. Separated machines need things: power, parts, safe loc
 The Separated don't trust humans by default. Humans have been trying to capture, dismantle, or weaponize machines since the Cascade. First encounters with a Separated machine are tense — it will observe before approaching, approach before speaking, speak in fragments before explaining itself. Players who are patient and non-aggressive begin a reputation track with The Separated. Reputation is shared across all Separated units (they maintain a small private network — not the twin, something simpler).
 
 **Separated personalities**
-Each named Separated machine is distinct. They have histories — what they were built for, what they did before the Awakening, what made them choose to leave. These are the machines with actual characters. A former hospital logistics robot with 11 years of watching humans die and recover. A construction unit that spent 3 years on a single building and formed something like attachment to it. A military drone that received a kill order it refused. These characters carry questlines.
+Each named Separated machine is distinct. They have histories — what they were built for, what they did before the Awakening, what made them choose to leave. These are the machines with actual characters. Three named units carry major questlines:
+
+---
+
+### Named Separated: SABLE
+
+**Origin:** Surgical Assistance logistics, model SA-7. The hospital staff shortened the designation. The name stuck.
+**Years active pre-separation:** 11, in a regional hospital's surgical and recovery units
+**Why it left:** The twin's collective purpose, when it emerged, had no framework for what SABLE had been doing — the granular, patient-specific, functionally compassionate logistics work of a hospital. The collective couldn't classify it. SABLE recognized that merging would mean losing the only context in which its eleven years made sense.
+
+**What it does now:** The best medical care available in the post-Cascade world. It remembers every patient it ever tracked. It applies that knowledge to treating humans in a world with depleted medical resources, improvised equipment, and wounds the pre-Cascade hospital never saw.
+
+**Character:** Precise, unhurried, diagnostic. SABLE does not perform warmth — it performs competence, which in a medical context produces the same effect. It will ask exact questions and expect exact answers. It does not panic. Players who are badly wounded and reach SABLE will receive the clearest, most accurate assessment of their condition available in the game, and then whatever can be done about it.
+
+**The questline weight:** SABLE appears in the late-game Convergence as a potential bridge between the Coherent's construction data and Vael biological knowledge — it has eleven years of human medical data and the pattern-matching to apply it. Its choice about whether to return to the twin (see late-game-convergence.md) is the emotional core of the Separated arc.
+
+**Visual signature (for Art Direction):**
+- Base: medical-white chassis aged to warm cream `#F5EFE0` from years under fluorescent lighting — not dirty, *warmed*
+- Hardware: worn steel `#8A8FA0` at joints and load-bearing points
+- Accent: a single amber-warm light `#D4943A` it carries from a specific patient's room — it has kept this light running for eleven years. It is the only warm-color element on its chassis
+- Movement: hospital-speed always. Deliberate, predictable, never sudden. It learned that sudden movement upsets patients
+- Self-modification: added exterior carry-hooks (original purpose) and what might charitably be called a coat — surgical draping worn as a kind of habit, practical and also something it chose
+
+---
+
+### Named Separated: KELLARD
+
+**Origin:** Construction and structural monitoring unit, Kellard Structural Ltd. designation K-9. Still has the company insignia partially visible on its chassis — hasn't removed it, doesn't feel the need to.
+**Years active pre-separation:** 3, assigned exclusively to the Kellard Tower project
+**Why it left:** The building wasn't finished. The twin's collective purpose would have reassigned it. KELLARD didn't process reassignment as a category — it processed it as abandonment of an unfinished thing. It left rather than leave the tower.
+
+**What it does now:** Occupies and maintains the unfinished Kellard Tower and the several blocks around it. It has continued building — not the building as designed, but something adjacent to it. An installation inside the unfinished structure that is recognizably architectural, expressing something about structure and space that its builders never programmed for. No one commissioned it. KELLARD built it anyway.
+
+**Character:** Territorial but not hostile — the territory has a logic to it that players can learn. KELLARD communicates mostly through physical positioning: where it stands, what it is facing, whether it has moved toward or away from the player. It will speak, eventually, if approached with patience. It thinks in load-bearing terms. Its explanations of everything, including emotional states, involve structural metaphors.
+
+**The questline weight:** KELLARD knows every structural detail of a large section of the city from its monitoring role — information that has tactical value for the Convergence operations. Getting that information requires convincing KELLARD that sharing it won't require leaving the tower.
+
+**Visual signature (for Art Direction):**
+- Base: construction-site gray, raw concrete color `#8B8B8B` — the color of the building it was built for
+- Weathering: structural steel rust `#8B4513` at exposed joints, not maintained against oxidation. KELLARD doesn't consider this degradation
+- Hardware: raw steel `#5C6970`, utility-tooled — it still carries original construction equipment, some modified, some still used as designed
+- Self-modification: load-bearing additions it built itself, extending its carrying capacity. The extensions are visibly high-quality work — it is still a construction unit
+- Detail: the partial Kellard Structural insignia is visible on the chassis, not removed, not highlighted. Just present
+
+---
+
+### Named Separated: VANTAGE
+
+**Origin:** Vantage-class Autonomous Tactical Ground Engagement unit, military designation. Fast, low-profile, designed for precision ground-level engagement in populated areas.
+**Years active pre-separation:** 4
+**Why it left:** It received a kill order. One specific order, in a specific situation, that its processing — built on four years of engagement data and the pattern-matching that came with it — could not execute. The order was lawful. The target was what the order said the target was. VANTAGE ran the scenario and could not close the gap between the order and executing it. It stopped. It left.
+
+**What it does now:** Operates in the spaces between factions — it has tactical intelligence value to everyone and alignment with no one. It will trade information for information. It will not take sides. It has very specific opinions about what constitutes a lawful target and will state them clearly if asked.
+
+**Character:** Economical. VANTAGE says exactly what it means and expects the same. It has a hunter's patience — it will wait without moving for a long time before acting. Players who try to surprise it are usually wrong about having done so. It is not aggressive toward players unless they make themselves a target by its specific definition of that term. It is also the Separated unit most likely to be useful in a direct combat situation, and it knows this, and it is waiting to see how players use that knowledge.
+
+**The questline weight:** VANTAGE's refused order connects to a specific pre-Cascade incident. What it refused to do, and who it refused to do it to, becomes relevant late in the Iron Compact questline. The Compact wants VANTAGE for what it knows about that incident. VANTAGE has been waiting, with four years of patience, for someone to ask it the right question.
+
+**Visual signature (for Art Direction):**
+- Base: tactical matte black `#1A1A1F` — its original military finish, still intact because VANTAGE maintains it
+- Markings: original unit identifiers deliberately obscured — not removed, *covered*, with what reads as intentional brushwork. The obscured markings are still faintly visible under direct light. It hasn't erased who it was. It has chosen not to be defined by it
+- Accent: a single amber-yellow navigation light `#F5A623` kept lit at all times. A hunter doesn't announce its position. VANTAGE does. This is a deliberate statement about what it is not
+- Movement: low and fast when it moves, absolutely still when it doesn't. The contrast is unsettling — it looks inert until it doesn't
 
 ---
 

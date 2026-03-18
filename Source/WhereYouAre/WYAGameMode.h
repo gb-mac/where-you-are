@@ -6,6 +6,7 @@
 #include "WYAGameMode.generated.h"
 
 class UWYALocationSubsystem;
+class UWYAQuestSubsystem;
 
 UCLASS()
 class WHEREYOUARE_API AWYAGameMode : public AGameModeBase
@@ -29,4 +30,9 @@ private:
     bool bLocationResolved = false;
 
     void SpawnPlayer(APlayerController* PC);
+
+    /** Try to assign an opening side quest; retries once after a short delay if AI isn't ready. */
+    void TryAssignOpeningSideQuest(APlayerController* PC);
+
+    FTimerHandle SideQuestRetryHandle;
 };

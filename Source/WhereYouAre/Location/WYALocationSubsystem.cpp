@@ -2,24 +2,9 @@
 #include "Location/WYALocationProvider.h"
 #include "Location/WYAIPGeolocator.h"
 #include "Location/WYAGeoMath.h"
-#include "GameFramework/SaveGame.h"
 #include "Kismet/GameplayStatics.h"
 #include "Misc/CommandLine.h"
-
-// ---------------------------------------------------------------------------
-// Minimal SaveGame for caching last known coordinate
-// ---------------------------------------------------------------------------
-
-UCLASS()
-class UWYALocationSave : public USaveGame
-{
-    GENERATED_BODY()
-public:
-    UPROPERTY() double Latitude  = 0.0;
-    UPROPERTY() double Longitude = 0.0;
-    UPROPERTY() double Altitude  = 0.0;
-    UPROPERTY() FDateTime Timestamp;
-};
+#include "WYALocationSave.h"
 
 static const FString LocationSaveSlot = TEXT("WYALocation");
 static constexpr int32 LocationSaveUserIndex = 0;

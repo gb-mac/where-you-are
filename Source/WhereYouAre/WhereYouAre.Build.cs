@@ -6,6 +6,9 @@ public class WhereYouAre : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
+		// Allow subdirectory includes like "Location/WYAGeoTypes.h"
+		PublicIncludePaths.Add(ModuleDirectory);
+
 		PublicDependencyModuleNames.AddRange(new string[]
 		{
 			"Core",
@@ -33,7 +36,7 @@ public class WhereYouAre : ModuleRules
 			PrivateDependencyModuleNames.Add("LocationServices");
 		}
 
-		// AI inference module (NNE) - added when AI pipeline is wired in
+		// AI inference module (NNE) - reserved for on-device neural net inference
 		// PrivateDependencyModuleNames.Add("NNERuntimeRDG");
 	}
 }
