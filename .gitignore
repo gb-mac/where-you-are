@@ -27,3 +27,9 @@ ai-pipeline/*.egg-info/
 # OS
 .DS_Store
 Thumbs.db
+
+# Cesium cache
+cesium-request-cache.sqlite*
+
+# Plugins — too large to commit (7.6GB), install via scripts/install-plugins.sh
+Plugins/

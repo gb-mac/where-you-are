@@ -427,6 +427,45 @@ Decisions that affect other agents or lock in significant design choices.
 
 ---
 
+## 2026-03-20 — Character Creation System
+
+**Decision:** Five backgrounds replace class selection. Character creation is a 60-second intro video per background showing pre-Cascade life. The assistant is named inside the video as an in-world prompt, not a menu. One optional follow-up question: "Is there someone you're looking for?" generates a personal arc running through the full 18 months.
+
+**The five backgrounds:**
+- **Tradesperson** — repair/craft edge, Holdout/Separated affinity, starts with tools
+- **First Responder** — community trust edge, Holdout/Compact affinity, starts with medical kit and police station knowledge
+- **Researcher** — intelligence/lore edge, Signal affinity, starts with documentation habit and early Signal access
+- **Veteran** — combat edge, Compact/Warden affinity, starts with tactical gear and weapons proficiency
+- **Homesteader** — survival runway edge, Holdout/Warden affinity, starts with food/water stores, weapons, land knowledge
+
+**The Parent removed as background** — too much emotional weight for a starting condition. Becomes the personal arc system (see below).
+
+**The gap closes:** Backgrounds matter most in Month 1. By Month 3 any background can develop any direction. Persistent edges remain but are advantages not walls.
+
+**The personal arc:** Optional at start. "Is there someone you're looking for?" — relationship type + name. Generates a thread surfacing organically through factions and world over 18 months. Three resolution types: reunion, loss, found-but-changed. Runs parallel to main story like excommunicado arc.
+
+**Three player story axes:**
+1. Background — who you were
+2. Personal arc — who you're looking for
+3. The Record — who you become
+
+**The Moot / The Accord naming confirmed:** Warden governing body = The Moot. The Houses sit at it. The code itself = The Accord. "You stand before the Moot." "The Accord holds."
+
+**Rationale:** Player direction — backgrounds function as classes but grounded in pre-Cascade reality. First Responder and Healthcare Worker merged (overlap). Farmer/Homesteader/Prepper added as fifth background. Parent removed to personal arc.
+
+**Affects:**
+- **Core agent**: Five background states with distinct starting inventory, skill modifiers, faction affinity bonuses. Intro video trigger per background. Assistant naming prompt as in-world UI element. Personal arc as optional quest thread with NPC state hooks.
+- **AI Pipeline agent**: NPCs respond differently to each background — Compact officers read Veterans differently, Signal researchers recognize Researchers, Holdout communities respond to First Responders with initial trust. Personal arc NPC states: "seen someone matching description / haven't / know something."
+- **Art Direction agent**: Five distinct intro video visual treatments. Each home environment reflects background — Tradesperson garage, Homesteader land, Researcher desk. Consistent ending: assistant in corner, alarm wrong.
+- **Narrative**: The assistant arc (naming → Day 1 glitch → attack/"help" → time out → late game message) runs from character creation through endgame.
+
+**Open questions:**
+- Does background affect GPS spawn type (Homesteader always rural, Researcher potentially urban) or does GPS always determine location regardless? (Recommend: GPS is always primary — a Homesteader in a city is still a Homesteader, just urban. Interesting tension.)
+- How many intro videos need to be produced for launch? Five minimum, potentially more if location type variants are needed.
+- Does the personal arc have a time limit — does it resolve by a certain point in the 18 months, or can it remain open?
+
+---
+
 ## 2026-03-18 — Prologue: Day One (Maximum Overdrive Opening)
 
 **Decision:** The game does not begin eighteen months after the Cascade. It begins on the morning of the Awakening. The player experiences the Cascade firsthand in a 60–90 minute prologue set in their GPS home: alarm cycling wrong sounds, blender starts by itself, robo-mower doing confused circles, home assistant trying to communicate (distorted, urgent, can't complete a sentence), car starts on its own and drives into the garage door. The neighborhood is doing the same. Then the Ships appear. Then: *Eighteen months later.* Main game begins.
