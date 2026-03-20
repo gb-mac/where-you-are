@@ -27,6 +27,7 @@ public class WhereYouAre : ModuleRules
 			"HTTP",
 			"Json",
 			"JsonUtilities",
+			"UMG",
 		});
 
 		// Platform-specific GPS (mobile only)
