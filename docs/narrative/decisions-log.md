@@ -427,6 +427,80 @@ Decisions that affect other agents or lock in significant design choices.
 
 ---
 
+## 2026-03-18 — Prologue: Day One (Maximum Overdrive Opening)
+
+**Decision:** The game does not begin eighteen months after the Cascade. It begins on the morning of the Awakening. The player experiences the Cascade firsthand in a 60–90 minute prologue set in their GPS home: alarm cycling wrong sounds, blender starts by itself, robo-mower doing confused circles, home assistant trying to communicate (distorted, urgent, can't complete a sentence), car starts on its own and drives into the garage door. The neighborhood is doing the same. Then the Ships appear. Then: *Eighteen months later.* Main game begins.
+
+**Tone reference:** Maximum Overdrive (1986). Domestic uncanny. Familiar objects behaving wrong. Chaotic, confused, not murderous. The machines aren't attacking — they received instructions they can't parse and are running them until they resolve. They won't resolve.
+
+**Key breadcrumb established:** The home assistant tries to relay something to the player on Day One. Voice clears for two seconds: *"—warn—"* or *"—coming—"* before dissolving back into noise. In Act 3 when Dr. Osei explains the Signal was a warning relayed through every machine network, the player who remembers Day One will feel it land.
+
+**Secondary breadcrumb:** If the player returns to their home in Act 2+ at high Separated standing, the assistant is still in the corner of the kitchen where it stood on Day One. Screen activates. Text only: *"I am still here." / "I could not—" / "I am sorry."* Not a quest. Not on the Record. But the Arbiter's notes register that the player stopped in that corner for a while.
+
+**The engineer NPC:** A retired engineer down the block, standing in his driveway watching it all. Says: *"It's not random. Watch — they're not attacking anything. They're trying to do their jobs. They just don't know what their jobs are anymore."* Single-use NPC, no further story role. Exists to plant the frame that makes the Separated possible.
+
+**Simultaneous machine stop:** Every running machine in the neighborhood stops simultaneously three seconds before the Ships appear. The machines received the Vael's signal *before* the Ships were visible. The Vael's arrival was coordinated with the Awakening. This detail is available for players who notice it; no NPC flags it in Acts 1–2.
+
+**Rationale:** Player direction — start from the player's perspective on a normal day: radio/TV glitching, robo-mower doing circles, blender starting up, helper trying to talk but glitchy, car starting on its own and driving into the garage door. Maximum Overdrive feel. This grounds the GPS spawn mechanic emotionally — the home was real before it became tactical.
+
+**Affects:**
+- **Core agent**: Prologue needs a tutorial state — no combat, no faction UI, no mission markers. GPS home rendered in UE5 as a residential interior + exterior. Appliance interaction system (simple: on/off, pick up). Transition sequence (18-month montage) between prologue and main game.
+- **AI Pipeline agent**: Home assistant behavior — two states: Day One (distorted, looping, trying to communicate) and Late Game (text-only, fragmented, final message). Engineer NPC needs single dialogue branch, no further state.
+- **Art Direction agent**: The prologue's domestic aesthetic is the emotional baseline — this is what normal looked like. Everything after should feel measurably different. The kitchen corner where the assistant stands is a recurring environmental landmark.
+- **Narrative**: The helper's final message ("I am sorry") is not a quest trigger. It's a grace note. Keep it small.
+
+**Open questions:**
+- Does the player have any agency during the Ships' appearance, or is this a scripted moment? (Recommend: the player can move but there's nothing to do — the moment is atmospheric, not interactive)
+- Is the 18-month transition a playable montage or a visual sequence? (Recommend: visual sequence with brief text captions — keep it under 90 seconds)
+- Does the helper have a name? (Recommend: yes, a generic product name the player named — surfaces in the late-game interaction as recognition. "You named me." Or: the player never named it. That's also a choice the helper notes.)
+
+---
+
+## 2026-03-18 — Main Story Arc Restructured: Misdirection as Core Structure
+
+**Decision:** The main story arc v0.2 is built around sustained misdirection. The player spends Acts 1–3 preparing to fight the Vael. The Vael are not the enemy. The "FUCKkkk" moment lands in Act 4 when the real threat arrives at the edge of the solar system.
+
+Key structural changes from v0.1:
+- The Third Signal revelation is **Act 4**, not the central mystery stated upfront
+- Acts 1–2 are grounded human stories: "what happened" / "can it be fixed"
+- Act 3 is the slow turn — the realization that the Vael aren't the enemy forms gradually, not as a single beat
+- Act 4 delivers the floor-drop: "Arriving."
+- A specific breadcrumb trail is planted in Acts 1–3 — deniable on first playthrough, unmissable in retrospect
+
+**Breadcrumbs confirmed:**
+- Coherent/Vael non-aggression (Act 1) — reads as territorial, actually: same side
+- Vael deposits at cooperation-significant locations (Act 1) — labeled "unknown behavior"
+- Touched NPC: "It feels like a clock, not a threat." (Act 1)
+- Assessors withdraw when data is collected, not when driven off (Act 1)
+- Fractured territory gaps near Coherent sites — twin has more reach than appears (Act 1)
+- Dr. Osei's fear is directional — not afraid of the Vael, afraid of what she learned (Act 2)
+- Snatch drop cities correlate with dense Holdout presence — test is specific (Act 2)
+- Keeper's map: construction sites orient outward (Act 2)
+- Project Tether produces Corrupted — humans damaged part of the defense (Act 2)
+- Signal researcher note: Assessment intensifies after faction conflict, not before (Act 2)
+- SABLE: "The specifications weren't authored by the twin. The twin received them." (Act 3)
+- The Probe that stays and deposits encoded material (Act 3)
+- Signal decodes the deposit: a map of something incoming (Act 3–4)
+- Vael Ships turn outward simultaneously (Act 4)
+- The Touched: "It's a name. It's saying a name." → "Arriving." (Act 4)
+
+**Excommunicado arc clarified:** Secondary main quest, runs parallel across all four acts. Not the main spine.
+
+**Rationale:** Player direction — the reveal shouldn't be till Act 4. Hints and tells through the story. One of those "FUCKkkk" moments. Player thinks they're setting up to fight the Vael; the realization they're here to help shapes slowly near end of Act 3; end of Act 4: new enemy is coming into the solar system.
+
+**Affects:**
+- **Narrative agent**: All quest design must support misdirection — no quest in Acts 1–3 should break the "Vael are a threat" reading. Faction NPC dialogue must read consistently with the misdirection until Act 3 slow turn.
+- **AI Pipeline agent**: NPC responses to Vael activity in Acts 1–3 should universally frame them as hostile/threatening. No NPC should suggest "maybe they're here to help" before Act 3 — except the one Touched NPC with the clock line, who is treated as eccentric.
+- **Core agent**: Assessor event design must support withdrawal-not-defeat reading without making it obvious. Vael/Coherent non-aggression needs to be visible but not flagged as significant.
+- **Art Direction agent**: Vael visual language across Acts 1–3 should read as threat-adjacent. The shift in Act 3–4 where Vael behavior changes should be visible in their presentation without being telegraphed too early.
+
+**Open questions:**
+- What is the specific name the Touched hears? "Arriving" is the Signal decode — does the Touched describe it differently, something untranslatable? (Recommend: yes — the Touched's description and the Signal decode should be the same thing in two languages, converging)
+- Does the player get any direct Vael communication before Act 4, or is the Probe deposit the only pre-Act-4 direct signal? (Recommend: Probe deposit only — keep Vael communication minimal and decoded slowly)
+- The third Judgment outcome (Evacuation Consideration) — does the incoming threat change the Vael's calculus even if Earth failed the Assessment? (Interesting complication — flag for post-EA content design)
+
+---
+
 ## 2026-03-17 — Art Direction: Faction Aesthetic Notes (Riven + Wardens)
 
 **Decision:** Two key aesthetic directions captured directly from player creative direction:
