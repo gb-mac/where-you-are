@@ -4,6 +4,7 @@
 #include "Location/WYALocationSubsystem.h"
 #include "Engine/World.h"
 #include "TimerManager.h"
+#include "Engine/Engine.h"
 
 void UWYAItemSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
@@ -41,7 +42,9 @@ void UWYAItemSubsystem::Deinitialize()
 
 void UWYAItemSubsystem::OnLocationResolved(FWYAGeoCoord /*Coord*/, bool bSuccess)
 {
-	if (!bSuccess || bStarted) return;
+	// Start polling even on fallback location — a known coord is still usable.
+	// bSuccess=false just means we fell back; items near that coord still load.
+	if (bStarted) return;
 	bStarted = true;
 
 	FetchNearbyItems();
@@ -63,10 +66,20 @@ void UWYAItemSubsystem::FetchNearbyItems()
 
 	const FWYAGeoCoord& Origin = LocSys->GetOrigin();
 
+	UE_LOG(LogTemp, Log, TEXT("WYAItems: fetching items near (%.4f, %.4f)"),
+	       Origin.Latitude, Origin.Longitude);
+
 	Api->GetNearbyItems(Origin.Latitude, Origin.Longitude, 500.f,
 		[this](bool bOk, TArray<FWYAItemData> Items)
 	{
-		if (!bOk) return;
+		if (!bOk)
+		{
+			if (GEngine) GEngine->AddOnScreenDebugMessage(1, 5.f, FColor::Red,
+				TEXT("WYAItems: fetch FAILED (check output log)"));
+			return;
+		}
+		if (GEngine) GEngine->AddOnScreenDebugMessage(1, 5.f, FColor::Green,
+			FString::Printf(TEXT("WYAItems: %d item(s) nearby"), Items.Num()));
 		ReconcileActors(Items);
 		OnItemsRefreshed.Broadcast();
 	});

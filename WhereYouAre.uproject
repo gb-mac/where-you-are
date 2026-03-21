@@ -37,6 +37,10 @@
 		{
 			"Name": "AndroidPermission",
 			"Enabled": false
+		},
+		{
+			"Name": "CesiumForUnreal",
+			"Enabled": true
 		}
 	]
 }

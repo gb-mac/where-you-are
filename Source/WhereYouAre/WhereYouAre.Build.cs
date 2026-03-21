@@ -28,6 +28,7 @@ public class WhereYouAre : ModuleRules
 			"Json",
 			"JsonUtilities",
 			"UMG",
+			"CesiumRuntime",
 		});
 
 		// Platform-specific GPS (mobile only)

@@ -118,8 +118,15 @@ This project uses multiple Claude Code instances running in parallel terminals, 
 - [x] UE5 5.5 installed
 - [x] Git repo initialized + pushed to github.com/gb-mac/where-you-are
 - [x] UE5 project scaffold (.uproject, Config/, Source/)
-- [x] Core location system (GPS → UE5 world space, fallback chain)
+- [x] Core location system (GPS → UE5 world space, fallback chain) — Calgary default (51.0447, -114.0719)
 - [x] 3rd person character + GameMode/GameState
-- [ ] UE5 project files generated + first build
-- [ ] Core AR prototype running in editor
+- [x] First playable loop compiled — WYAApiClient, WYAItemSubsystem, AWYAWorldItem, WYAPlayerController, WYAInteractionWidget
+- [x] Backend API deployed — https://where-you-are-api.fly.dev
+- [x] Cesium for Unreal plugin built (Binaries/Linux/ has .so files)
+- [x] CesiumForUnreal added to .uproject + CesiumRuntime added to Build.cs
+- [x] CesiumGeoreference wired to WYALocationSubsystem — sets origin on location resolve
+- [x] 6 test items seeded near Calgary on backend
+- [ ] Build WhereYouAreEditor with Cesium dependency (in progress)
+- [ ] Drop CesiumWorldTerrain + Google Photorealistic 3D Tiles in level
+- [ ] Debug item spawning in Play (verify 6 seeded items appear)
 - [ ] AI pipeline CPU test

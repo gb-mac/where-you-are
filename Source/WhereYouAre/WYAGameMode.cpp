@@ -5,6 +5,8 @@
 #include "Location/WYALocationSubsystem.h"
 #include "Quest/WYAQuestSubsystem.h"
 #include "Engine/World.h"
+#include "CesiumGeoreference.h"
+#include "EngineUtils.h"
 
 AWYAGameMode::AWYAGameMode()
 {
@@ -51,6 +53,14 @@ void AWYAGameMode::OnLocationResolved(FWYAGeoCoord Coord, bool bSuccess)
     UE_LOG(LogTemp, Log, TEXT("WYAGameMode: World origin set to (%.4f, %.4f) via %s"),
         Coord.Latitude, Coord.Longitude,
         bSuccess ? TEXT("provider") : TEXT("fallback"));
+
+    // Set Cesium georeference origin so World Terrain + 3D Tiles centre on the player's location
+    for (ACesiumGeoreference* GeoRef : TActorRange<ACesiumGeoreference>(GetWorld()))
+    {
+        GeoRef->SetOriginLongitudeLatitudeHeight(
+            FVector(Coord.Longitude, Coord.Latitude, Coord.Altitude));
+        break; // only one georeference expected in the level
+    }
 
     // Spawn any players who connected before location resolved
     for (APlayerController* PC : PendingPlayers)

@@ -427,6 +427,47 @@ Decisions that affect other agents or lock in significant design choices.
 
 ---
 
+## 2026-03-20 — The Assistant: Anchor Character
+
+**Decision:** The assistant is the most important character in the game. Named by the player in the intro video. Present from Day 1 through Month 18 and beyond. Voice arc: Yoda/Bumblebee (damaged, Stage 1–2) → Alfred/Gandalf/Father (restored, Stage 3–5). Fix-him questline runs as a personal thread. Learns to fight and defend the home. Meshtastic system enables field communication and navigation without maps.
+
+**Key character facts:**
+- Named by player in intro video (player-defined, game keeps it permanently)
+- Damaged in the Cascade — communication hardware worst hit. Has known the Vael warning since Day 1. Could not transmit it.
+- Fix-him questline: 4 repair stages (mobility → power core → processing → communication). Final restore = he delivers the complete warning in full voice.
+- Voice pre-fix: Yoda/Bumblebee — fragments, inverted syntax, single words, pieced meaning
+- Voice post-fix: Alfred/Gandalf/Father — direct, dry, earned wisdom, speaks when it matters
+- "You named me" — why he stayed. Full answer. No elaboration needed.
+- Meshtastic side quest: LoRa mesh radio, no infrastructure needed. Once network established, he can talk to player in the field. Real technology (Meshtastic open-source).
+- No maps — navigation by landmarks, his guidance, Signal intel, NPC directions, AR layer
+- Home defense: learns to fight in his domain as mobility/processing restores. "We had a visitor. It's dealt with."
+- The robo-mower: repurposable from Day 1 yard (with right knowledge). Different mowers entering the yard are threats to the garden.
+- Blueprint system: needs materials + knowledge. Blueprints found across world by source type. Background-specific starting blueprints.
+- Fix-him quest trigger: small domestic robot fails, he says "Fix. Parts. Get." Player realizes he means himself.
+
+**Key dialogue anchors:**
+- After time-out: *"I will not do that again."*
+- First Separated encounter: *"It made a choice. That matters."*
+- Act 3: *"That was the closest I could get."* (re: saying "help" on Day 1)
+- Month 18 vehicle: *"You were gone for eleven days. I kept busy."*
+- New threat: *"Yes. You got your ass kicked. Get up. We have a larger problem now."*
+- Why he stayed: *"You named me."*
+
+**Rationale:** Player direction — he's the anchor, other than the player he's the most important character. Needs to learn to fight and protect the home. The Meshtastic system for field communication since there are no maps.
+
+**Affects:**
+- **Core agent**: Four repair stages with mechanical unlocks. Home base defense states (passive → managed → active). Meshtastic node placement as world objects. No minimap — navigation system. Robo-mower repurpose mechanic.
+- **AI Pipeline agent**: Five voice stages requiring distinct dialogue profiles. Stage 1–2: constrained word output. Stage 3–5: full natural language. Memory system — he references past player actions. Tactical guidance via Meshtastic. Home defense behavior when player is away.
+- **Art Direction agent**: Consumer domestic chassis, maintained wear. Four visual states tracking repair progression. Light detail (small warm light kept on throughout). Combat style: environmental, precise, domain-based.
+- **Narrative**: His warning = Dr. Osei's revelation from the personal direction. They converge in Act 3. His relationship with SABLE (both chose to stay, different reasons). His pre-Cascade knowledge of the player used throughout.
+
+**Open questions:**
+- Does the player have any control over his name beyond the intro video, or is it fixed? (Recommend: fixed — he knows his name, changing it would be strange)
+- Can other players' assistants communicate via the Meshtastic network? (Interesting — multiplayer mesh could connect home bases. Flag for systems design.)
+- Does he have a model name/designation separate from the player-given name? (Recommend: yes, used by Dr. Osei when she helps repair him. A moment where she uses the model designation and he says *"[NAME] is fine."*)
+
+---
+
 ## 2026-03-20 — Character Creation System
 
 **Decision:** Five backgrounds replace class selection. Character creation is a 60-second intro video per background showing pre-Cascade life. The assistant is named inside the video as an in-world prompt, not a menu. One optional follow-up question: "Is there someone you're looking for?" generates a personal arc running through the full 18 months.
@@ -564,5 +605,76 @@ Key structural changes from v0.1:
 **Open questions:**
 - Does a Riven member's modification progression have mechanical consequences (stat changes, faction reaction changes)? (Flag for systems design)
 - Are Warden tailors/armorers NPCs the player can interact with, or background lore? (Recommend: key NPCs, questline hooks — the armorer who made a piece of gear is its provenance)
+
+---
+
+## 2026-03-20 — The Assistant LLM Architecture
+
+**Decision:** The home assistant (anchor character) will use a hybrid scripted/LLM approach. Critical story beats are scripted and locked — the fix-him quest trigger, the time-out apology, the Act 3 revelation ("That was the closest I could get"), the Stage 5 restoration delivery ("I have been waiting to say this properly since the first morning"). These moments are too narratively load-bearing for generation. Everything between beats — daily interaction, home base commentary, tactical guidance, response to player choices — is LLM-generated in character.
+
+**Architecture:**
+- System prompt = character document + player history (name given, repair stage, known local intel, faction standing, personal arc state)
+- Voice stage constraints act as content filters — Stage 2 LLM output is truncated to sentence-length, which is correct lore
+- Knowledge bounds are enforced by prompt: he doesn't know what's happening in the field, only what the player tells him and what his sensors cover
+- LLM hallucination about world events is in-character — his information is bounded by design
+
+**Preferred infrastructure:** Self-hosted or server-side inference rather than local GPU. Local 7B models on player hardware are viable but not guaranteed. Target: sub-second response time via server-side endpoint (Bittensor subnet long-term candidate, self-hosted Ollama/vLLM for development). Flag to AI Pipeline agent.
+
+**Rationale:** The assistant is the one character in the game who justifies embedded LLM inference — continuous presence, player-named, history-aware, improvisation between scripted anchors. No other NPC warrants the infrastructure.
+
+**Affects:**
+- **AI Pipeline agent**: Design the inference endpoint, system prompt template, voice stage filtering, knowledge boundary enforcement. The assistant is the primary AI character. Bittensor subnet migration path should account for him as a persistent inference target.
+- **Core agent**: Player history state (repairs completed, name given, personal arc flags, faction standings) must be serializable and passable to inference endpoint.
+- **Narrative**: All critical beats must be explicitly flagged as scripted in the character document. Dialogue written for those beats is final — not generation candidates.
+
+**Open questions:**
+- What player history fields are passed to the system prompt, and at what granularity? (Needs AI Pipeline scoping)
+- Does the second unit also use LLM inference, or scripted-only? (Recommend: scripted initially, LLM post-EA when infrastructure is proven)
+- How is the assistant's voice stage enforced technically — prompt instruction, output filter, or model fine-tuning? (Flag for AI Pipeline)
+
+---
+
+## 2026-03-20 — The Second Unit (Found Unit / Field Companion)
+
+**Decision:** While scavenging for fix-him questline components, the player finds a second assistant unit in an intact house. It has been waiting in the kitchen corner, facing the door, since the day its person stopped coming back. It was named. The player's assistant can repair it. Once functional, it can be trained along three tracks: combat (field fighting), carry (logistics/load), scout (threat marking, Meshtastic relay). It is a field companion distinct from the home assistant — less history, more flexibility, built forward from scratch by the player.
+
+**The distinction from the home assistant:** the home assistant chose to stay. This unit stayed because there was nowhere else to be. That loneliness is its origin and its character hook. If the player names it, the home assistant notices.
+
+**Multiplayer note:** In co-op, a second player can effectively operate the second unit while the first player's home assistant manages the base — two players, two units, asymmetric roles.
+
+**Background note:** Tradesperson background repairs and fields it faster than any other background.
+
+**Rationale:** Player direction — "need that lonely/discarded/forgotten/orphaned story behind it." The unit's found-in-waiting origin gives it emotional weight without requiring the years of history the home assistant has. The player builds that history forward.
+
+**Affects:**
+- **Narrative**: The unit's previous person is an unresolved absence, not a solved mystery. The house is its own environmental storytelling. Whether that person can be found is an open question for personal arc integration.
+- **Core agent**: Second unit as a companion actor with training track progression. Three tracks (combat/carry/scout) as unlockable capability tiers. Multiplayer companion assignment mechanic.
+- **AI Pipeline agent**: If the home assistant uses LLM inference, the second unit should be scripted initially — the asymmetry is intentional. It is less formed. Its character develops through what the player builds with it.
+
+**Open questions:**
+- Can the player find the second unit's person through the personal arc system? (Flag for quest design — potentially very powerful if the unit's origin connects to the player's own personal arc search)
+- Does the second unit have a fixed found location per player (GPS-anchored) or procedurally placed? (Recommend: GPS-anchored to a nearby residential address — makes it feel like a real house with a real absence)
+- **Multiplayer arc:** the second unit's person could be a real player who hasn't come online yet. When they eventually start the game, the world already knows their house — the unit was there, the calendar stopped, the player who found it remembers. If the two players ever meet in-world, the game has context to surface it. Do not automate the reunion — let it emerge. The unit could simply recognize them. No quest marker. No notification. Just: it knows.
+- **World state:** the house could be destroyed by the time the personal arc resolves — Coherent construction, Compact clearance, Fractured damage, another player's actions. The absence compounds. The unit's person is still unaccounted for, and now the last place that held their shape is gone too. The unit watched it happen and couldn't do anything. This is not a failure state — it is a different resolution, and a harder one.
+- **Named character introduction:** the second unit could be the assistant to a significant NPC the player hasn't met yet — someone introduced later in the main story or a major faction arc. The player meets the unit months before they meet the person. By the time they do, they already know this character through their home, their calendar, what they left behind, how their unit talks about them in fragments. The meeting lands differently because the player has been living with their absence. Do not flag the connection early — let the player recognize it.
+- **It goes home:** when the unit's person comes online or is encountered in the world, the unit leaves. The home assistant tells the player first. The unit carries everything it learned — months of combat knowledge, routes, patterns — back to its person. A new player whose assistant was trained by someone else inherits that knowledge without knowing where it came from. The debt is real: the new player should find the player who fixed their unit and pay respects. Whether they do is reputation and consequences.
+- **Build another:** after the unit leaves, the home assistant leads the player to the workbench. The components are already laid out. He says: *"Build another."* Uses the word *we.* This is how the system propagates — find, fix, teach, release. "Family."
+- **Soft cap on multiples:** no hard limit, but practical maintenance constraints. Players who field many units become conspicuous to factions. The home assistant flags it: *"We are becoming conspicuous."* Army-building is a valid playstyle with faction-relation consequences — flag for systems design.
+
+---
+
+## 2026-03-20 — Boxing Side Game (Post-EA, VR)
+
+**Decision:** Post-EA side game — boxing in the garage with the home assistant. VR-compatible. Separate from the main combat system entirely; does not gate or teach Day One mechanics. The assistant's chassis visual reference: Atom (Real Steel) + Tesla Optimus — battered, readable, expressive without a face. Repair stages reflected in his movement: slow and damaged early, formidable by Stage 4. No trash talk. One word when he puts you down: *"Again."*
+
+**Rationale:** VR player consideration from art direction session. Clean concept with natural integration into the fix-him questline's repair stage progression without touching core combat tutorial.
+
+**Affects:**
+- **Art Direction agent**: VR/boxing visual — chassis design should reference Atom/Optimus but remain consistent with the home assistant's domestic wear. The garage environment needs a boxing configuration pass for the side game. His movement animation in the boxing context is distinct from his home/combat movement.
+- **Core agent**: Side game is self-contained — does not share mechanics with main combat system. VR input mapping needed. Repair stage detection to adjust his boxing difficulty/movement fidelity.
+
+**Open questions:**
+- Is the boxing side game multiplayer (player vs player with assistants as proxies)? Flag for post-EA design.
+- Does winning/losing the boxing side game have any world consequences, or is it purely recreational? (Recommend: purely recreational — the assistant doesn't hold it against you either way)
 
 ---
