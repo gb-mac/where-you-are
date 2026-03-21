@@ -49,6 +49,15 @@ public:
     /** Fired once when any provider succeeds (or all fail). */
     FOnLocationResolved OnLocationResolved;
 
+    /**
+     * Streamer Mode — replaces real GPS with a random point inside a named city's
+     * bounding box. Real location is never used or stored while active.
+     * Call before RequestLocation().
+     */
+    void EnableStreamerMode(const FString& CityName);
+    void DisableStreamerMode();
+    bool IsStreamerModeActive() const { return bStreamerMode; }
+
 private:
     UPROPERTY()
     TArray<TObjectPtr<UWYALocationProvider>> Providers;
@@ -68,4 +77,8 @@ private:
     bool TryLoadCachedCoord(FWYAGeoCoord& OutCoord);
 
     FWYAGeoCoord GetManualOrDefaultCoord();
+    FWYAGeoCoord GetStreamerCoord(const FString& CityName) const;
+
+    bool    bStreamerMode = false;
+    FString StreamerCity;
 };

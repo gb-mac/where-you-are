@@ -75,16 +75,58 @@ void AWYAGameMode::OnLocationResolved(FWYAGeoCoord Coord, bool bSuccess)
 
 void AWYAGameMode::SpawnPlayer(APlayerController* PC)
 {
-    // World origin = FVector::ZeroVector, which maps to the player's real-world start location
     RestartPlayer(PC);
 
-    // Kick off the main story (no-ops until narrative agent authors DT_MainStory)
+    // Park pawn way above terrain immediately so it can't fall through
+    // while Cesium collision meshes are still streaming in.
+    if (APawn* Pawn = PC->GetPawn())
+        Pawn->SetActorLocation(FVector(0.f, 0.f, 500000.f));
+
+    TrySpawnOnTerrain(PC, 30); // polls every 0.5s, up to 15s
+
+    // Quest/story fire once — independent of terrain polling
     if (UWYAQuestSubsystem* QuestSub = GetGameInstance()->GetSubsystem<UWYAQuestSubsystem>())
-    {
         QuestSub->AdvanceMainStory(PC);
-    }
 
     TryAssignOpeningSideQuest(PC);
+}
+
+void AWYAGameMode::TrySpawnOnTerrain(APlayerController* PC, int32 AttemptsLeft)
+{
+    if (!IsValid(PC)) return;
+
+    UWorld* World = GetWorld();
+    if (!World) return;
+
+    // Trace from 5km above origin straight down — hits when Cesium collision is ready
+    const FVector TraceStart(0.f, 0.f, 500000.f);
+    const FVector TraceEnd  (0.f, 0.f, -100000.f);
+    FHitResult Hit;
+    FCollisionQueryParams Params;
+    if (APawn* Pawn = PC->GetPawn()) Params.AddIgnoredActor(Pawn);
+
+    if (World->LineTraceSingleByChannel(Hit, TraceStart, TraceEnd, ECC_WorldStatic, Params))
+    {
+        if (APawn* Pawn = PC->GetPawn())
+        {
+            Pawn->SetActorLocation(Hit.ImpactPoint + FVector(0.f, 0.f, 200.f));
+            UE_LOG(LogTemp, Log, TEXT("WYAGameMode: landed on terrain at Z=%.0f after %d attempt(s)"),
+                Hit.ImpactPoint.Z, 31 - AttemptsLeft);
+        }
+        return;
+    }
+
+    if (AttemptsLeft <= 0)
+    {
+        if (APawn* Pawn = PC->GetPawn())
+            Pawn->SetActorLocation(FVector(0.f, 0.f, 50000.f));
+        UE_LOG(LogTemp, Warning, TEXT("WYAGameMode: terrain never loaded, spawning at fallback height"));
+        return;
+    }
+
+    World->GetTimerManager().SetTimer(TerrainSpawnRetryHandle,
+        FTimerDelegate::CreateUObject(this, &AWYAGameMode::TrySpawnOnTerrain, PC, AttemptsLeft - 1),
+        0.5f, false);
 }
 
 void AWYAGameMode::TryAssignOpeningSideQuest(APlayerController* PC)

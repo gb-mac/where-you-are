@@ -8,6 +8,19 @@
 
 static const FString LocationSaveSlot = TEXT("WYALocation");
 static constexpr int32 LocationSaveUserIndex = 0;
+
+// City bounding boxes for Streamer Mode [MinLat, MaxLat, MinLon, MaxLon, Altitude]
+struct FCityBounds { double MinLat, MaxLat, MinLon, MaxLon, Altitude; };
+static const TMap<FString, FCityBounds> StreamerCities =
+{
+    { TEXT("Calgary"),  { 50.842, 51.212, -114.315, -113.860, 1050.0 } },
+    { TEXT("Toronto"),  { 43.581, 43.856, -79.639,  -79.116,   76.0 } },
+    { TEXT("London"),   { 51.285, 51.693,  -0.510,    0.334,   11.0 } },
+    { TEXT("NewYork"),  { 40.477, 40.917, -74.259,  -73.700,   10.0 } },
+    { TEXT("LA"),       { 33.703, 34.337,-118.668, -118.155,   71.0 } },
+    { TEXT("Sydney"),   {-34.173,-33.578,  150.502,  151.343,   19.0 } },
+    { TEXT("Tokyo"),    { 35.528, 35.817,  139.490,  139.921,   17.0 } },
+};
 static constexpr int32 CacheMaxAgeDays = 30;
 
 // ---------------------------------------------------------------------------
@@ -37,6 +50,18 @@ void UWYALocationSubsystem::Deinitialize()
 void UWYALocationSubsystem::RequestLocation()
 {
     if (bResolved) return;
+
+    // Streamer Mode: bypass cache and providers entirely — use anonymised city coord
+    if (bStreamerMode)
+    {
+        FWYAGeoCoord StreamerCoord = GetStreamerCoord(StreamerCity);
+        UE_LOG(LogTemp, Log, TEXT("WYALocation: Streamer Mode — %s (%.4f, %.4f, alt=%.0f)"),
+            *StreamerCity, StreamerCoord.Latitude, StreamerCoord.Longitude, StreamerCoord.Altitude);
+        WorldOrigin = StreamerCoord;
+        bResolved   = true;
+        OnLocationResolved.Broadcast(WorldOrigin, true);
+        return;
+    }
 
     // 1. Try cached coord first (instant, no async)
     FWYAGeoCoord Cached;
@@ -161,30 +186,71 @@ bool UWYALocationSubsystem::TryLoadCachedCoord(FWYAGeoCoord& OutCoord)
     return OutCoord.IsValid();
 }
 
+void UWYALocationSubsystem::EnableStreamerMode(const FString& CityName)
+{
+    bStreamerMode = true;
+    StreamerCity  = CityName;
+    UE_LOG(LogTemp, Log, TEXT("WYALocation: Streamer Mode enabled — city=%s"), *CityName);
+}
+
+void UWYALocationSubsystem::DisableStreamerMode()
+{
+    bStreamerMode = false;
+    StreamerCity.Empty();
+    UE_LOG(LogTemp, Log, TEXT("WYALocation: Streamer Mode disabled"));
+}
+
+FWYAGeoCoord UWYALocationSubsystem::GetStreamerCoord(const FString& CityName) const
+{
+    FWYAGeoCoord Coord;
+    const FCityBounds* Bounds = StreamerCities.Find(CityName);
+
+    if (!Bounds)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("WYALocation: Streamer city '%s' not found, falling back to London"), *CityName);
+        Coord.Latitude  =  51.5074;
+        Coord.Longitude =  -0.1278;
+        Coord.Altitude  =  11.0;
+        Coord.Source    = EWYALocationSource::Manual;
+        return Coord;
+    }
+
+    // Random point inside the bounding box
+    Coord.Latitude  = Bounds->MinLat + FMath::FRand() * (Bounds->MaxLat - Bounds->MinLat);
+    Coord.Longitude = Bounds->MinLon + FMath::FRand() * (Bounds->MaxLon - Bounds->MinLon);
+    Coord.Altitude  = Bounds->Altitude;
+    Coord.Source    = EWYALocationSource::Manual;
+    return Coord;
+}
+
 FWYAGeoCoord UWYALocationSubsystem::GetManualOrDefaultCoord()
 {
     FWYAGeoCoord Coord;
 
-    // Check command line args: -StartLat=51.5 -StartLon=-0.12
-    double Lat = 0.0, Lon = 0.0;
+    // Check command line args: -StartLat=51.5 -StartLon=-0.12 -StartAlt=1048
+    double Lat = 0.0, Lon = 0.0, Alt = 0.0;
     if (FParse::Value(FCommandLine::Get(), TEXT("StartLat="), Lat) &&
         FParse::Value(FCommandLine::Get(), TEXT("StartLon="), Lon))
     {
+        FParse::Value(FCommandLine::Get(), TEXT("StartAlt="), Alt);
         Coord.Latitude  = Lat;
         Coord.Longitude = Lon;
+        Coord.Altitude  = Alt;
         Coord.Source    = EWYALocationSource::Manual;
-        UE_LOG(LogTemp, Log, TEXT("WYALocation: Using command-line coord (%.4f, %.4f)"), Lat, Lon);
+        UE_LOG(LogTemp, Log, TEXT("WYALocation: Using command-line coord (%.4f, %.4f, alt=%.0f)"), Lat, Lon, Alt);
         return Coord;
     }
 
     // Check DefaultGame.ini [WYALocationSettings]
-    double IniLat = 0.0, IniLon = 0.0;
+    double IniLat = 0.0, IniLon = 0.0, IniAlt = 0.0;
     GConfig->GetDouble(TEXT("WYALocationSettings"), TEXT("DefaultLatitude"),  IniLat, GGameIni);
     GConfig->GetDouble(TEXT("WYALocationSettings"), TEXT("DefaultLongitude"), IniLon, GGameIni);
+    GConfig->GetDouble(TEXT("WYALocationSettings"), TEXT("DefaultAltitude"),  IniAlt, GGameIni);
     if (IniLat != 0.0 || IniLon != 0.0)
     {
         Coord.Latitude  = IniLat;
         Coord.Longitude = IniLon;
+        Coord.Altitude  = IniAlt;
         Coord.Source    = EWYALocationSource::Manual;
         return Coord;
     }

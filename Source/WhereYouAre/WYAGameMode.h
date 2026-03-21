@@ -31,8 +31,12 @@ private:
 
     void SpawnPlayer(APlayerController* PC);
 
+    /** Ground-trace from high altitude — retries until Cesium tiles have collision, then spawns. */
+    void TrySpawnOnTerrain(APlayerController* PC, int32 AttemptsLeft);
+
     /** Try to assign an opening side quest; retries once after a short delay if AI isn't ready. */
     void TryAssignOpeningSideQuest(APlayerController* PC);
 
     FTimerHandle SideQuestRetryHandle;
+    FTimerHandle TerrainSpawnRetryHandle;
 };
