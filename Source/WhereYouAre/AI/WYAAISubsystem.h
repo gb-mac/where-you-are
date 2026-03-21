@@ -4,10 +4,14 @@
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "Http.h"
 #include "Location/WYAGeoTypes.h"
+#include "AI/WYALocationNameResolver.h"
+#include "AI/WYAOpponentPersonality.h"
+#include "AI/WYAAssistantTypes.h"
 #include "WYAAISubsystem.generated.h"
 
 DECLARE_DYNAMIC_DELEGATE_TwoParams(FOnQuestGenerated, bool, bSuccess, const FString&, QuestText);
 DECLARE_DYNAMIC_DELEGATE_TwoParams(FOnDialogueGenerated, bool, bSuccess, const FString&, DialogueText);
+DECLARE_DYNAMIC_DELEGATE_TwoParams(FOnPersonalityGenerated, bool, bSuccess, const FWYAOpponentPersonality&, Personality);
 
 /** A pre-generated side quest waiting to be assigned to the player. */
 USTRUCT(BlueprintType)
@@ -15,7 +19,11 @@ struct FWYAPregeneratedQuest
 {
 	GENERATED_BODY()
 
-	/** The quest text produced by the local LLM. */
+	/** Short quest title, e.g. "Shadows Over the Ramble". */
+	UPROPERTY(BlueprintReadOnly)
+	FString Title;
+
+	/** The quest body produced by the local LLM. */
 	UPROPERTY(BlueprintReadOnly)
 	FString Text;
 
@@ -79,6 +87,21 @@ public:
 		const FOnDialogueGenerated& OnComplete);
 
 	/**
+	 * Generate an opponent personality profile and return it via callback.
+	 * Call once at spawn — result is written to the AIController's Blackboard.
+	 *
+	 * @param FactionTag       Faction name, e.g. "Scavenger" or "Iron Compact"
+	 * @param LocationContext  Human-readable place name from WYALocationNameResolver
+	 * @param OnComplete       Callback — bSuccess=false if ollama unreachable;
+	 *                         a fallback personality is always returned regardless
+	 */
+	UFUNCTION(BlueprintCallable, Category = "WYA|AI")
+	void GenerateOpponentPersonality(
+		const FString& FactionTag,
+		const FString& LocationContext,
+		const FOnPersonalityGenerated& OnComplete);
+
+	/**
 	 * Pop the next ready pre-generated side quest, if any.
 	 * Returns false if none are ready yet.
 	 */
@@ -91,14 +114,63 @@ public:
 
 private:
 	void OnLocationResolved(FWYAGeoCoord Coord, bool bSuccess);
+
+	/**
+	 * Schedule a single pre-gen quest for the given coord.
+	 * Reserves a slot in PregeneratedQuests immediately; populates it async.
+	 */
+	void ScheduleOnePregen(FWYAGeoCoord Coord);
+
+	/**
+	 * Top up the pre-gen buffer to DesiredBufferSize.
+	 * Safe to call at any time — no-ops if buffer is already full.
+	 */
+	void RefillBuffer();
+
 	void SendRequest(const FString& Prompt, TFunction<void(bool, const FString&)> Callback);
 	void OnRequestComplete(FHttpRequestPtr Request, FHttpResponsePtr Response, bool bConnected,
 	                       TFunction<void(bool, const FString&)> Callback);
+
+public:
+	/**
+	 * Generate a stage-aware assistant line. Not Blueprint-exposed — called only
+	 * from UWYAAssistantSubsystem. Uses TFunction callback to avoid dynamic delegate
+	 * binding constraints.
+	 */
+	void GenerateAssistantLine(
+		EWYAAssistantStage Stage,
+		const FString& ContextDescription,
+		TFunction<void(bool, const FString&)> Callback);
+
+private:
+	/** Parse a TITLE:/BODY: response into title and body strings. */
+	static void ParseTitleBody(const FString& Raw, FString& OutTitle, FString& OutBody);
+
+	/** Parse a personality key:value response into an FWYAOpponentPersonality. */
+	static void ParsePersonality(const FString& Raw, const FString& FactionTag, FWYAOpponentPersonality& Out);
 
 	FString OllamaURL = TEXT("http://127.0.0.1:11434/api/generate");
 	FString ModelName = TEXT("phi3.5");
 	bool    bOllamaAvailable = false;
 
-	/** Ring buffer of pre-generated side quests ready to assign. */
+	/**
+	 * Target number of ready+in-flight pre-gens to maintain.
+	 * RefillBuffer() schedules new generations until this count is met.
+	 */
+	static constexpr int32 DesiredBufferSize = 3;
+
+	/** Last GPS coord from OnLocationResolved — used by RefillBuffer(). */
+	FWYAGeoCoord LastResolvedCoord;
+	bool         bHasResolvedCoord = false;
+
+	/**
+	 * Slots for pre-generated quests.
+	 * Entries are added immediately on ScheduleOnePregen (bReady=false),
+	 * then flipped to bReady=true when the LLM response arrives.
+	 * Num() therefore reflects total pipeline depth (ready + in-flight).
+	 */
 	TArray<FWYAPregeneratedQuest> PregeneratedQuests;
+
+	UPROPERTY()
+	TObjectPtr<UWYALocationNameResolver> LocationNameResolver;
 };

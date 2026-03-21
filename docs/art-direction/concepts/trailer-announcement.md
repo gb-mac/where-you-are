@@ -154,7 +154,7 @@ The moment the voice becomes fully coherent at 0:20, the room holds. The two cha
 
 ## Key Visual — LOCKED
 
-**File:** `~/Desktop/Assistant_final.png`
+**File:** `docs/art-direction/assets/assistant-poster-mobile-4k.png`
 
 The 30-second spot builds from pure darkness → fade in/out glimpses → holds on this frame. BOOM. Title card.
 

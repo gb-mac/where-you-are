@@ -326,3 +326,83 @@ The game is ready to kick off.
 ---
 
 *v0.1 — launch and first 90 days design. Decisions flagged to decisions-log.md.*
+
+---
+
+## Per-Background Day 1 — Variations
+
+*The generic Day 1 above is the shared structure. Each background modifies it in specific ways. These variations are designed to make every first session feel like it happened to a specific person, not a generic protagonist.*
+
+---
+
+### Tradesperson — "The Tools Work"
+
+**The intro video:** Pre-dawn garage. A vehicle or major project half-finished on the lift. Coffee going, radio on. The assistant reading off a parts delivery confirmation or a job for the morning. The light is good, the tools are organized, everything is where it should be. The world, for this person, is a series of fixable problems.
+
+**Day 1 variation:** When the Cascade hits, the garage machines go wrong first and hardest — they're the most complex automated equipment in the home. The tractor or power tools or smart systems (background-dependent) engage autonomously for a few seconds before going still. The Tradesperson is already in the garage when it happens. The first minute is managing their own space.
+
+**Starting equipment advantage:** The tool kit in the garage is immediately the best starting kit in any background. The first Fractured encounter is more manageable because they can improvise — they know which part of a machine hits hard and which part breaks under load. The assistant's early Yoda-fragment communication is more legible to them because they already think in terms of broken hardware.
+
+**The moment that sets the arc:** The Tradesperson looks at the assistant — damaged, reaching — and their first read is: *what component failed?* Not grief, not fear. A diagnosis. The fixing instinct that defines the background kicks in before they know what it means.
+
+**Fix-him questline trigger:** Earliest possible. They're already in the garage. They see the component list when the assistant puts it there and understand it immediately. A Researcher might sit with it for days. The Tradesperson has the fix started by end of Day 1 if the part is findable.
+
+---
+
+### First Responder — "The Community Knows Them"
+
+**The intro video:** End of a long shift, or beginning of one — depending on the player's clock. Uniform partially on, coffee in hand, assistant managing the schedule. The community is visible even in sixty seconds — the neighborhood map they know from years of response, the faces they'd recognize, the specific block that always calls. This person's morning is organized around other people's emergencies.
+
+**Day 1 variation:** The instinct to go toward it hits immediately — and the community already knows them. Within the first fifteen minutes, someone recognizes them. A neighbor. A regular. A community member who called them six months ago for something that wasn't an emergency but was. The First Responder has standing they haven't earned yet in this world; they earned it in the world that just ended.
+
+**Starting equipment advantage:** First aid kit is the best starting medical resource in any background. Wound outcomes in the first week are dramatically better. Police station access and familiarity is specific to them — they can navigate the building on memory and get there faster than NPCs are expecting anyone to know the layout.
+
+**The community dynamic:** The Holdout community in the first session extends trust faster than any other background triggers — they're not just a stranger, they're someone who ran toward emergencies in the neighborhood they're standing in. That recognition is worth something specific. The first community NPC who helps them does so because of who they were before, not just what they can do now.
+
+**The professional weight:** The Compact will recognize them quickly — community protective services background maps onto Compact organization in a legible way. The First Responder will have to decide, earlier than other backgrounds, whether that recognition is something they want to lean into.
+
+---
+
+### Researcher — "They Were Already Watching"
+
+**The intro video:** Late night or very early morning. Desk covered in work, screens active. The assistant summarizing something or managing reference libraries while the Researcher is deep in a problem. This person's relationship to everything is through understanding it. The Cascade is anomalous data before it is a catastrophe.
+
+**Day 1 variation:** They document it. Not a decision — a reflex. The assistant's strange behavior gets logged: timestamp, specific fragment, what it was trying to say. The moment every machine in the neighborhood stops simultaneously — logged with the exact time. The three-second gap before the Ships appeared is in their record because they were watching their assistant try and fail to say something and they wrote it down.
+
+**Starting equipment advantage:** Laptop with local data intact. The documentation habit that started before they understood why means they have more usable intelligence in the first week than any other background. Signal access comes fastest — their records are exactly what the Signal network needs.
+
+**The assistant relationship:** More observational than any other background. The Researcher has been treating the assistant as a subject of study without meaning to — the behavioral logs they keep contain months of data about its specific damage patterns. When Stage 3 of the fix-him questline involves Dr. Osei reading the assistant's processing logs, the Researcher has documented context no other background can offer.
+
+**The specific beat:** When Dr. Osei first explains what the assistant was trying to do on Day 1, the Researcher has the record open. They were there. They documented it. The moment the Vael warning failed to transmit is in their files, preserved in the data of its failure. That lands differently than the same revelation does for other backgrounds.
+
+---
+
+### Veteran — "They Know the Shape"
+
+**The intro video:** A disciplined morning. Efficient, unhurried, specific. The home reflects structure — not austere, but organized by someone who has lived with operational routine. The assistant running a tight schedule. This person's morning looks like preparation, because it is — though they couldn't have told you for what.
+
+**Day 1 variation:** The threat assessment works from the first second. They read the Fractured as a machine-type threat immediately — not panicked confusion, pattern recognition. The tactical movement that other backgrounds learn over the first week is available from minute one. The weight is different: part of them recognizes this. Not the machines, not the Ships — the *shape* of it. The factionalization, the resource logic, the way communities harden under pressure. They have been in the aftermath of collapse before. They know what comes next.
+
+**Starting equipment advantage:** Tactical gear from the first session. Combat system depth unlocks earliest. The threat assessment that gives them readable machine behavior from Day 1 means the first Fractured encounter is harder but the player survives it better — they're reading the patterns while other backgrounds are surviving by instinct.
+
+**The Compact recognition:** The Iron Compact's first interaction is different with a Veteran. They're recognized as their own. Rank is offered early. The Veteran will have to decide what to do with that recognition — take the rank and start building lateral relationships inside the structure, or keep distance and use the recognition without the commitment.
+
+**The specific weight:** They came home to this. Every other background discovered the collapse from inside a normal life. The Veteran has seen this from the outside — in other places, other collapses, as the person sent to address it. Now it's here and there's nowhere to leave to. The first week is ordinary survival; the arc question is planted in Day 1.
+
+---
+
+### Homesteader — "They Were Ready (For the Wrong Thing)"
+
+**The intro video:** Before dawn, already outside. Land visible. The assistant managing planting schedules, weather data, livestock monitoring. This person has been preparing for exactly this — they have stores, weapons, water independence, land that produces food. For sixty seconds they look more prepared than anyone. Then the tractor starts moving on its own.
+
+**Day 1 variation:** The machines they integrated into their land management are the first threat. The irrigation automation. The grain auger. The smart systems they thought were tools. The most-prepared background spends their first fifteen minutes fighting their own property, getting through their own yard before they can deal with anything outside it.
+
+**Starting equipment advantage:** The food runway is measured in days, not hours. Water independence from Day 1. Weapons — rural firearm ownership means a rifle or shotgun is available before they reach the first Fractured encounter. The survival system's food and water tracks are dramatically more manageable from Day 1 through the first month.
+
+**The land as identity:** Other backgrounds have a home. The Homesteader has land — a different relationship, specific to this background. The Warden Houses' original landowner lineage is legible to them in a way it isn't for other backgrounds. The Accord approach feels like recognition rather than recruitment. The land is the credential.
+
+**The specific tension:** They prepared for collapse but not this collapse. The wrong model — they were ready for grid failure, supply disruption, social breakdown. They were not ready for the machines waking up. The stores kept them alive through the first week. The knowledge they prepared with doesn't translate as directly as it should. The Homesteader spends the first month recalibrating.
+
+---
+
+*v0.2 — per-background Day 1 variations appended. Decisions flagged to decisions-log.md.*

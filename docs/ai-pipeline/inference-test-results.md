@@ -1,6 +1,6 @@
 # Inference Test Results
 
-**Date:** 2026-03-18
+**Date:** 2026-03-17  
 **Hardware:** Beelink SER5850U, Vega 8 iGPU (CPU inference)  
 **Model:** phi3.5  
 
@@ -8,9 +8,9 @@
 
 | Metric | Value |
 |--------|-------|
-| Total time | 24.36s |
-| Output tokens | 178 |
-| Tokens/sec | 11.6 |
+| Total time | 21.49s |
+| Output tokens | 163 |
+| Tokens/sec | 11.3 |
 
 ## Prompt
 
@@ -33,19 +33,12 @@ Quest:
 
 ## Response
 
-As dusk sets over Central Park with Bethesda's fountain glistening in the waning light, you find yourself entrusted by your Wardens faction comrades to protect this green heart amidst urban decay. They task you with a covert operation: surveil The Ramble for any signs of Scavenger activity under the veil of twilight and report back within an hour using their secure channel—a flash drive hidden in one of your own shadows, if necessary. Your reward will be rare seeds from local flora that you'll plant at Bow Bridge to help restore its natural beauty as a symbolic gesture against Scavenger encroachment upon this sanctuary. Remember, vigilance is key; the Park breathes secrets in silence and dusk whispers them before nightfall descends.
+As dusk falls over Central Park, you notice Bethesda Fountain's lights flickering irregularly. A message from The Warden Council has been received; they suspect someone is sabotaging the park’thy cherished water source to rally more scavengers into their ranks against urban preservationists like yourself. Your mission: Investigate and restore Bethesda Fountain's lights, ensuring its protection as a symbol of hope for those who value nature amidst concrete jungles. Successful completion will earn you the honorary title "Guardian" along with rare warden coins hidden within your local Warden outpost tonight.
 
-## GPU Offload Investigation
-
-- `/dev/kfd` present, AMDGPU kernel driver loaded
-- Vega 8 is gfx90c (Cezanne APU, device 0x1638) — partial ROCm support
-- ROCm userspace (`rocm-opencl-runtime`, `hip-runtime-amd`) not installed
-- **Decision:** skip GPU offload on this hardware — Vega 8 APU ROCm is unreliable and this is backup hardware
-- Re-test GPU offload on main system (RX 5700 / RDNA2, 8GB VRAM, dedicated) when it arrives
+Quest: Investigate and Fix Bethesda Fountain's Light Sabotage
 
 ## Notes
 
-- 11.6 t/s CPU-only is acceptable for **async pre-generation** (generate quests ahead of player position)
-- Too slow for real-time / on-demand responses
-- Output quality is good — location-aware, faction-appropriate
-- Memory is tight on Beelink (3.5 GiB free / 11.6 GiB total); keep one model loaded at a time
+- ollama ROCm build installed; Vega 8 GPU offload TBD
+- Acceptable for background NPC generation; too slow for real-time
+- Re-test on main system (RX 5700, ROCm) when hardware arrives

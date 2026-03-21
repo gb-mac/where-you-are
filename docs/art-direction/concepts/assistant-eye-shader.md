@@ -67,20 +67,97 @@ Result: warm amber-gold — close to the lamp's color temperature. For roughly o
 
 **Material type:** Unlit emissive on the iris mesh. The iris is a separate mesh element from the head — allows independent material control without recompiling the head material.
 
+**Material settings:**
+```
+Domain:        Surface
+Blend Mode:    Opaque
+Shading Model: Unlit
+Two-Sided:     false
+```
+
 **Parameters to expose:**
 
 ```
 // M_AssistantEye material parameters
-EyeColor_Linear     (Vector3, default: Red state values)
+EyeColor_Linear     (Vector3, default: Red state — 0.527, 0.044, 0.026)
 EmissiveMultiplier  (Scalar, default: 4.0)
 RingOpacity         (Scalar, default: 1.0 — reduce only for LOD3+)
 ```
 
-**Material graph (simplified):**
+---
+
+## Material Graph — Full Node Breakdown
+
+### Step 1 — Radial distance from iris center
+
 ```
-[EyeColor_Linear] × [EmissiveMultiplier] → Emissive
-[Depth texture / fake lens depth] → lerp → Emissive  (adds perceived depth behind iris)
-[RingOpacity] → controls dark surround ring via masked black layer
+TexCoord(UV channel 0)
+  → Subtract(0.5, 0.5)               // center UV at origin
+  → ComponentMask(R, G)              // 2D offset vector
+  → DotProduct(self, self)           // squared distance
+  → SquareRoot                       // dist: 0 at center, ~0.5 at UV edge
+  → Multiply(2.0)                    // normalize: 0 at center, 1.0 at iris boundary
+  → [dist_normalized]
+```
+
+*Assumes iris mesh UV fills a unit circle centered at (0.5, 0.5). If UV is mapped differently, adjust the 2.0 multiplier.*
+
+---
+
+### Step 2 — Fake depth gradient
+
+```
+[dist_normalized]
+  → Clamp(0, 1)
+  → Multiply(0.25)                   // 25% darkening factor at rim
+  → OneMinus                         // 1.0 at center, 0.75 at edge
+  → [depth_factor]
+```
+
+Result: center of iris is full brightness, rim is 75% — sells the sense of depth behind glass without any texture or raytracing.
+
+---
+
+### Step 3 — Dark surround ring
+
+```
+[dist_normalized]
+  → Subtract(0.85)                   // ring starts at 85% of iris radius
+  → Divide(0.15)                     // ring width = 15% of radius
+  → Clamp(0, 1)
+  → OneMinus                         // 1.0 inside iris, 0.0 in ring area
+  → [iris_mask]
+
+// Apply RingOpacity (LOD control)
+Lerp(1.0, [iris_mask], RingOpacity)  // RingOpacity=1: ring is black
+                                      // RingOpacity=0: no ring, full emissive
+  → [ring_factor]
+```
+
+*Do not let RingOpacity drop to 0 below LOD2 — the ring is what stops FSR from bleeding emissive into the face geometry.*
+
+---
+
+### Step 4 — Composite and output
+
+```
+[EyeColor_Linear]
+  → Multiply([EmissiveMultiplier])   // HDR emissive base
+  → Multiply([depth_factor])         // apply depth gradient
+  → Multiply([ring_factor])          // apply ring mask
+  → [EmissiveColor output pin]
+```
+
+---
+
+### Full graph summary (left to right)
+
+```
+TexCoord → center → dist_normalized ──┬── × 0.25 → 1-x = depth_factor ──────────────────────────┐
+                                       └── -0.85 → /0.15 → clamp → 1-x = iris_mask               │
+                                                                      ↓                            │
+EyeColor_Linear ─────────────────────────────────── × EmissiveMultiplier ── × depth_factor ── × ring_factor → Emissive
+                                           Lerp(1.0, iris_mask, RingOpacity) = ring_factor ───────┘
 ```
 
 **Fake depth note:** A simple radial gradient darkening toward the iris edge — darker rim, brighter center — sells the sense of depth behind the eye without raytracing. 20–30% darkening at the rim is enough.
@@ -122,4 +199,4 @@ Do not compromise the dark surround ring or the instant red-flip behavior to hit
 
 ---
 
-*v0.2 — 1080p native primary target. FSR/LOD/Vega 8 deferred.*
+*v0.3 — Full node-level material graph added. 1080p native primary target. FSR/LOD/Vega 8 deferred.*

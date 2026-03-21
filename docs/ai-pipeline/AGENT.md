@@ -5,7 +5,7 @@ You are the AI pipeline agent for "Where You Are". Read CLAUDE.md at the project
 ## Your Scope
 - NPC behaviour and dialogue generation (local LLM → Bittensor migration path)
 - Dynamic quest generation from location data
-- OpenClaw integration
+- Opponent personality system (LLM-generated Blackboard values at spawn → UE5 Behavior Tree)
 - Claude API prototyping for quest/dialogue
 - Bittensor subnet architecture planning
 

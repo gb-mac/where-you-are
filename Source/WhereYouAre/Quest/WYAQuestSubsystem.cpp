@@ -20,7 +20,7 @@ bool UWYAQuestSubsystem::TryAssignSideQuest(APlayerController* PC)
 	FWYAQuest Quest;
 	Quest.ID    = FString::Printf(TEXT("side_%lld"), FDateTime::UtcNow().GetTicks());
 	Quest.Type  = EWYAQuestType::SideQuest;
-	Quest.Title = TEXT("Local Disturbance");   // placeholder — narrative agent can template titles
+	Quest.Title = PreGen.Title;
 	Quest.Body  = PreGen.Text;
 
 	UE_LOG(LogTemp, Log, TEXT("WYAQuestSubsystem: assigned side quest to %s"),

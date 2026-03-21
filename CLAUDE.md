@@ -129,4 +129,4 @@ This project uses multiple Claude Code instances running in parallel terminals, 
 - [ ] Build WhereYouAreEditor with Cesium dependency (in progress)
 - [ ] Drop CesiumWorldTerrain + Google Photorealistic 3D Tiles in level
 - [ ] Debug item spawning in Play (verify 6 seeded items appear)
-- [ ] AI pipeline CPU test
+- [x] AI pipeline CPU test — phi3.5 @ 11.6 t/s CPU-only, async pre-gen viable (2026-03-18)

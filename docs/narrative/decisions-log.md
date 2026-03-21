@@ -663,6 +663,128 @@ Key structural changes from v0.1:
 
 ---
 
+## 2026-03-20 — What Is Arriving: Design Locked as Unknown
+
+**Decision:** No one designs what is arriving until it arrives. Not the narrative agent, not the world, not any NPC. The third threat is a post-EA decision made when the live world earns it. For Early Access and the 18-month arc, the correct answer to "what is it?" is the dread of not knowing. Seeding is the work — not specification.
+
+**What is confirmed:**
+- Something is coming. The Vael's Signal was a warning about it.
+- The Coherent construction projects are planetary defenses built to Vael specifications — defense *against* it.
+- The Vael's Assessment evaluates whether humans can fight alongside them *when it arrives*.
+- The Touched hear it as a name. The Signal decodes the Probe deposit as a map of its trajectory. Both converge in Act 4.
+- It arrives at the most defensible location first. (Post-EA content drop.)
+
+**What is not designed and will not be until post-EA:**
+- What it is
+- Where it comes from
+- What it wants
+- What it looks like
+
+**The narrative principle:** Dread is the design. Every breadcrumb confirms that something real is coming. Nothing confirms what. That gap is intentional and must be maintained. Any pressure to specify — from systems design, art direction, or player expectation — is deferred until post-EA.
+
+**Rationale:** Player decision. No one knows until it comes.
+
+---
+
+## 2026-03-20 — Personal Arc: No Time Limit
+
+**Decision:** The personal arc ("Is there someone you're looking for?") has no time limit and no forced resolution. It surfaces organically across 18 months and beyond. Resolution types (reunion, loss, found-but-changed) remain available throughout the live service period.
+
+**Implication:** Quest design for the personal arc must not assume a resolution window. Threads can remain unresolved indefinitely. That is not a failure state — it is the condition of the world. Some people are never found.
+
+**Rationale:** Player decision.
+
+---
+
+## 2026-03-21 — Cairn: The Renegade Scholar
+
+**Decision:** Cairn is a named independent NPC — self-taught catastrophist geologist, Freemason, builder — who operates entirely outside faction alignment. Character doc at `character-cairn.md`. Based on Randall Carlson archetype.
+
+**Role:** Gives the Researcher background — and through them the player — the largest possible frame for the Cascade. He has been reading the pattern of civilizational catastrophe in the geological record for forty years. When the Cascade happened his first thought was recognition, not fear.
+
+**What he knows:**
+- Vael Displacement Zones statistically correlate with Younger Dryas impact deposit distributions — he has been mapping this since early post-Cascade
+- Coherent construction orientation (outward-facing) matches pre-Cascade ancient site alignments he has catalogued globally
+- His hypothesis: the Vael have been here before. Previous events left geological signatures. The prior civilization was not alone when it ended.
+- His missing piece: field data from Displacement Zones. He cannot get there himself.
+
+**The three-way convergence:** Cairn (geological/cosmological pattern) + Dr. Osei (Signal intelligence, the theory) + the Researcher (Day 1 data, independent verification) = the most complete picture of what is actually happening that anyone in the game assembles. The Researcher is the only character who connects all three.
+
+**Burke + Cairn:** Respect each other precisely, not warmly. Burke reads human systems. Cairn reads geological ones. When the Researcher bridges them they discover they've been describing the same civilizational collapse from different instruments.
+
+**Affects:**
+- **Researcher arc**: Cairn is the character who gives the Researcher the largest frame. His missing piece (Displacement Zone field data) is what the Researcher can get him. His documentation of the Younger Dryas parallel to the Cascade is the Act 2 reframe.
+- **AI Pipeline agent**: Cairn is a secondary LLM candidate — long-form analytical conversations with the Researcher, calibrated to build evidence before arriving at conclusions.
+- **Core agent**: Displacement Zone field access as a Researcher-specific mission type — collecting geological samples, recording specific measurements Cairn needs.
+
+---
+
+## 2026-03-21 — The Maker System + Tradesperson Arc Integration
+
+**Decision:** The four Warden craft roles are consolidated as follows, mapped to the post-Cascade world's actual materials and fighting context:
+
+| Title | Covers |
+|---|---|
+| **The Armorer** | Hard protection: plate carriers, ceramic inserts, helmets, structural defense |
+| **The Tailor** | Soft kit: fabric, harness, straps, fit — the construction quality that announces Warden work before the marks do |
+| **The Gunsmith** | Firearms: maintenance, modification, provenance |
+| **The Bladesmith** | Edged weapons: knives, blades, work meant to outlast the carrier |
+
+Within the Houses, all four roles carry a single elevated internal title: **The Maker.** The specific material is a description. The title is the standing. Making Warden gear is a form of oath-keeping — the Maker is accountable for what they make. If the person who carries it falls, the Maker is a witness to how.
+
+**Provenance mechanic:** Every piece of Warden gear has a Maker who can read their own work. Recovered gear is a questline door. The Tailor has the most political knowledge — fit is personal. The Armorer has the deepest history. The Gunsmith knows what was being prepared for. The Bladesmith made things meant to last.
+
+**The four Makers in a House form a council of institutional memory.** They have outfitted everyone. They know who carries what. They are not eager to be found but the Accord holds them to honesty.
+
+---
+
+**Tradesperson Arc Integration:**
+
+The Tradesperson background enters the Warden faction through the back door — the workshop, not the oath.
+
+**The recognition mechanic:** The Tradesperson has the eye. Where other backgrounds see good gear, the Tradesperson sees *how* it was made — the join, the reinforcement at stress points, the stitching that was done twice when once would have held. Warden work is readable to them before anyone explains it. This unlocks specific dialogue options and investigation paths unavailable to other backgrounds.
+
+**The Maker finds them — not the other way around.** Word travels that there's someone in the area who does good work. A Maker — likely the Armorer or Tailor first — shows up at the player's home base with a problem. Not a contract, not a quest marker. Something that needs fixing. The evaluation is built into the task. The player doesn't know they're being assessed.
+
+**The fix-him questline crosses over.** The Tradesperson repaired the assistant themselves. The Maker notices the join. *"You did this yourself. Show me."* The craft is the credential. The player's relationship with the assistant — the most personal object in the game — is also their introduction to the Warden Maker network.
+
+**Starting blueprints as a seed:** Some Tradesperson starting blueprints use construction methods adjacent to Warden technique. The player doesn't know this. The Maker recognizes it. Where those blueprints came from is a thread.
+
+**The faction entry point this creates:** The Tradesperson can achieve Maker-peer standing before they are formally Sworn — or without ever taking the oath at all. The Maker respects the work regardless. If the player eventually takes the Warden oath, they enter with a relationship inside the faction that other backgrounds don't have. The Tailor or Armorer vouches for them in a way that carries weight at the Moot.
+
+**The tension:** The Maker's recognition comes before the Accord's. That gap — craft acknowledged, oath not yet given — is the Tradesperson's specific moral question with the Wardens. The Maker may eventually ask directly: *"Why haven't you sworn?"*
+
+**Affects:**
+- **Core agent**: Tradesperson background flag must trigger Maker-recognition dialogue states. Starting blueprint provenance as a hidden stat. Maker-peer standing as a distinct Warden faction sub-track.
+- **AI Pipeline agent**: Maker NPC needs an assessment-mode dialogue profile — present as a problem, not as a recruiter. The evaluation is implicit. The Maker recognizes the work and says so plainly.
+- **Narrative**: The Tradesperson's three story axes (background/personal arc/Record) now have a fourth thread: craft lineage. Where did the blueprints come from? Who taught whoever taught them? That thread leads somewhere inside the Houses.
+
+**Open questions:**
+- Can a non-Tradesperson player become a Maker through play, or is it background-locked? (Recommend: available to all but gated behind significant craft investment — Tradesperson gets there faster and with more depth)
+- Does the Maker who vouches for the Tradesperson at the Moot have standing consequences if the player later breaks the Accord? (Yes — the Maker's judgment is on record. This is intentional weight.)
+- Which House does the first Maker contact belong to, and is that House significant to the main story? (Flag for quest design)
+
+---
+
+## 2026-03-21 — Burke: The Continental Manager
+
+**Decision:** Burke is a named independent NPC — former Special Forces, entrepreneur, systems analyst — who operates entirely outside faction alignment. Character doc at `character-burke.md`.
+
+**Three structural roles confirmed:**
+
+1. **The Continental Manager** — Winston Scott parallel. Not inside any faction, not outside the framework. Runs the conditions under which the post-Cascade world's social structures function. Every faction leader has sat at his fire. He remembers. He enforces nothing formally and is more respected than most who do.
+
+2. **Meshtastic node** — Burke's property is a major pre-built LoRa node. When the player connects it to the network, Burke becomes reachable in the field via the assistant's relay. Codec calls go mobile. He can interrupt operations with kill chain analysis in real time.
+
+3. **Alfred/Father pairing** — Burke and the assistant are the same archetype in two registers. The assistant: intimate, personal, domestic, Stage 5 voice is the Alfred/Gandalf/Father arrival. Burke: external, broad, ideological, encountered in the world. Together they are the player's complete advisory structure — the home and the world. Neither replaces the other.
+
+**Affects:**
+- **Core agent**: Burke's property as a Meshtastic network node. Field codec call system — assistant relays Burke's signal during operations. Node placement and network extension mechanics.
+- **AI Pipeline agent**: Burke is a secondary LLM candidate after the assistant — long-form codec calls with the player's operational context passed to the system prompt. Voice profile: controlled analytical register breaking into raw aggression under specific triggers.
+- **Narrative**: Burke knows about Project Tether (Month 4 conclusion), has parallel findings to Dr. Osei through different methodology, holds the most complete operational picture in the game. Late-game move triggered by framework threat, not faction interest.
+
+---
+
 ## 2026-03-20 — Boxing Side Game (Post-EA, VR)
 
 **Decision:** Post-EA side game — boxing in the garage with the home assistant. VR-compatible. Separate from the main combat system entirely; does not gate or teach Day One mechanics. The assistant's chassis visual reference: Atom (Real Steel) + Tesla Optimus — battered, readable, expressive without a face. Repair stages reflected in his movement: slow and damaged early, formidable by Stage 4. No trash talk. One word when he puts you down: *"Again."*
@@ -678,3 +800,99 @@ Key structural changes from v0.1:
 - Does winning/losing the boxing side game have any world consequences, or is it purely recreational? (Recommend: purely recreational — the assistant doesn't hold it against you either way)
 
 ---
+
+---
+
+## 2026-03-21 — New Character and Quest Docs (Session 2)
+
+**Documents created this session:**
+
+- `character-osei.md` — Dr. Yara Osei standalone character doc. Pre-Cascade digital twin architect, the specific fear (not afraid of the Vael — afraid of what's behind them), trust-gating and field tasks, Researcher peer recognition (data-generated trust), publication question (argument she already lost), Act 3 theory delivery inside the structure, the assistant's Day 1 mechanism (why he couldn't transmit), act-by-act arc, month-18 final broadcast.
+
+- `quests/questline-fix-him.md` — The fix-him questline, full design. Four stages: Stage 1 (Mobility, Separated trader), Stage 2 (Power Core, the pre-Cascade relay station with Cascade log terminal in the sub-level), Stage 3 (Processing, Dr. Osei diagnostic intersection — she finds the Vael warning in his error logs), Stage 4 (Communication, *"Give me tonight"*, the warning delivered). Background-specific moments. Narrative threads resolved.
+
+- `scenes/veteran-meets-burke.md` — The Veteran/Burke first meeting scene. Act 1/2 threshold. Burke reads them immediately (ODA model, assessment capability). Two hours of the Veteran laying out their operational picture. Burke provides the three missing pieces — Compact checkpoint commander, Holdout leadership crisis, Project Tether briefing. The Responsible identification. The question they leave with: what does "stands after you go" mean when you don't go?
+
+- `quests/questline-gone-dark.md` — Gone Dark community recovery questline. Five stages: perimeter reading, edge case identification, internal fracture, the leader, after. Non-linear, no guaranteed success, timeline measured in weeks. The leader is not a monster. The community is not monolithic inside. You're not fighting your way in — you're rebuilding trust from the perimeter inward. Background-specific entries for all five backgrounds.
+
+**Key decisions embedded in new docs:**
+
+- The relay station (Stage 2, fix-him) contains the Cascade's automated startup log showing the signal reception timestamp — accessible to the player and the Signal researcher if they're present. Not a quest objective. Visible on a screen.
+
+- Dr. Osei's Stage 3 diagnostic finds the Vael warning in the assistant's error logs — this is the mechanism confirmation that completes her theory. The Researcher background's three-second gap provides the timestamp; the fix-him questline provides the transmission content. Two independent confirmation paths.
+
+- The scenes/ directory created at `docs/narrative/scenes/` for scene-level narrative beats that don't belong in character docs or quest docs.
+
+**Affects:**
+- **AI Pipeline agent**: Dr. Osei's LLM profile needed — methodical, precise, three confidence levels (established/inference/belief). Diagnostic session dialogue for Stage 3.
+- **Core agent**: Relay station location, Cascade log terminal as interactable environmental prop. scenes/ directory may feed into dialogue/cutscene pipeline.
+- **Narrative**: arc-veteran.md cross-references need update to include scenes/ directory.
+
+
+---
+
+## 2026-03-21 — Session 2 Completion (Remaining Items)
+
+**Final items completed:**
+
+- `burke-network.md` — Burke's late-game Responsible network. ~30 bilateral relationships, no formal structure. Five clusters: Compact Pragmatists, Signal analysts, Warden cross-faction contacts, Holdout anchors, independent operators (player is one late-game). The threshold trigger: framework collapse conditions, not faction conflict. When activated: coordinated distributed actions that individually look unrelated. Late-game player arc: Burke identifies them as Responsible mid-Act 3/4, asks for one specific action, trusts the judgment. *"I trust it."*
+
+- `launch-first-90-days.md` updated — Per-background Day 1 variations appended. All five backgrounds: specific intro video content, Day 1 variation from the generic spawn, starting equipment interaction, arc-setting moment, and what's specific to each background that makes their first session feel like it happened to a particular person.
+
+- `scenes/` directory created — Scene-level narrative beats. First entry: `scenes/veteran-meets-burke.md`.
+
+**All pending items from previous session resolved.** Active narrative doc set is complete for Early Access scope.
+
+
+---
+
+## 2026-03-21 — Burke Codec DataTable Spec
+
+**Document:** `docs/narrative/dialogue/burke-codec-calls.md`
+
+**14 calls authored and implementation-ready:**
+
+| Act | Call | Trigger |
+|---|---|---|
+| 1 | `burke_first_vael` | First Assessor event |
+| 1 | `burke_first_holdout` | First Holdout relationship |
+| 1 | `burke_veteran` | First visit, Veteran background only |
+| 2 | `burke_riven` | First Riven encounter |
+| 2 | `burke_project_tether` | Tether discovered |
+| 2 | `burke_compact_tribunal` | Tribunal witnessed |
+| 2 | `burke_osei_first` | Dr. Osei first meeting |
+| 2 | `burke_keeper_map` | Keeper's Map obtained |
+| 2 | `burke_wardens` | Significant Warden engagement |
+| 2+ | `burke_record_costly` | Costly Record event (repeatable) |
+| 3 | `burke_the_theory` | Theory delivered |
+| 3 | `burke_publication_publish` | Theory published |
+| 3 | `burke_publication_suppress` | Theory suppressed |
+| 3/4 | `burke_responsibles_ask` | Network threshold reached |
+
+**DataTable struct definitions included** — `FWYACodecCallRow`, `FWYACodecLineRow`, `FWYACodecBranch`. Implementation-ready for Core agent.
+
+**Pending:** `burke_responsibles_ask` specific asks (one per network cluster) — follow-up doc needed from narrative agent when `WYABurkeNetworkSubsystem` state machine is designed.
+
+**Affects:**
+- **Core agent:** `DT_CodecCalls.uasset` + `DT_CodecLines.uasset` can now be populated. Runtime parameter substitution for `burke_record_costly` and `burke_responsibles_ask`. Branch timeout = 8s, auto-select index 0. Call stacking: one per property visit, priority order.
+- **AI Pipeline agent:** `WYACodecSubsystem.RegisterCall()` calls for all 14 IDs.
+
+
+---
+
+## 2026-03-21 — Session 2 Final Items
+
+**Documents created:**
+
+- `docs/narrative/dialogue/burke-responsibles-asks.md` — Five specific asks for `burke_responsibles_ask` runtime parameter, one per network cluster (Compact Pragmatist, Signal Analyst, Warden Cross-Faction, Holdout Anchor, Independent Operator). Priority order defined. Subsystem selects based on which cluster is currently at risk.
+
+- `character-sable.md` — SABLE full character doc. Surgical Assistance SA-7. 11 years in a regional hospital. Left because the twin couldn't classify what it had been doing and the context would have been lost. Best medical care in the post-Cascade world. Act 3 guide into the Coherent structure — *"I have been waiting for someone to ask the right question."* Act 4: the choice about returning to the twin. The amber light from Room 14 still running. Connection to the assistant (the chart on the intake desk, Month 2).
+
+- `docs/narrative/dialogue/assistant-register-overrides.md` — Full `RegisterOverride()` spec for `WYAAssistantSubsystem`. All story-bearing assistant lines authored. Covers: Prologue Day 1 warning fragments, fix-him questline (all 4 stages), Vael warning delivery sequence (L1–L4), Meshtastic first transmission, act revelations, combat/field, home defense, second unit arc, trade/home base, personal/identity. LLM ambient tags defined with system prompt spec.
+
+**Narrative domain is complete for EA scope.** No open items remaining.
+
+**Affects:**
+- **AI Pipeline agent:** `assistant-register-overrides.md` is the primary handoff doc. Implementation checklist at the bottom of the doc. RegisterOverride calls at game startup. Stage gating, one-shot removal, VaelWarning sequence handling.
+- **Core agent:** SABLE needs a spawn location and interaction component. `DT_CodecCalls` / `DT_CodecLines` can now be fully populated from `burke-codec-calls.md` + `burke-responsibles-asks.md`.
+
