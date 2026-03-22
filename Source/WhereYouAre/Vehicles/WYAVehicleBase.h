@@ -70,7 +70,7 @@ private:
     UPROPERTY() TObjectPtr<AWYACharacter>     OccupantCharacter;
     bool bOccupied = false;
 
-    void SetupVehicleInput();
+    virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
     void MoveThrottle(float Value);
     void MoveSteering(float Value);
     void ApplyBrake();

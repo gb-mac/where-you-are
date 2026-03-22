@@ -2,11 +2,13 @@
 #include "WYAGameState.h"
 #include "WYACharacter.h"
 #include "WYAPlayerController.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "Location/WYALocationSubsystem.h"
 #include "Quest/WYAQuestSubsystem.h"
 #include "Engine/World.h"
 #include "CesiumGeoreference.h"
 #include "EngineUtils.h"
+#include "WorldPartition/HLOD/HLODActor.h"
 
 AWYAGameMode::AWYAGameMode()
 {
@@ -18,6 +20,13 @@ AWYAGameMode::AWYAGameMode()
 void AWYAGameMode::InitGame(const FString& MapName, const FString& Options, FString& ErrorMessage)
 {
     Super::InitGame(MapName, Options, ErrorMessage);
+
+    // Hide World Partition HLOD proxy actors — they're baked from the old Landscape
+    // and show as white vertical planes over the Cesium terrain.
+    for (AWorldPartitionHLOD* HLOD : TActorRange<AWorldPartitionHLOD>(GetWorld()))
+    {
+        HLOD->SetActorHiddenInGame(true);
+    }
 
     UWYALocationSubsystem* LocationSub = GetGameInstance()->GetSubsystem<UWYALocationSubsystem>();
     if (!LocationSub) return;
@@ -77,12 +86,15 @@ void AWYAGameMode::SpawnPlayer(APlayerController* PC)
 {
     RestartPlayer(PC);
 
-    // Park pawn way above terrain immediately so it can't fall through
-    // while Cesium collision meshes are still streaming in.
-    if (APawn* Pawn = PC->GetPawn())
-        Pawn->SetActorLocation(FVector(0.f, 0.f, 500000.f));
+    // Freeze movement so the pawn can't fall through terrain while Cesium
+    // collision meshes are still streaming in.
+    if (ACharacter* Char = PC ? Cast<ACharacter>(PC->GetPawn()) : nullptr)
+    {
+        Char->GetCharacterMovement()->SetMovementMode(MOVE_None);
+        Char->SetActorLocation(FVector(0.f, 0.f, 500000.f), false, nullptr, ETeleportType::TeleportPhysics);
+    }
 
-    TrySpawnOnTerrain(PC, 30); // polls every 0.5s, up to 15s
+    TrySpawnOnTerrain(PC, 180); // polls every 0.5s, up to 90s — Cesium tiles can take 40+ seconds
 
     // Quest/story fire once — independent of terrain polling
     if (UWYAQuestSubsystem* QuestSub = GetGameInstance()->GetSubsystem<UWYAQuestSubsystem>())
@@ -105,21 +117,26 @@ void AWYAGameMode::TrySpawnOnTerrain(APlayerController* PC, int32 AttemptsLeft)
     FCollisionQueryParams Params;
     if (APawn* Pawn = PC->GetPawn()) Params.AddIgnoredActor(Pawn);
 
+    auto UnfreezeAndPlace = [](APlayerController* InPC, FVector Pos)
+    {
+        if (ACharacter* Char = InPC ? Cast<ACharacter>(InPC->GetPawn()) : nullptr)
+        {
+            Char->SetActorLocation(Pos, false, nullptr, ETeleportType::TeleportPhysics);
+            Char->GetCharacterMovement()->SetMovementMode(MOVE_Walking);
+        }
+    };
+
     if (World->LineTraceSingleByChannel(Hit, TraceStart, TraceEnd, ECC_WorldStatic, Params))
     {
-        if (APawn* Pawn = PC->GetPawn())
-        {
-            Pawn->SetActorLocation(Hit.ImpactPoint + FVector(0.f, 0.f, 200.f));
-            UE_LOG(LogTemp, Log, TEXT("WYAGameMode: landed on terrain at Z=%.0f after %d attempt(s)"),
-                Hit.ImpactPoint.Z, 31 - AttemptsLeft);
-        }
+        UnfreezeAndPlace(PC, Hit.ImpactPoint + FVector(0.f, 0.f, 200.f));
+        UE_LOG(LogTemp, Log, TEXT("WYAGameMode: landed on terrain at Z=%.0f after %d attempt(s)"),
+            Hit.ImpactPoint.Z, 31 - AttemptsLeft);
         return;
     }
 
     if (AttemptsLeft <= 0)
     {
-        if (APawn* Pawn = PC->GetPawn())
-            Pawn->SetActorLocation(FVector(0.f, 0.f, 50000.f));
+        UnfreezeAndPlace(PC, FVector(0.f, 0.f, 50000.f));
         UE_LOG(LogTemp, Warning, TEXT("WYAGameMode: terrain never loaded, spawning at fallback height"));
         return;
     }

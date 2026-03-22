@@ -74,10 +74,12 @@ void UWYAItemSubsystem::FetchNearbyItems()
 	{
 		if (!bOk)
 		{
+			UE_LOG(LogTemp, Warning, TEXT("WYAItems: fetch FAILED"));
 			if (GEngine) GEngine->AddOnScreenDebugMessage(1, 5.f, FColor::Red,
 				TEXT("WYAItems: fetch FAILED (check output log)"));
 			return;
 		}
+		UE_LOG(LogTemp, Log, TEXT("WYAItems: received %d item(s)"), Items.Num());
 		if (GEngine) GEngine->AddOnScreenDebugMessage(1, 5.f, FColor::Green,
 			FString::Printf(TEXT("WYAItems: %d item(s) nearby"), Items.Num()));
 		ReconcileActors(Items);

@@ -5,6 +5,8 @@
 #include "Components/WidgetComponent.h"
 #include "UObject/ConstructorHelpers.h"
 #include "Engine/World.h"
+#include "GameFramework/Pawn.h"
+#include "EngineUtils.h"
 
 AWYAWorldItem::AWYAWorldItem()
 {
@@ -62,9 +64,17 @@ void AWYAWorldItem::SetItemData(const FWYAItemData& Data, const FWYAGeoCoord& Wo
 		FHitResult Hit;
 		FCollisionQueryParams Params;
 		Params.AddIgnoredActor(this);
+		// Ignore all pawns — player is parked at Z=500000 while Cesium loads
+		for (TActorIterator<APawn> It(World); It; ++It)
+			Params.AddIgnoredActor(*It);
 		if (World->LineTraceSingleByChannel(Hit, TraceStart, TraceEnd, ECC_WorldStatic, Params))
 		{
 			FinalPos = Hit.ImpactPoint + FVector(0.f, 0.f, 100.f); // hover 1m above ground
+			UE_LOG(LogTemp, Log, TEXT("WYAItem: placed %s at Z=%.0f (terrain hit)"), *Data.Id, FinalPos.Z);
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("WYAItem: terrain trace missed for %s — tiles not loaded yet, placed at Z=%.0f"), *Data.Id, FinalPos.Z);
 		}
 	}
 	SetActorLocation(FinalPos);

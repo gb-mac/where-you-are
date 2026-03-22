@@ -52,9 +52,9 @@ void UWYAAISubsystem::RefillBuffer()
 {
 	if (!bHasResolvedCoord) return;
 
-	// PregeneratedQuests.Num() counts both ready and in-flight slots — don't over-generate.
-	const int32 Deficit = DesiredBufferSize - PregeneratedQuests.Num();
-	for (int32 i = 0; i < Deficit; ++i)
+	// Schedule at most one request at a time — ollama is sequential on this hardware
+	// and concurrent requests time each other out. Each callback chains back here.
+	if (PregeneratedQuests.Num() < DesiredBufferSize)
 	{
 		ScheduleOnePregen(LastResolvedCoord);
 	}
@@ -62,15 +62,15 @@ void UWYAAISubsystem::RefillBuffer()
 
 void UWYAAISubsystem::ScheduleOnePregen(FWYAGeoCoord Coord)
 {
-	// Reserve a slot immediately so the index is stable across the async name resolve.
+	// Reserve a slot immediately so Num() reflects the in-flight request.
 	FWYAPregeneratedQuest Pending;
 	Pending.Origin = Coord;
 	Pending.bReady = false;
-	const int32 SlotIndex = PregeneratedQuests.Add(Pending);
+	PregeneratedQuests.Add(Pending);
 
 	// Resolve a human-readable place name first, then build the prompt.
-	// If the resolver is unavailable we fall back to a coord-based display name.
-	auto BuildAndSend = [this, SlotIndex, Coord](const FString& LocationDisplay)
+	// Nominatim result is cached — subsequent calls for the same coord are instant.
+	auto BuildAndSend = [this](const FString& LocationDisplay)
 	{
 		const FString Prompt = FString::Printf(
 			TEXT("You are a quest generator for an open-world game. The player just spawned at their real-world location.\n\n"
@@ -82,18 +82,36 @@ void UWYAAISubsystem::ScheduleOnePregen(FWYAGeoCoord Coord)
 			     "TITLE:"),
 			*LocationDisplay);
 
-		SendRequest(Prompt, [this, SlotIndex](bool bOk, const FString& Raw)
+		SendRequest(Prompt, [this](bool bOk, const FString& Raw)
 		{
-			if (PregeneratedQuests.IsValidIndex(SlotIndex))
+			// With serialised requests there is exactly one non-ready slot — find it.
+			const int32 SlotIndex = PregeneratedQuests.IndexOfByPredicate(
+				[](const FWYAPregeneratedQuest& Q){ return !Q.bReady; });
+
+			if (SlotIndex != INDEX_NONE)
 			{
-				FString Title, Body;
-				ParseTitleBody(Raw, Title, Body);
-				PregeneratedQuests[SlotIndex].Title = Title;
-				PregeneratedQuests[SlotIndex].Text  = Body;
-				PregeneratedQuests[SlotIndex].bReady = bOk;
+				if (bOk)
+				{
+					FString Title, Body;
+					ParseTitleBody(Raw, Title, Body);
+					PregeneratedQuests[SlotIndex].Title = Title;
+					PregeneratedQuests[SlotIndex].Text  = Body;
+					PregeneratedQuests[SlotIndex].bReady = true;
+				}
+				else
+				{
+					// Remove the failed slot so RefillBuffer() will replace it.
+					PregeneratedQuests.RemoveAt(SlotIndex);
+				}
 			}
-			UE_LOG(LogTemp, Log, TEXT("WYAAISubsystem: pre-gen quest ready (slot %d, success=%d, buffer=%d)"),
-			       SlotIndex, bOk, PregeneratedQuests.Num());
+
+			UE_LOG(LogTemp, Log, TEXT("WYAAISubsystem: pre-gen %s (buffer=%d ready, %d total)"),
+			       bOk ? TEXT("ready") : TEXT("failed — retrying"),
+			       PregeneratedQuests.FilterByPredicate([](const FWYAPregeneratedQuest& Q){ return Q.bReady; }).Num(),
+			       PregeneratedQuests.Num());
+
+			// Chain: schedule the next pre-gen if the buffer still needs filling.
+			RefillBuffer();
 		});
 	};
 

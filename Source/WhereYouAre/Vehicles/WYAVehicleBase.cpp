@@ -96,8 +96,7 @@ void AWYAVehicleBase::MoveThrottle(float Value)
     if (auto* VehicleMove = Cast<UChaosWheeledVehicleMovementComponent>(GetVehicleMovementComponent()))
     {
         VehicleMove->SetThrottleInput(FMath::Max(0.f, Value));
-        VehicleMove->SetBrakeInput(FMath::Max(0.f, -Value));  // reverse = brake + throttle backwards
-        VehicleMove->SetReverseInput(Value < -0.1f);
+        VehicleMove->SetBrakeInput(FMath::Max(0.f, -Value));
     }
 }
 
