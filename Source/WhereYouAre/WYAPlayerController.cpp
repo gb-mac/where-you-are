@@ -4,8 +4,11 @@
 #include "Items/WYAItemSubsystem.h"
 #include "Api/WYAApiClient.h"
 #include "Location/WYALocationSubsystem.h"
+#include "Vehicles/WYAVehicleBase.h"
+#include "WYACharacter.h"
 #include "Blueprint/UserWidget.h"
 #include "Kismet/GameplayStatics.h"
+#include "EngineUtils.h"
 
 AWYAPlayerController::AWYAPlayerController()
 {
@@ -34,6 +37,7 @@ void AWYAPlayerController::SetupInputComponent()
 
     InputComponent->BindAction(TEXT("Interact"),  IE_Pressed, this, &AWYAPlayerController::OnInteract);
     InputComponent->BindAction(TEXT("PlaceItem"), IE_Pressed, this, &AWYAPlayerController::OnPlaceItem);
+    InputComponent->BindAction(TEXT("Vehicle"),   IE_Pressed, this, &AWYAPlayerController::OnVehicle);
 }
 
 void AWYAPlayerController::Tick(float DeltaSeconds)
@@ -100,6 +104,54 @@ void AWYAPlayerController::OnPlaceItem()
                 ItemSys->FetchNearbyItems();
         }
     });
+}
+
+// ── Vehicle ───────────────────────────────────────────────────────────────────
+
+void AWYAPlayerController::OnVehicle()
+{
+    // If already in a vehicle — exit it
+    if (AWYAVehicleBase* Vehicle = CurrentVehicle.Get())
+    {
+        Vehicle->Exit();
+        CurrentVehicle = nullptr;
+        return;
+    }
+
+    // Find a nearby vehicle and enter it
+    AWYAVehicleBase* Nearby = FindClosestVehicle();
+    if (!Nearby) return;
+
+    AWYACharacter* MyChar = Cast<AWYACharacter>(GetPawn());
+    if (!MyChar) return;
+
+    Nearby->Enter(this, MyChar);
+    CurrentVehicle = Nearby;
+}
+
+AWYAVehicleBase* AWYAPlayerController::FindClosestVehicle() const
+{
+    APawn* MyPawn = GetPawn();
+    if (!MyPawn) return nullptr;
+    const FVector MyPos = MyPawn->GetActorLocation();
+
+    AWYAVehicleBase* Best     = nullptr;
+    float            BestDist = VehicleEnterRadius;
+
+    for (TActorIterator<AWYAVehicleBase> It(GetWorld()); It; ++It)
+    {
+        AWYAVehicleBase* V = *It;
+        if (!IsValid(V) || V->IsOccupied()) continue;
+
+        const float Dist = FVector::Dist(MyPos, V->GetActorLocation());
+        if (Dist < BestDist)
+        {
+            BestDist = Dist;
+            Best     = V;
+        }
+    }
+
+    return Best;
 }
 
 // ── Focus ─────────────────────────────────────────────────────────────────────

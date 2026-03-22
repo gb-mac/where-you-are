@@ -6,6 +6,7 @@
 
 class UWYAInteractionWidget;
 class AWYAWorldItem;
+class AWYAVehicleBase;
 
 UCLASS()
 class WHEREYOUARE_API AWYAPlayerController : public APlayerController
@@ -31,10 +32,17 @@ protected:
 private:
     void OnInteract();
     void OnPlaceItem();
+    void OnVehicle();   // F key — enter nearby vehicle or exit current
 
-    AWYAWorldItem* FindClosestItem() const;
-    void           SetFocusedItem(AWYAWorldItem* Item);
+    AWYAWorldItem*   FindClosestItem()    const;
+    AWYAVehicleBase* FindClosestVehicle() const;
+    void             SetFocusedItem(AWYAWorldItem* Item);
+
+    /** Radius (UU) in which vehicles are enterable. */
+    UPROPERTY(EditDefaultsOnly, Category = "WYA|Vehicles")
+    float VehicleEnterRadius = 300.f;
 
     UPROPERTY() TObjectPtr<UWYAInteractionWidget> HUDWidget;
     UPROPERTY() TWeakObjectPtr<AWYAWorldItem>     FocusedItem;
+    UPROPERTY() TWeakObjectPtr<AWYAVehicleBase>   CurrentVehicle;
 };

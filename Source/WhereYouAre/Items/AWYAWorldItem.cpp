@@ -4,6 +4,7 @@
 #include "Components/StaticMeshComponent.h"
 #include "Components/WidgetComponent.h"
 #include "UObject/ConstructorHelpers.h"
+#include "Engine/World.h"
 
 AWYAWorldItem::AWYAWorldItem()
 {
@@ -50,7 +51,23 @@ void AWYAWorldItem::SetItemData(const FWYAItemData& Data, const FWYAGeoCoord& Wo
 	Coord.Altitude  = Data.Alt;
 
 	const FVector WorldPos = FWYAGeoMath::GeoToWorld(Coord, WorldOrigin);
-	SetActorLocation(WorldPos);
+
+	// Trace to terrain surface — GeoToWorld Z is relative to the georeference origin
+	// but Cesium tiles sit at a different absolute Z depending on tile geometry.
+	FVector FinalPos = WorldPos + FVector(0.f, 0.f, 150.f); // fallback: 1.5m above computed pos
+	if (UWorld* World = GetWorld())
+	{
+		const FVector TraceStart = FVector(WorldPos.X, WorldPos.Y, WorldPos.Z + 500000.f);
+		const FVector TraceEnd   = FVector(WorldPos.X, WorldPos.Y, WorldPos.Z - 100000.f);
+		FHitResult Hit;
+		FCollisionQueryParams Params;
+		Params.AddIgnoredActor(this);
+		if (World->LineTraceSingleByChannel(Hit, TraceStart, TraceEnd, ECC_WorldStatic, Params))
+		{
+			FinalPos = Hit.ImpactPoint + FVector(0.f, 0.f, 100.f); // hover 1m above ground
+		}
+	}
+	SetActorLocation(FinalPos);
 
 	// Tint claimed items grey so they're visually distinct
 	if (!Data.IsAvailable())

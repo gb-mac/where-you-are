@@ -31,6 +31,8 @@ public class WhereYouAre : ModuleRules
 			"CesiumRuntime",
 			"AIModule",
 			"NavigationSystem",
+			"ChaosVehicles",
+			"PhysicsCore",
 		});
 
 		// Platform-specific GPS (mobile only)
