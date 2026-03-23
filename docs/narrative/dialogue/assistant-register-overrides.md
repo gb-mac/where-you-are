@@ -31,7 +31,7 @@ RegisterOverride(Tag, MinStage, LineContent);
 | 2 | Short sentences, 2–4 words | Early play + any repairs |
 | 3 | Full exchanges, personality present | Mid repairs + time |
 | 4 | Operational — full tactical, dry humor | Most repairs complete |
-| 5 | Restored — Morgan Freeman/Attenborough register | Stage 4 communication repair complete |
+| 5 | Restored — Maren Freeman/Attenborough register | Stage 4 communication repair complete |
 
 ---
 

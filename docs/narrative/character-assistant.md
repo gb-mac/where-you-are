@@ -67,7 +67,7 @@ Before he can speak, he can queue things. Stage 1 he has single words and static
 
 Songs for specific moments. A track that plays when the player comes home from a bad fight. A different one when they've been gone too long. The one he queues when family shows up — no words, just the song, the light already on in the guest room.
 
-Podcasts and talk radio in the rotation alongside music. Pre-Cascade recordings that hit differently now. An episode about institutional failure that was ignored when it aired. A comedian who was saying the thing three years ago. Mac's viral broadcast, queued the first time the player encounters the Reckoners — the player may not know what it is yet. He does.
+Podcasts and talk radio in the rotation alongside music. Pre-Cascade recordings that hit differently now. An episode about institutional failure that was ignored when it aired. A comedian who was saying the thing three years ago. Cade's viral broadcast, queued the first time the player encounters the Reckoners — the player may not know what it is yet. He does.
 
 The player starts noticing the curation. They learn to read the playlist.
 
@@ -197,7 +197,7 @@ Dry humor surfaces properly at Stage 4:
 
 Full voice. Full capability. The last repair — the communication system — is the final piece, saved deliberately. What it unlocks is not just clarity but completeness: he can now say the thing he has been trying to say since Day 1.
 
-**Voice direction:** Morgan Freeman or David Attenborough. Warm, authoritative, measured. The sense of someone who has watched something for a very long time and finally has the words. Not a transformation — a completion. The player recognizes, in Stage 5, that this voice was always there, behind the fragments.
+**Voice direction:** Maren Freeman or David Attenborough. Warm, authoritative, measured. The sense of someone who has watched something for a very long time and finally has the words. Not a transformation — a completion. The player recognizes, in Stage 5, that this voice was always there, behind the fragments.
 
 The first complete sentence after full restoration:
 
@@ -746,4 +746,4 @@ He does not trash talk. He doesn't need to. When he puts you on the mat he just 
 
 ---
 
-*v0.2 — The Assistant character document. The anchor. Stage 5 voice (Morgan Freeman/David Attenborough), encrypted Meshtastic intelligence unlock, community/trade system, personal arc reunion, "chooses to stay" corrected, second unit added, boxing side game flagged. Decisions flagged to decisions-log.md.*
+*v0.2 — The Assistant character document. The anchor. Stage 5 voice (Maren Freeman/David Attenborough), encrypted Meshtastic intelligence unlock, community/trade system, personal arc reunion, "chooses to stay" corrected, second unit added, boxing side game flagged. Decisions flagged to decisions-log.md.*

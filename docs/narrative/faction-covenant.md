@@ -204,7 +204,7 @@ The Vigil does not accept this. The fracture is the Act 4 questline.
 - Faction geo territory → `docs/design/faction-geo-system.md` (former tech campuses, data centres, Coherent work site proximity)
 - Violet overlay classification → `factions-humans-depth.md` (twin notation system, not spiritual recognition)
 - Ascendant process / Signal neuroscience → `character-osei.md`
-- Mac codec call: `mac_covenant_observed` — Mac's read on the Covenant after witnessing an Ascendant gathering
+- Cade codec call: `mac_covenant_observed` — Cade's read on the Covenant after witnessing an Ascendant gathering
 - Coherent machines non-aggression → `story-arc-main.md` (breadcrumb: Coherent/Vael non-aggression)
 - SABLE connection → `character-sable.md` (Separated machine; the chart on the intake desk)
 

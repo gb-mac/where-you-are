@@ -1,6 +1,6 @@
-# Morgan Codec Calls — DataTable Spec
+# Maren Codec Calls — DataTable Spec
 *Implementation-ready content for `DT_CodecCalls`, `DT_CodecLines`.*
-*Morgan starts with the conclusion. Evidence available on request.*
+*Maren starts with the conclusion. Evidence available on request.*
 
 ---
 
@@ -12,16 +12,16 @@
 | `morgan_mutual_aid` | `WYA.Event.MutualAid.OperationAvailable` | Act2 | All | false | false | 55 |
 | `morgan_narrative_warning` | `WYA.Event.Faction.PlayerFramed` | Act2 | All | true | false | 65 |
 | `morgan_community_read` | `WYA.Event.Reckoners.MorganThresholdMet` | Act2 | All | false | true | 80 |
-| `morgan_broadcast_fragment` | `WYA.Event.Morgan.BroadcastActive` | Act1 | All | true | false | 30 |
+| `morgan_broadcast_fragment` | `WYA.Event.Maren.BroadcastActive` | Act1 | All | true | false | 30 |
 | `morgan_act4` | `WYA.Event.Story.TheoryDelivered` | Act4 | All | false | true | 75 |
 
 **Notes:**
-- `morgan_first_assessment` fires after entry complete — Mac and Derek have already called. Morgan is the third contact, not the first. She's been watching since before the hazing.
-- `morgan_mutual_aid` is repeatable — fires when a community operation needs a player with the player's specific operational profile. Not a general task board — Morgan calls when she specifically needs you.
-- `morgan_narrative_warning` fires when any faction produces an analysis or report that misframes the player or the Reckoner network. Repeatable, once per framing event. Morgan has been tracking this already.
-- `morgan_community_read` fires when Morgan decides the player passes her threshold — they're fighting for something, not extracting from it. Unlocks mutual aid network access.
-- `morgan_broadcast_fragment` is a passive ambient call — the player picks up Morgan's channel mid-content. Low priority (30), fires in quiet moments. Repeatable, draw from pool. No codec UI — plays through the assistant's audio system in the Quiet register, same delivery as Derek's broadcast. Fires from Act 1 onward, before the player formally joins the Reckoners. The broadcast doesn't require membership.
-- `morgan_act4` fires after theory delivery. Morgan is mid-operation. She will talk while she works.
+- `morgan_first_assessment` fires after entry complete — Cade and Aldric have already called. Maren is the third contact, not the first. She's been watching since before the hazing.
+- `morgan_mutual_aid` is repeatable — fires when a community operation needs a player with the player's specific operational profile. Not a general task board — Maren calls when she specifically needs you.
+- `morgan_narrative_warning` fires when any faction produces an analysis or report that misframes the player or the Reckoner network. Repeatable, once per framing event. Maren has been tracking this already.
+- `morgan_community_read` fires when Maren decides the player passes her threshold — they're fighting for something, not extracting from it. Unlocks mutual aid network access.
+- `morgan_broadcast_fragment` is a passive ambient call — the player picks up Maren's channel mid-content. Low priority (30), fires in quiet moments. Repeatable, draw from pool. No codec UI — plays through the assistant's audio system in the Quiet register, same delivery as Aldric's broadcast. Fires from Act 1 onward, before the player formally joins the Reckoners. The broadcast doesn't require membership.
+- `morgan_act4` fires after theory delivery. Maren is mid-operation. She will talk while she works.
 
 ---
 
@@ -30,15 +30,15 @@
 ---
 
 ### `morgan_first_assessment` — Act 2 — ONE-SHOT
-*Fires after Reckoner entry complete. Morgan has been watching since before the hazing.*
+*Fires after Reckoner entry complete. Maren has been watching since before the hazing.*
 *She starts with the conclusion.*
 
 **mfa_L1:**
-*"Morgan. I run the mutual aid network and the community operations. You've probably heard about that already — Derek covers everything eventually."*
+*"Maren. I run the mutual aid network and the community operations. You've probably heard about that already — Aldric covers everything eventually."*
 
 *(Beat — no warmup, straight to it)*
 
-*"I've been watching how you move since before Ferry ran the standard on you. I do that with everyone. I want to know what someone is actually after before they're officially in."*
+*"I've been watching how you move since before Briggs ran the standard on you. I do that with everyone. I want to know what someone is actually after before they're officially in."*
 
 *(Beat)*
 
@@ -46,7 +46,7 @@
 
 *(Beat)*
 
-*"That's why I'm calling. Not because you passed Ferry's standard. Because of what I saw before you got there."*
+*"That's why I'm calling. Not because you passed Briggs's standard. Because of what I saw before you got there."*
 
 **Branches:**
 - *"What do you need from me?"* → `mfa_L2_need`
@@ -88,7 +88,7 @@
 
 ### `morgan_mutual_aid` — Act 2+ — REPEATABLE
 *Trigger: community operation available that matches player's operational profile.*
-*Morgan calls directly. Specific, practical, no preamble.*
+*Maren calls directly. Specific, practical, no preamble.*
 
 **mma_L1:**
 *"[COMMUNITY_NAME]. East side, [LOCATION_DESCRIPTOR]. They've got a supply situation — [SUPPLY_CONTEXT]. There's a route that works but it needs someone who can move through [FACTION] territory without triggering a response."*
@@ -109,7 +109,7 @@
 ---
 
 **mma_L2_yes:**
-*"Good. Morgan out."*
+*"Good. Maren out."*
 
 *(She's already moved on)*
 
@@ -139,13 +139,13 @@
 
 ---
 
-*Implementation note: `[COMMUNITY_NAME]`, `[LOCATION_DESCRIPTOR]`, `[SUPPLY_CONTEXT]`, `[FACTION]`, `[ROUTE_DETAILS]`, `[PROBLEM_SECTION]` are runtime substitutions from the operation data struct. Morgan's repeatable calls are operation-specific — she is never generic.*
+*Implementation note: `[COMMUNITY_NAME]`, `[LOCATION_DESCRIPTOR]`, `[SUPPLY_CONTEXT]`, `[FACTION]`, `[ROUTE_DETAILS]`, `[PROBLEM_SECTION]` are runtime substitutions from the operation data struct. Maren's repeatable calls are operation-specific — she is never generic.*
 
 ---
 
 ### `morgan_narrative_warning` — Act 2+ — REPEATABLE
 *Trigger: any faction produces a report or analysis that misframes the player or the network.*
-*Morgan has the original. She's already run the comparison.*
+*Maren has the original. She's already run the comparison.*
 
 **mnw_L1:**
 *"[FACTION] filed an analysis on you."*
@@ -170,7 +170,7 @@
 ---
 
 **mnw_L2_how:**
-*"Channels. Some of them overlap with Derek's. Some of them are mine. I've been tracking faction narratives since before the Cascade — I ran for office, I know how institutions construct their public positions and I know what the internal documents look like before the public position gets finalized."*
+*"Channels. Some of them overlap with Aldric's. Some of them are mine. I've been tracking faction narratives since before the Cascade — I ran for office, I know how institutions construct their public positions and I know what the internal documents look like before the public position gets finalized."*
 
 *(Beat — dry)*
 
@@ -204,7 +204,7 @@
 
 ### `morgan_community_read` — Act 2 — ONE-SHOT
 *Trigger: player takes an action that costs them for someone in a mutual aid community — not the Reckoner network directly, a community in the network's orbit.*
-*Morgan has been watching. This is her telling the player what she sees.*
+*Maren has been watching. This is her telling the player what she sees.*
 
 **mcr_L1:**
 *"What you did for [COMMUNITY_NAME]."*
@@ -223,18 +223,18 @@
 
 *(Beat — the warmth is present but she doesn't announce it)*
 
-*"Mac's right about the operational picture. I'm right about the social one. The social one is what holds everything else up. You've just demonstrated you understand that, whether you know it or not."*
+*"Cade's right about the operational picture. I'm right about the social one. The social one is what holds everything else up. You've just demonstrated you understand that, whether you know it or not."*
 
 → END
 
 ---
 
 ### `morgan_act4` — Act 4 — ONE-SHOT
-*Trigger: Theory delivered. Morgan is mid-operation when this fires.*
+*Trigger: Theory delivered. Maren is mid-operation when this fires.*
 *She does not stop what she's doing. She talks while she works.*
 
 **ma4_L1:**
-*"I know. Mac told me. Derek's been on air for three hours about it."*
+*"I know. Cade told me. Aldric's been on air for three hours about it."*
 
 *(Beat — she's clearly moving, doing something)*
 
@@ -256,7 +256,7 @@
 
 *(Beat — still moving)*
 
-*"When you have time for the larger picture — Mac will have processed it by tonight. Talk to him. Talk to Derek if you want the full argument. I'll be here making sure people are eating."*
+*"When you have time for the larger picture — Cade will have processed it by tonight. Talk to him. Talk to Aldric if you want the full argument. I'll be here making sure people are eating."*
 
 *(Dry, not bitter)*
 
@@ -281,7 +281,7 @@
 
 *(Back to work)*
 
-*"Talk to Mac when you can. He needs people who have ground-level information right now, not just the theory."*
+*"Talk to Cade when you can. He needs people who have ground-level information right now, not just the theory."*
 
 → END *(flags `WYA.Event.MutualAid.RouteCompromised` — triggers backup route operation)*
 
@@ -300,7 +300,7 @@
 
 ### `morgan_broadcast_fragment` — Act 1+ — REPEATABLE POOL
 *Passive ambient. Plays through the assistant's audio system — not a full codec call.*
-*The player picks up Morgan's channel mid-content. Draw from the pool contextually.*
+*The player picks up Maren's channel mid-content. Draw from the pool contextually.*
 *Priority 30 — fires in quiet moments, yields to anything more urgent.*
 
 ---
@@ -345,7 +345,7 @@
 
 **Broadcast closing line — appended to any fragment at random (20% chance):**
 
-*"Morgan out."*
+*"Maren out."*
 
 *(Dry. She's already moved on.)*
 
@@ -353,12 +353,12 @@
 
 ## Implementation Notes
 
-- Morgan's codec portrait: she is frequently mid-task. Depending on the call, she may be looking at a map, moving supplies, writing. She is not staged for the call.
-- Voice tempo: faster than Mac, more targeted than Derek. She does not build to conclusions — she leads with them.
+- Maren's codec portrait: she is frequently mid-task. Depending on the call, she may be looking at a map, moving supplies, writing. She is not staged for the call.
+- Voice tempo: faster than Cade, more targeted than Aldric. She does not build to conclusions — she leads with them.
 - Humor is dry, arrives without warning, never at length. One line, then she's already past it.
-- `morgan_mutual_aid` and `morgan_narrative_warning` runtime substitutions: pull from operation/event context structs. Morgan's calls are never generic — if the dynamic content isn't available, delay the call rather than fire a generic version.
+- `morgan_mutual_aid` and `morgan_narrative_warning` runtime substitutions: pull from operation/event context structs. Maren's calls are never generic — if the dynamic content isn't available, delay the call rather than fire a generic version.
 - `morgan_act4` route location substitution: `[LOCATION]` pulls from `WYA.Data.Territory.EasternSectorRouteKey` — the specific Reckoner supply route relevant to the player's current region.
 
 ---
 
-*v0.1 — Morgan codec calls. First assessment, mutual aid operations, narrative warning, community read threshold, Act 4 mid-operation. Runtime substitution model throughout — Morgan is always specific, never generic.*
+*v0.1 — Maren codec calls. First assessment, mutual aid operations, narrative warning, community read threshold, Act 4 mid-operation. Runtime substitution model throughout — Maren is always specific, never generic.*

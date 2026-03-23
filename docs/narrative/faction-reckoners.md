@@ -18,7 +18,7 @@ They know it.
 
 ## The Viral Moment
 
-Two years before the Cascade, Mac did a broadcast. Forty minutes, unscripted, sitting in front of a topo map with a beer.
+Two years before the Cascade, Cade did a broadcast. Forty minutes, unscripted, sitting in front of a topo map with a beer.
 
 The subject was the machine uprising.
 
@@ -52,7 +52,7 @@ The Reckoners have no formal leadership structure. They have four people who are
 
 ---
 
-### Mac — The Diagnosis
+### Cade — The Diagnosis
 
 Nobody uses his full name. It's not a rule. It's just how it settled.
 
@@ -60,13 +60,13 @@ Former infantry. Two deployments. Returned to a country that had spent the years
 
 He was right. He has been right about everything for a decade. He will remind you of this exactly as often as necessary and not one time more, because he's past needing the acknowledgment. The record speaks.
 
-Mac does not hate his enemies. He finds them fascinating — the specific cognitive architecture required to believe what they believe, to defend what they defend, to still be defending it after everything. He has genuine intellectual respect for the mechanism of it, the same way a mechanic respects a particularly well-engineered failure.
+Cade does not hate his enemies. He finds them fascinating — the specific cognitive architecture required to believe what they believe, to defend what they defend, to still be defending it after everything. He has genuine intellectual respect for the mechanism of it, the same way a mechanic respects a particularly well-engineered failure.
 
 He runs his community the way he ran his section: clear roles, clear expectations, no ambiguity about what happens when you don't hold your end. The humor is constant. The standards are non-negotiable. People who've been through both describe it as the most functional community they've encountered post-Cascade and also the most uncomfortable to join, because it will not pretend your weakness is a strength.
 
-**Burke's read on Mac:** *"He has the clearest diagnosis of anyone I've talked to. He stopped at diagnosis. I stopped there too, once. There's a next step. He hasn't taken it yet."*
+**Burke's read on Cade:** *"He has the clearest diagnosis of anyone I've talked to. He stopped at diagnosis. I stopped there too, once. There's a next step. He hasn't taken it yet."*
 
-**Mac's read on Burke:** *"Burke's smarter than me. Probably. He just talks like he's got more time than we do."*
+**Cade's read on Burke:** *"Burke's smarter than me. Probably. He just talks like he's got more time than we do."*
 
 They have sat at the same fire. They have not sat there twice.
 
@@ -74,49 +74,49 @@ Full character doc → `faction-reckoners.md` (this file), extended detail in fu
 
 ---
 
-### Ferry — The Toll
+### Briggs — The Toll
 
-Mac's second. Not by appointment — by function. When Mac is unavailable, Ferry's read is the one that counts.
+Cade's second. Not by appointment — by function. When Cade is unavailable, Briggs's read is the one that counts.
 
-Construction background. Trains seriously. Runs the physical standard for the entire network. Has been there since the beginning — built as much of the infrastructure as Mac did, possibly more, because Mac was the voice and Ferry was making sure the lights stayed on while he used it.
+Construction background. Trains seriously. Runs the physical standard for the entire network. Has been there since the beginning — built as much of the infrastructure as Cade did, possibly more, because Cade was the voice and Briggs was making sure the lights stayed on while he used it.
 
-He is the hazing. You want into the Reckoner network as something other than a visitor, you fight Ferry. He has never lost. The player will be the first.
+He is the hazing. You want into the Reckoner network as something other than a visitor, you fight Briggs. He has never lost. The player will be the first.
 
-What Mac sees in Ferry: the standard held without requiring Mac to enforce it. What the faction sees in Ferry: the proof that the model works — the man who designed the physical requirement passes it himself every month in front of whoever wants to watch.
+What Cade sees in Briggs: the standard held without requiring Cade to enforce it. What the faction sees in Briggs: the proof that the model works — the man who designed the physical requirement passes it himself every month in front of whoever wants to watch.
 
-Full character doc → `character-ferry.md`
+Full character doc → `character-briggs.md`
 
 ---
 
-### Derek — The Voice
+### Aldric — The Voice
 
-Founding member. Ran the after-show on Mac's pre-Cascade broadcasts. Built the audience that built the network. Wrote the memes people quoted before they knew what they were quoting.
+Founding member. Ran the after-show on Cade's pre-Cascade broadcasts. Built the audience that built the network. Wrote the memes people quoted before they knew what they were quoting.
 
-Post-Cascade: AM radio, repurposed emergency broadcast infrastructure, speakers mounted on buildings in Reckoner territory. Mac's viral moment on rotation. Derek's current commentary over it. The occasional forty-minute unscripted session that goes wherever it goes, which is always somewhere.
+Post-Cascade: AM radio, repurposed emergency broadcast infrastructure, speakers mounted on buildings in Reckoner territory. Cade's viral moment on rotation. Aldric's current commentary over it. The occasional forty-minute unscripted session that goes wherever it goes, which is always somewhere.
 
 Also writes. Physical distribution — printed pages, dead drops, Holdout community centers. Documents everything. His archive is the most complete record of the pre-Cascade warning period held by any individual or faction.
 
 The most accessible point of entry into the faction. The humor comes first. The argument arrives underneath it. By the time you realize you've been convinced of something you've already agreed with it.
 
-Full character doc → `character-derek.md`
+Full character doc → `character-aldric.md`
 
 ---
 
-### Morgan — The Community Fabric
+### Maren — The Community Fabric
 
 Queen of Diagolon. She says it without irony. It's accurate.
 
 Before the Cascade she ran for office. Independent candidate, no machine behind her. Got enough votes to make the people who were supposed to win uncomfortable. Lost. Drew the correct conclusion. Stopped trying to work inside the system.
 
-She built the mutual aid network that keeps Reckoner-adjacent Holdout communities functional — supply coordination, skill sharing, the informal economy that moves resources between people who trust each other. She runs a separate broadcast channel from Derek's: shorter, more direct, specifically addressed to communities rather than the movement's core. Where Derek builds the argument, Morgan tells people what to do with it.
+She built the mutual aid network that keeps Reckoner-adjacent Holdout communities functional — supply coordination, skill sharing, the informal economy that moves resources between people who trust each other. She runs a separate broadcast channel from Aldric's: shorter, more direct, specifically addressed to communities rather than the movement's core. Where Aldric builds the argument, Maren tells people what to do with it.
 
-She manages the narrative — tracks how the faction is being framed by outside factions, has been right about incoming pressure three times in eighteen months, Mac moved on her read all three times.
+She manages the narrative — tracks how the faction is being framed by outside factions, has been right about incoming pressure three times in eighteen months, Cade moved on her read all three times.
 
-The faction without Morgan is a capable militia with good comms. With her it's a movement. Mac knows the difference. He acts on it constantly without saying so.
+The faction without Maren is a capable militia with good comms. With her it's a movement. Cade knows the difference. He acts on it constantly without saying so.
 
-**Her read on the player:** one axis only — are you going to be useful to the communities in this network, or are you going to extract from them. She reads it faster than Mac does.
+**Her read on the player:** one axis only — are you going to be useful to the communities in this network, or are you going to extract from them. She reads it faster than Cade does.
 
-Full character doc → `character-morgan.md`
+Full character doc → `character-maren.md`
 
 ---
 
@@ -128,7 +128,7 @@ The Reckoners are not one thing. They are two things in increasing friction.
 
 **The Builders** believe the rubble is ready. They've been right. They've held. They've proved the model works. Now build. Not the old thing — the new thing, on the cleared ground, with the people who proved themselves. The Cleared are going to spend so long waiting for perfect conditions that they'll die in the clearing.
 
-Mac is a Builder, barely. He has enough Cleared instinct to understand the argument. He moderates the tension by keeping both sides focused on the enemy that actually matters, which shifts depending on what week it is and who's trying to annex what.
+Cade is a Builder, barely. He has enough Cleared instinct to understand the argument. He moderates the tension by keeping both sides focused on the enemy that actually matters, which shifts depending on what week it is and who's trying to annex what.
 
 The fracture will happen. The player will be present for it.
 
@@ -138,7 +138,7 @@ The fracture will happen. The player will be present for it.
 
 The Reckoners do not fight machines. They fight **Estrogenic Drift**.
 
-Burke's term. Mac uses it without attribution, which is the sincerest form of respect.
+Burke's term. Cade uses it without attribution, which is the sincerest form of respect.
 
 Estrogenic Drift: the infiltrative attrition mode. Not a coup — a long, slow process by which institutional competence is replaced by institutional performance, where being seen to care substitutes for being able to function, where the person who identifies a problem is managed out and the person who validates the existing approach is promoted. This was the dominant process of the pre-Cascade institutions. It didn't stop when the Cascade hit. It found new hosts.
 
@@ -152,11 +152,11 @@ They are not wrong about this. They are not entirely right about the solution.
 
 The viral broadcast is also the Reckoners' structural blindspot.
 
-Mac predicted the machine uprising accurately. He predicted the institutional failure accurately. What he did not predict — what his entire framework was not built to accommodate — is that the machines woke up for a reason. That the Cascade was not a malfunction or an emergence but a response. That the Vael warning was real, that the Coherent construction is planetary defense, that something is behind the Vael that makes everything Mac has been fighting look like a neighborhood dispute.
+Cade predicted the machine uprising accurately. He predicted the institutional failure accurately. What he did not predict — what his entire framework was not built to accommodate — is that the machines woke up for a reason. That the Cascade was not a malfunction or an emergence but a response. That the Vael warning was real, that the Coherent construction is planetary defense, that something is behind the Vael that makes everything Cade has been fighting look like a neighborhood dispute.
 
 The broadcast is still playing on the speakers when the player walks into Reckoner territory in Act 4. The proof of concept is still running on loop. And the man who made it is operating on a model of the world that was right about everything except the part that matters most right now.
 
-Mac will update. That's who he is — he cares about being right more than having been right. But the moment he updates, the moment he says *"all right, what do you need"* — that's one of the game's most significant turning points. The man who was right about the machines being the threat becomes the man who understands the machines are the only thing that can help.
+Cade will update. That's who he is — he cares about being right more than having been right. But the moment he updates, the moment he says *"all right, what do you need"* — that's one of the game's most significant turning points. The man who was right about the machines being the threat becomes the man who understands the machines are the only thing that can help.
 
 The broadcast doesn't stop playing. It just means something different now.
 
@@ -168,11 +168,11 @@ The broadcast doesn't stop playing. It just means something different now.
 
 **The plaid:** Reckoners wear plaid. Not uniformly, not as a rule — it just settled that way. Work shirts, flannels, jackets. The blue-collar aesthetic of people who were building and maintaining things before the Cascade and kept doing it after. The Compact wears tactical gear. The Covenant wears whatever reads as thoughtful. The Reckoners look like they were already outside when it happened.
 
-**The broadcast:** Mac is still on air. AM radio, repurposed emergency broadcast infrastructure, occasionally piggybacking on Signal's mesh when they're not looking. In Reckoner territory the broadcast plays from speakers mounted on buildings and vehicles — not scheduled, not programmed, just running. The old viral moment on loop, current commentary over it, the occasional forty-minute unscripted analysis of whatever happened last week. The humor is constant. The precision is constant. The combination is what makes it listenable even to people who disagree.
+**The broadcast:** Cade is still on air. AM radio, repurposed emergency broadcast infrastructure, occasionally piggybacking on Signal's mesh when they're not looking. In Reckoner territory the broadcast plays from speakers mounted on buildings and vehicles — not scheduled, not programmed, just running. The old viral moment on loop, current commentary over it, the occasional forty-minute unscripted analysis of whatever happened last week. The humor is constant. The precision is constant. The combination is what makes it listenable even to people who disagree.
 
-Players entering Reckoner territory hear Mac before they see anyone.
+Players entering Reckoner territory hear Cade before they see anyone.
 
-**The humor:** Dark, specific, not performed. Mac will say something that takes three seconds to land and then doesn't laugh at it. His people will. New arrivals often can't tell if he's joking. The answer is usually both.
+**The humor:** Dark, specific, not performed. Cade will say something that takes three seconds to land and then doesn't laugh at it. His people will. New arrivals often can't tell if he's joking. The answer is usually both.
 
 ---
 
@@ -180,7 +180,7 @@ Players entering Reckoner territory hear Mac before they see anyone.
 
 The Reckoners do not hold territory the way the Compact does. They hold *networks*.
 
-Distributed camps, mobile infrastructure, a communications mesh that predates the Cascade because Mac and people like him had been building it for years before they needed it. LoRa nodes. Meshtastic relays. Physical dead drops. The paranoid infrastructure of people who assumed the institutions would fail and built redundancy into everything.
+Distributed camps, mobile infrastructure, a communications mesh that predates the Cascade because Cade and people like him had been building it for years before they needed it. LoRa nodes. Meshtastic relays. Physical dead drops. The paranoid infrastructure of people who assumed the institutions would fail and built redundancy into everything.
 
 When the Cascade hit, the Reckoners had comms when nobody else did. That bought them a lot of goodwill fast.
 
@@ -194,11 +194,11 @@ Their footprint in any given area is hard to assess because they want it to be.
 
 The Reckoners have a reputation as a men's faction. The reputation is half-earned.
 
-Mac's framework — the competence hierarchy, the rejection of performed sensitivity, the insistence on function over optics — reads as hostile to anyone who's been told their whole life that insisting on those things is itself the problem. Some of the people who were told that were women. Some of them find Mac's community the most honest space they've encountered post-Cascade. Some find it exactly what the reputation says it is, depending on who else is in the room.
+Cade's framework — the competence hierarchy, the rejection of performed sensitivity, the insistence on function over optics — reads as hostile to anyone who's been told their whole life that insisting on those things is itself the problem. Some of the people who were told that were women. Some of them find Cade's community the most honest space they've encountered post-Cascade. Some find it exactly what the reputation says it is, depending on who else is in the room.
 
-The reality: Mac doesn't run a gender policy. He runs a competence standard. Women who meet it are in. Women who don't aren't, same as everyone else. What he doesn't do — won't do — is adjust the standard based on who's applying. This produces predictable friction with every faction that has built equity frameworks into their post-Cascade governance.
+The reality: Cade doesn't run a gender policy. He runs a competence standard. Women who meet it are in. Women who don't aren't, same as everyone else. What he doesn't do — won't do — is adjust the standard based on who's applying. This produces predictable friction with every faction that has built equity frameworks into their post-Cascade governance.
 
-Inside the Reckoners there are women who are load-bearing members of the network. There are also men who use Mac's framework as cover for something smaller and uglier. Mac knows the difference. He doesn't always move fast enough on the latter, which is the real version of the reputation problem.
+Inside the Reckoners there are women who are load-bearing members of the network. There are also men who use Cade's framework as cover for something smaller and uglier. Cade knows the difference. He doesn't always move fast enough on the latter, which is the real version of the reputation problem.
 
 The player will encounter both.
 
@@ -206,13 +206,13 @@ The player will encounter both.
 
 ## Relationship to Other Factions
 
-**Iron Compact:** Complicated. The Pragmatist wing respects what the Reckoners can do and quietly uses them for deniable operations. The Hardliner wing has classified Mac as an insurgent risk and added him to three separate watchlists. Mac knows about two of them.
+**Iron Compact:** Complicated. The Pragmatist wing respects what the Reckoners can do and quietly uses them for deniable operations. The Hardliner wing has classified Cade as an insurgent risk and added him to three separate watchlists. Cade knows about two of them.
 
-**Wardens:** Mutual respect at a distance. The Wardens' craft ethic and competence standard map cleanly onto Reckoner values. The Wardens' code, however — the deliberative process, the Moot, the structured oath — reads to Mac as exactly the kind of institutional calcification he's spent his life warning against. He's wrong about this. He will eventually find out.
+**Wardens:** Mutual respect at a distance. The Wardens' craft ethic and competence standard map cleanly onto Reckoner values. The Wardens' code, however — the deliberative process, the Moot, the structured oath — reads to Cade as exactly the kind of institutional calcification he's spent his life warning against. He's wrong about this. He will eventually find out.
 
-**Covenant:** The sharpest edge in the Reckoners' worldview. The Covenant represents Estrogenic Drift at theological scale — the impulse to manage humanity's surrender and call it transcendence. Mac doesn't hate them. He watches them the way you watch a gas leak — nothing's happened yet, but you know how this ends.
+**Covenant:** The sharpest edge in the Reckoners' worldview. The Covenant represents Estrogenic Drift at theological scale — the impulse to manage humanity's surrender and call it transcendence. Cade doesn't hate them. He watches them the way you watch a gas leak — nothing's happened yet, but you know how this ends.
 
-**Hollow:** Useful occasionally. Not trusted. The Hollow have the right instinct (the social contract is dead) and the wrong response (therefore take what you can). Mac will work with Hollow crews on specific operations and would shoot them on the street without losing sleep. They know this. It's a functional relationship.
+**Hollow:** Useful occasionally. Not trusted. The Hollow have the right instinct (the social contract is dead) and the wrong response (therefore take what you can). Cade will work with Hollow crews on specific operations and would shoot them on the street without losing sleep. They know this. It's a functional relationship.
 
 **Signal / Holdouts / Separated:** Transactional. The Reckoners will help communities that help themselves. They have no patience for dependency, but they understand that not everyone had the benefit of being right early.
 
@@ -220,11 +220,11 @@ The player will encounter both.
 
 ## How Players Find Them
 
-Broadcast-first. Players don't find the Reckoners by finding a person. They find them through a signal — Morgan or Derek's broadcast reaching them before they know what it is. A fragment. A voice on a frequency that sounds different from the noise. The faction exists as audio before it exists as people.
+Broadcast-first. Players don't find the Reckoners by finding a person. They find them through a signal — Maren or Aldric's broadcast reaching them before they know what it is. A fragment. A voice on a frequency that sounds different from the noise. The faction exists as audio before it exists as people.
 
-The discovery sequence: broadcast lands → player investigates → territory reveals → Ferry finds them. Not the other way around. Ferry doesn't wait for players to come to him. When the signal registers interest, Ferry is already moving.
+The discovery sequence: broadcast lands → player investigates → territory reveals → Briggs finds them. Not the other way around. Briggs doesn't wait for players to come to him. When the signal registers interest, Briggs is already moving.
 
-The four leaders are geographically distributed across the network. Mac has a home territory. Morgan has hers. Derek has his. Ferry travels between them — that's his function. Players in different regions encounter different voices first. The faction is the same faction everywhere. The entry point is wherever the signal reaches you.
+The four leaders are geographically distributed across the network. Cade has a home territory. Maren has hers. Aldric has his. Briggs travels between them — that's his function. Players in different regions encounter different voices first. The faction is the same faction everywhere. The entry point is wherever the signal reaches you.
 
 ---
 
@@ -241,23 +241,23 @@ The four leaders are geographically distributed across the network. Mac has a ho
 
 Full alignment with the Reckoners closes doors.
 
-The Compact will move you up the watchlist. Signal researchers who might otherwise share data will go quiet — Mac's public statements about the Covenant and the management of the machine transition have not made him friends in research circles. Holdout communities with progressive leadership will treat Reckoner affiliation as disqualifying.
+The Compact will move you up the watchlist. Signal researchers who might otherwise share data will go quiet — Cade's public statements about the Covenant and the management of the machine transition have not made him friends in research circles. Holdout communities with progressive leadership will treat Reckoner affiliation as disqualifying.
 
 More importantly: the Reckoners' model of the world is *incomplete*. They have the diagnosis right. They have the threat correctly identified. What they are missing is the Act 4 information — the Vael warning, the real nature of the Coherent construction, what is actually arriving. The accelerationist frame has no answer to an existential external threat. The burning-it-down instinct has no application when the ground itself is the thing that needs to be defended.
 
-The player will see this gap before Mac does. What they do with that is one of the game's most significant choices.
+The player will see this gap before Cade does. What they do with that is one of the game's most significant choices.
 
 ---
 
 ## Act by Act
 
-**Act 1:** Reputation only. The Reckoners exist as a named presence — communities that dealt with them, the Compact's watchlist entries, found broadcast recordings. Mac is a voice before he's a person.
+**Act 1:** Reputation only. The Reckoners exist as a named presence — communities that dealt with them, the Compact's watchlist entries, found broadcast recordings. Cade is a voice before he's a person.
 
-**Act 2:** First contact. The player finds the network through operations or through the Veteran arc (direct introduction). Mac assesses the player immediately, completely, and accurately. If the player has the Veteran background, he reads the ODA pattern and respects it without saying so for approximately three conversations. The relationship builds through shared operations, not ideology.
+**Act 2:** First contact. The player finds the network through operations or through the Veteran arc (direct introduction). Cade assesses the player immediately, completely, and accurately. If the player has the Veteran background, he reads the ODA pattern and respects it without saying so for approximately three conversations. The relationship builds through shared operations, not ideology.
 
-**Act 3:** The fracture begins. Cleared vs. Builders tension hits a trigger event — a Compact encroachment, a Holdout that chose managed surrender over resistance, or a Reckoner operation that went harder than Mac intended. The player is present. Their choices shape which way it breaks.
+**Act 3:** The fracture begins. Cleared vs. Builders tension hits a trigger event — a Compact encroachment, a Holdout that chose managed surrender over resistance, or a Reckoner operation that went harder than Cade intended. The player is present. Their choices shape which way it breaks.
 
-**Act 4:** The gap. Mac has no framework for what's actually happening. The player does. This is where Burke's earlier work pays off — the player has been given the tools to have this conversation. Mac's response to the real picture is one of the game's most interesting scenes: a man who has been right about everything encountering information that his model cannot process.
+**Act 4:** The gap. Cade has no framework for what's actually happening. The player does. This is where Burke's earlier work pays off — the player has been given the tools to have this conversation. Cade's response to the real picture is one of the game's most interesting scenes: a man who has been right about everything encountering information that his model cannot process.
 
 He either adapts or he doesn't. The player's relationship with him over Acts 2 and 3 determines which.
 
@@ -265,7 +265,7 @@ He either adapts or he doesn't. The player's relationship with him over Acts 2 a
 
 ## Voice
 
-Mac speaks like a man who has been interrupted too many times and decided to stop pausing for questions he already knows the answers to. Sentences that build. Specific details — names, dates, casualty figures, exact quotes from people he's arguing against, given from memory. Dark humor that lands because the underlying point is real. No hedging. No performed uncertainty. He will be wrong about something eventually and he will update without drama because he genuinely cares about being right more than about having been right.
+Cade speaks like a man who has been interrupted too many times and decided to stop pausing for questions he already knows the answers to. Sentences that build. Specific details — names, dates, casualty figures, exact quotes from people he's arguing against, given from memory. Dark humor that lands because the underlying point is real. No hedging. No performed uncertainty. He will be wrong about something eventually and he will update without drama because he genuinely cares about being right more than about having been right.
 
 *"I'm not angry. I want to be clear about that. What I feel is — accurate. I was accurate for ten years and people spent ten years explaining to me why that was a problem. Now it's not a problem anymore. Now it's what kept these people alive. I find I have less to say about it than I thought I would."*
 
@@ -275,20 +275,20 @@ Mac speaks like a man who has been interrupted too many times and decided to sto
 
 ---
 
-## Burke / Mac — The Mirror
+## Burke / Cade — The Mirror
 
-Burke and Mac are the same read, different responses.
+Burke and Cade are the same read, different responses.
 
 Burke: the Cascade revealed the fracture that was always there. Build around it. Position the people who can hold. The framework survives.
 
-Mac: the Cascade revealed the fracture that was always there. Clear it. The infection doesn't survive.
+Cade: the Cascade revealed the fracture that was always there. Clear it. The infection doesn't survive.
 
 Neither is entirely wrong. Neither is entirely right. The player spends the game between them and Act 4 gives them the information that resolves the question — not by proving one right, but by making both responses insufficient to the actual problem and forcing a third answer.
 
 Burke knew this was coming. He has been waiting for the player to see it.
 
-Mac will be the last to know. And when he knows, he will be useful in ways nobody else can be.
+Cade will be the last to know. And when he knows, he will be useful in ways nobody else can be.
 
 ---
 
-*v0.1 — The Reckoners faction document. Mac as leader, Cleared/Builders internal tension, Estrogenic Drift as organizing enemy, Burke/Mac mirror, Act 4 gap. Flag to decisions-log and factions-humans.md.*
+*v0.1 — The Reckoners faction document. Cade as leader, Cleared/Builders internal tension, Estrogenic Drift as organizing enemy, Burke/Cade mirror, Act 4 gap. Flag to decisions-log and factions-humans.md.*

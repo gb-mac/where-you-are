@@ -1,4 +1,4 @@
-# Ferry — Hazing Dialogue
+# Briggs — Hazing Dialogue
 *All scripted lines for the Ferryman's Toll hazing sequence.*
 *Zero LLM. Every threshold, every outcome, every branch authored.*
 
@@ -7,7 +7,7 @@
 ## Pre-Fight
 
 **`ferry_hazing_open`**
-*Ferry looks the player over. Unhurried. He's done this enough times that he doesn't need to perform the assessment — he's just doing it.*
+*Briggs looks the player over. Unhurried. He's done this enough times that he doesn't need to perform the assessment — he's just doing it.*
 
 *"You want in. Everyone wants in. The question is what you're bringing."*
 
@@ -19,23 +19,23 @@
 
 ## During the Fight — Phase Lines
 
-*Delivered mid-fight at specific health thresholds. No UI chrome. Ferry says these without stopping.*
+*Delivered mid-fight at specific health thresholds. No UI chrome. Briggs says these without stopping.*
 
-**`ferry_phase_25`** *(player at 25% damage dealt to Ferry)*
+**`ferry_phase_25`** *(player at 25% damage dealt to Briggs)*
 *"There it is."*
 
 *(He adjusts. The fight gets harder.)*
 
 ---
 
-**`ferry_phase_50_incoming`** *(player approaching 50% — Ferry has taken significant damage)*
+**`ferry_phase_50_incoming`** *(player approaching 50% — Briggs has taken significant damage)*
 *"You've got something."*
 
 *(He doesn't stop. But the player can feel the assessment shifting.)*
 
 ---
 
-**`ferry_player_struggling`** *(player health drops below 30% before reaching 50% on Ferry)*
+**`ferry_player_struggling`** *(player health drops below 30% before reaching 50% on Briggs)*
 *"Don't stop thinking."*
 
 *(Not encouragement. Instruction.)*
@@ -43,15 +43,15 @@
 ---
 
 **`ferry_player_adapts`** *(player changes approach mid-fight after a failed sequence)*
-*Nothing. Ferry notices. He doesn't say so. The fight continues.*
+*Nothing. Briggs notices. He doesn't say so. The fight continues.*
 
-*(Implementation note: no line fires — Ferry's behavioral AI shifts slightly, acknowledging the adaptation by becoming fractionally less predictable. The player feels it.)*
+*(Implementation note: no line fires — Briggs's behavioral AI shifts slightly, acknowledging the adaptation by becoming fractionally less predictable. The player feels it.)*
 
 ---
 
 ## The 50% Pause
 
-*Ferry steps back. Not retreating — pausing. He looks at the player.*
+*Briggs steps back. Not retreating — pausing. He looks at the player.*
 
 **`ferry_toll_paid`**
 *"You paid the toll."*
@@ -73,16 +73,16 @@
 
 *"All right."*
 
-*(He steps aside. Looks up toward where Mac is watching.)*
+*(He steps aside. Looks up toward where Cade is watching.)*
 
-*(No further words. Mac comes down.)*
+*(No further words. Cade comes down.)*
 
 ---
 
 **`ferry_continue`**
 *(Player chooses to keep going)*
 
-*(Ferry looks at the player for a moment. Something changes in how he's standing.)*
+*(Briggs looks at the player for a moment. Something changes in how he's standing.)*
 
 *"Okay."*
 
@@ -101,10 +101,10 @@
 
 ---
 
-**`ferry_continue_close`** *(player gets Ferry below 15%)*
-*Nothing. Ferry goes quiet. The fight is real now.*
+**`ferry_continue_close`** *(player gets Briggs below 15%)*
+*Nothing. Briggs goes quiet. The fight is real now.*
 
-*(Implementation note: ambient audio drops. Ferry's behavioral pattern becomes fully reactive — no more assessment mode. He's not holding back.)*
+*(Implementation note: ambient audio drops. Briggs's behavioral pattern becomes fully reactive — no more assessment mode. He's not holding back.)*
 
 ---
 
@@ -113,7 +113,7 @@
 ### Under 25% — Too Early
 
 **`ferry_notyetunder25`**
-*(Ferry stops the fight before it escalates. Clean.)*
+*(Briggs stops the fight before it escalates. Clean.)*
 
 *"Come back."*
 
@@ -126,7 +126,7 @@
 ### 25–49% — Acknowledged, Not Enough
 
 **`ferry_notyet2549`**
-*(Ferry steps back at the natural stopping point.)*
+*(Briggs steps back at the natural stopping point.)*
 
 *"You've got something."*
 
@@ -145,12 +145,12 @@
 ### 50% — Standard Admission (player took the out)
 
 **`ferry_admit_standard`**
-*(After `ferry_standard_admit` — Mac has come down)*
+*(After `ferry_standard_admit` — Cade has come down)*
 
-*(Ferry to Mac, not to the player:)*
+*(Briggs to Cade, not to the player:)*
 *"Paid the toll."*
 
-*(Mac nods. The debrief begins. Ferry steps back — present but not the focus anymore.)*
+*(Cade nods. The debrief begins. Briggs steps back — present but not the focus anymore.)*
 
 ---
 
@@ -159,7 +159,7 @@
 **`ferry_continued_sub75`**
 *(Player kept going, got further, fight ended short of full win)*
 
-*(Ferry steps back. Breathes.)*
+*(Briggs steps back. Breathes.)*
 
 *"Further than most."*
 
@@ -167,16 +167,16 @@
 
 *"You're in."*
 
-*(He looks up toward Mac. Mac is already coming down.)*
+*(He looks up toward Cade. Cade is already coming down.)*
 
 ---
 
 ### 75–99% — Close
 
 **`ferry_continued_close`**
-*(Player got Ferry genuinely low — he's feeling it)*
+*(Player got Briggs genuinely low — he's feeling it)*
 
-*(Ferry straightens up slowly.)*
+*(Briggs straightens up slowly.)*
 
 *"All right."*
 
@@ -192,10 +192,10 @@
 
 ---
 
-### Full Win — Ferry Goes Down
+### Full Win — Briggs Goes Down
 
 **`ferry_win`**
-*(Ferry is down. He stays there for a moment. Gets up.)*
+*(Briggs is down. He stays there for a moment. Gets up.)*
 
 *"Huh."*
 
@@ -205,18 +205,18 @@
 
 *(Beat)*
 
-*"Mac."*
+*"Cade."*
 
-*(He doesn't need to say more. Mac is already moving.)*
+*(He doesn't need to say more. Cade is already moving.)*
 
 ---
 
-## Mac's Arrival — Variant Lines
+## Cade's Arrival — Variant Lines
 
-*Mac comes down after every outcome above 50%. Line varies by threshold.*
+*Cade comes down after every outcome above 50%. Line varies by threshold.*
 
 **`mac_arrival_standard`** *(50% standard)*
-*"Ferry doesn't say 'all right' to many people."*
+*"Briggs doesn't say 'all right' to many people."*
 
 *(Beat)*
 
@@ -247,7 +247,7 @@
 ---
 
 **`mac_arrival_win`** *(full win)*
-*(Mac looks at Ferry briefly. Then at the player.)*
+*(Cade looks at Briggs briefly. Then at the player.)*
 
 *"First time."*
 
@@ -255,13 +255,13 @@
 
 *"Come inside. We have things to talk about."*
 
-*(Implementation note: Mac's debrief for full-win players runs longer and ends with a harder first operation assignment. He doesn't explain why. The player will figure it out.)*
+*(Implementation note: Cade's debrief for full-win players runs longer and ends with a harder first operation assignment. He doesn't explain why. The player will figure it out.)*
 
 ---
 
-## Ferry's Debrief Presence
+## Briggs's Debrief Presence
 
-*Ferry stays present during Mac's debrief but doesn't lead it. One line, delivered at the end, after Mac has finished.*
+*Briggs stays present during Cade's debrief but doesn't lead it. One line, delivered at the end, after Cade has finished.*
 
 **`ferry_debrief_standard`** *(50% admission)*
 *"You'll know what you did wrong by tomorrow."*
@@ -284,7 +284,7 @@
 ---
 
 **`ferry_debrief_win`** *(full win)*
-*(Ferry says nothing during the debrief. On the way out, quietly, not for the room:)*
+*(Briggs says nothing during the debrief. On the way out, quietly, not for the room:)*
 
 *"Good fight."*
 
@@ -295,21 +295,21 @@
 ## Background-Specific Lines
 
 **Veteran** — `ferry_veteran_pre`
-*Before the fight starts, Ferry clocks the movement pattern.*
+*Before the fight starts, Briggs clocks the movement pattern.*
 
-*(To Mac, not the player:)*
+*(To Cade, not the player:)*
 *"VSO."*
 
-*(Mac, from his position:)*
+*(Cade, from his position:)*
 *"I know."*
 
-*(Ferry, back to the player:)*
+*(Briggs, back to the player:)*
 *"All right. Let's see it."*
 
 ---
 
 **First Responder** — `ferry_firstresponder_phase`
-*At 25% — Ferry escalates faster than usual.*
+*At 25% — Briggs escalates faster than usual.*
 
 *"Community trust is a skill set. I can see it. Doesn't help you here."*
 
@@ -320,7 +320,7 @@
 **Tradesperson** — `ferry_trade_post`
 *After admission, on the way inside:*
 
-*"You've been fixing things. Mac mentioned it."*
+*"You've been fixing things. Cade mentioned it."*
 
 *(Beat)*
 
@@ -335,7 +335,7 @@
 
 *(Beat)*
 
-*"Derek's going to want to talk to you."*
+*"Aldric's going to want to talk to you."*
 
 ---
 
@@ -354,14 +354,14 @@
 
 ## Implementation Notes
 
-- Fight health tracking: `FerryHazingSubsystem` tracks damage dealt as percentage of Ferry's total health pool. Thresholds fire events that trigger dialogue tags above.
+- Fight health tracking: `FerryHazingSubsystem` tracks damage dealt as percentage of Briggs's total health pool. Thresholds fire events that trigger dialogue tags above.
 - 50% branch timeout: 5 seconds, auto-selects `ferry_standard_admit`. No pressure on the player to decide fast — but the choice should feel real.
-- `ferry_player_adapts`: no audio line, behavioral AI shift only. The adaptation is acknowledged through Ferry's response, not through words. Flag to AI/combat team.
+- `ferry_player_adapts`: no audio line, behavioral AI shift only. The adaptation is acknowledged through Briggs's response, not through words. Flag to AI/combat team.
 - Phase lines (`ferry_phase_25`, `ferry_phase_50_incoming`) fire once each, mid-combat, no UI indication. Ambient only.
-- Mac's position: he is not reachable or interactable during the fight. Environmental presence only — silhouette, elevated. Camera does not auto-frame him.
-- Ferry's `ferry_debrief_win` line fires on exit from the debrief space, not during it. Quiet. The room doesn't hear it.
+- Cade's position: he is not reachable or interactable during the fight. Environmental presence only — silhouette, elevated. Camera does not auto-frame him.
+- Briggs's `ferry_debrief_win` line fires on exit from the debrief space, not during it. Quiet. The room doesn't hear it.
 - Scale recorded permanently in `WYA.Record.ReckоnerHazingResult` — visible in Reckoner faction standing screen.
 
 ---
 
-*v0.1 — Ferry hazing dialogue. Full threshold scale, 50% pause with player choice, all outcome variants, Mac arrival lines, debrief presence, background-specific moments. Implementation notes flagged.*
+*v0.1 — Briggs hazing dialogue. Full threshold scale, 50% pause with player choice, all outcome variants, Cade arrival lines, debrief presence, background-specific moments. Implementation notes flagged.*

@@ -307,7 +307,7 @@ The player logs off or goes to sleep. He works.
 
 ### Morning
 
-Full voice. Not louder. Not different in register. *Completed.* The voice that was always there, now fully present — warm, authoritative, measured. Morgan Freeman delivering the thing he's been building toward.
+Full voice. Not louder. Not different in register. *Completed.* The voice that was always there, now fully present — warm, authoritative, measured. Maren Freeman delivering the thing he's been building toward.
 
 He waits for the player to sit down.
 

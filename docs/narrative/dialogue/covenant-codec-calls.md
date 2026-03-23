@@ -23,7 +23,7 @@
 - `eli_first_assessment` fires when the Covenant's internal assessment of the player completes. The player may not know they were being assessed. Eli has been watching since the player first entered Covenant territory.
 - `eli_threshold_question` fires when the player reaches mid-level Covenant standing. One question. The answer doesn't gate anything — it informs everything.
 - `eli_act4_refusal` and `strand_act4` fire on the same trigger (`WYA.Event.Covenant.VanderFractureBegins`). Eli fires first (Priority 95 > 88). Strand fires in the same session, shortly after. They represent opposite positions in the Act 4 fracture.
-- `mira_archive_offer` threshold: player asked Mira a question that wasn't a comfort question — specific, operational, indicating they'll use the answer. Same threshold mechanic as Derek.
+- `mira_archive_offer` threshold: player asked Mira a question that wasn't a comfort question — specific, operational, indicating they'll use the answer. Same threshold mechanic as Aldric.
 - `mira_working_notes` fires after archive access is granted. Mira walks the player through what her notes contain — including herself.
 - `mira_last_entry` fires when Mira passes a measurable threshold in the Ascendant process. This call's content is the last time the player hears Mira at full clinical clarity. The change in her voice is the tell.
 - `strand_warning` is repeatable — fires when Strand's monitoring picks up an external threat targeting the player. One call per threat event. Max once per session.

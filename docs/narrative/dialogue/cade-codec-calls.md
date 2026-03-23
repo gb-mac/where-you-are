@@ -1,5 +1,5 @@
-# Mac Codec Calls — DataTable Spec
-*Implementation-ready content for `DT_CodecCalls`, `DT_CodecLines`. Zero LLM. All Mac dialogue is authored.*
+# Cade Codec Calls — DataTable Spec
+*Implementation-ready content for `DT_CodecCalls`, `DT_CodecLines`. Zero LLM. All Cade dialogue is authored.*
 *Uses same struct definitions as `burke-codec-calls.md`.*
 
 ---
@@ -39,7 +39,7 @@
 
 *(Beat)*
 
-*"I'm Mac. You probably know that already. Sit down. I want to hear how you've been operating."*
+*"I'm Cade. You probably know that already. Sit down. I want to hear how you've been operating."*
 
 *(Player describes their background — branch)*
 
@@ -121,8 +121,8 @@
 ---
 
 ### `mac_burke_disagreement` — Act 2 — ONE-SHOT
-*Trigger: player mentions Burke to Mac or Mac's name appears in a Burke codec call.*
-*Fires at Mac's location on next visit.*
+*Trigger: player mentions Burke to Cade or Cade's name appears in a Burke codec call.*
+*Fires at Cade's location on next visit.*
 
 **mac_burke_L1:**
 *"Burke."*
@@ -184,13 +184,13 @@
 ---
 
 ### `mac_burke_codec_argument` — Act 3 — ONE-SHOT
-*The argument. Triggers when both Burke and Mac are in the player's active network and Meshtastic is connected.*
-*Three-way codec. Burke opens. Mac responds. Player holds the channel.*
+*The argument. Triggers when both Burke and Cade are in the player's active network and Meshtastic is connected.*
+*Three-way codec. Burke opens. Cade responds. Player holds the channel.*
 
 ---
 
 **bma_L1** *(Burke)*
-*"Mac."*
+*"Cade."*
 
 *(Beat)*
 
@@ -198,7 +198,7 @@
 
 ---
 
-**bma_L2** *(Mac)*
+**bma_L2** *(Cade)*
 *"Burke."*
 
 *(Beat)*
@@ -212,7 +212,7 @@
 
 ---
 
-**bma_L4** *(Mac)*
+**bma_L4** *(Cade)*
 *"Your contacts can answer the questions. They're good people, they can handle scrutiny. Meanwhile the communities they live in aren't getting annexed. I'll take that trade."*
 
 ---
@@ -222,11 +222,11 @@
 
 *(Beat)*
 
-*"That's my point, Mac. Not the outcome — the outcome was fine. The method. You moved without knowing what else was in that space. You were right about the corridor. You didn't know what else you were touching."*
+*"That's my point, Cade. Not the outcome — the outcome was fine. The method. You moved without knowing what else was in that space. You were right about the corridor. You didn't know what else you were touching."*
 
 ---
 
-**bma_L6** *(Mac)*
+**bma_L6** *(Cade)*
 *"If I'd waited to know everything I was touching I'd still be waiting. The communities would be registered. That's the difference between your method and mine — mine has a cost and produces a result. Yours produces a result eventually and the cost is everything that happened while you were building the conditions."*
 
 *(Beat)*
@@ -248,7 +248,7 @@
 
 ---
 
-**bma_L8** *(Mac)*
+**bma_L8** *(Cade)*
 *"What's Act 4?"*
 
 ---
@@ -272,18 +272,18 @@
 **bma_L10_tell:**
 *(Burke)* *"There it is."*
 
-*(Mac — long beat)*
+*(Cade — long beat)*
 *"Say that again."*
 
 *(Player repeats or the assistant relays the Vael warning summary)*
 
-*(Mac — very long beat)*
+*(Cade — very long beat)*
 
 *"...How long have you known this?"*
 
 *(Burke)* *"Long enough. This is why I said what I said about your timeline."*
 
-*(Mac — quiet)*
+*(Cade — quiet)*
 *"All right."*
 
 *(Beat)*
@@ -297,7 +297,7 @@
 **bma_L10_wait:**
 *(Burke)* *"Take your time."*
 
-*(Mac)* *"I'll be here."*
+*(Cade)* *"I'll be here."*
 
 *(Beat)*
 
@@ -312,11 +312,11 @@
 **bma_L10_nothing:**
 *(Long beat — both men wait)*
 
-*(Mac)* *"Burke."*
+*(Cade)* *"Burke."*
 
 *(Burke)* *"I know."*
 
-*(Mac)* *"We'll talk later."*
+*(Cade)* *"We'll talk later."*
 
 *(Burke)* *"Yes."*
 
@@ -349,7 +349,7 @@
 ---
 
 ### `mac_act4_gap` — Act 4 — ONE-SHOT
-*Trigger: Theory delivered. Mac has NOT yet been told via `bma_L10_tell`.*
+*Trigger: Theory delivered. Cade has NOT yet been told via `bma_L10_tell`.*
 *If `WYA.Event.Reckoners.MacInformed` already set — skip this call.*
 
 **mac_gap_L1:**
@@ -387,7 +387,7 @@
 
 *"All right. So I've been fighting a real enemy with the wrong frame. That's — I can work with that. What's the frame?"*
 
-→ END *(triggers partial theory delivery — Mac adapts faster than expected)*
+→ END *(triggers partial theory delivery — Cade adapts faster than expected)*
 
 ---
 
@@ -404,7 +404,7 @@
 
 *(No elaboration. That's the whole call.)*
 
-*(Implementation note: substitute NPC name at runtime. Same `WYA.Event.Record.CostedSomething` trigger as `burke_record_costly`. If Burke fires this session, Mac does not.)*
+*(Implementation note: substitute NPC name at runtime. Same `WYA.Event.Record.CostedSomething` trigger as `burke_record_costly`. If Burke fires this session, Cade does not.)*
 
 ---
 
@@ -412,10 +412,10 @@
 
 - `mac_burke_codec_argument` is a three-way codec — requires a new UI state where two NPC portraits appear simultaneously. Flag to AI Pipeline agent for implementation planning.
 - `[PLAYER_NAME]` in `bma_L9` — pull from player name set in prologue.
-- Burke's lines in `mac_burke_codec_argument` reference the `burke_codec` audio profile, not Mac's. Two separate voice/audio channels.
+- Burke's lines in `mac_burke_codec_argument` reference the `burke_codec` audio profile, not Cade's. Two separate voice/audio channels.
 - Branch timeout: 8 seconds (same as Burke calls). No selection = `bma_L10_nothing` auto-selected.
-- `WYA.Event.Reckoners.MacInformed` flag prevents `mac_act4_gap` from firing if the player already told Mac via the three-way codec.
+- `WYA.Event.Reckoners.MacInformed` flag prevents `mac_act4_gap` from firing if the player already told Cade via the three-way codec.
 
 ---
 
-*v0.1 — Mac codec calls. Full call roster, first contact (all backgrounds + Veteran variant), Burke disagreement, three-way Burke/Mac argument with player branch, fracture event, Act 4 gap, record-costly. Implementation notes flagged.*
+*v0.1 — Cade codec calls. Full call roster, first contact (all backgrounds + Veteran variant), Burke disagreement, three-way Burke/Cade argument with player branch, fracture event, Act 4 gap, record-costly. Implementation notes flagged.*

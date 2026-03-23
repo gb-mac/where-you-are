@@ -5,7 +5,7 @@
 
 ## The Problem This Solves
 
-Every faction has a place. The Reckoners hold their broadcast territory — you hear Derek before you see anyone. The Covenant clusters near Coherent construction sites. The Compact has checkpoints and installations. The Hollow own the industrial zones.
+Every faction has a place. The Reckoners hold their broadcast territory — you hear Aldric before you see anyone. The Covenant clusters near Coherent construction sites. The Compact has checkpoints and installations. The Hollow own the industrial zones.
 
 The Wardens have always had the most complete governance structure in the game and the least defined physical presence. The Table — the deliberative body above and alongside the other tiers — needs spaces commensurate with what it is. A faction whose core mechanic is stewardship of land and community cannot be spatially abstract.
 

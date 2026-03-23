@@ -133,7 +133,7 @@ Episodes about bureaucratic dysfunction, the gap between institutional mandate a
 *Sample fragment: "...and the thing nobody wants to say out loud is that the system wasn't broken — it was working exactly as designed. The design was just wrong..."*
 
 **What was coming**
-People who saw it. Mac's viral broadcast is in this category. Researchers, independent analysts, contrarians who were right. He queues these when the player encounters factions whose pre-Cascade equivalent he found in the archive.
+People who saw it. Cade's viral broadcast is in this category. Researchers, independent analysts, contrarians who were right. He queues these when the player encounters factions whose pre-Cascade equivalent he found in the archive.
 
 *Sample fragment: "...I'm not saying it's going to happen tomorrow. I'm saying the conditions are there and we've been pretending they aren't..."*
 
@@ -273,7 +273,7 @@ The words he gets through before the signal drops. Tagged by register. Rotated s
 **First Reckoner encounter**
 *[Mid-podcast, any topic]*
 *[He switches without warning]*
-*[Mac's viral broadcast audio — the machine uprising segment]*
+*[Cade's viral broadcast audio — the machine uprising segment]*
 *[Plays for 60 seconds — longer than usual]*
 *[Fades, no comment]*
 
