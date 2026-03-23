@@ -338,6 +338,26 @@ void UWYAApiClient::PlaceItem(
 	});
 }
 
+// ── Territory API ─────────────────────────────────────────────────────────────
+
+void UWYAApiClient::GetTerritoryRegion(
+	double Lat, double Lon,
+	TFunction<void(bool, TSharedPtr<FJsonObject>)> Callback)
+{
+	if (!IsAuthenticated())
+	{
+		PendingCalls.Add([this, Lat, Lon, CB = MoveTemp(Callback)]() mutable
+		{
+			GetTerritoryRegion(Lat, Lon, MoveTemp(CB));
+		});
+		EnsureAuth();
+		return;
+	}
+
+	const FString Path = FString::Printf(TEXT("/territory?lat=%f&lon=%f"), Lat, Lon);
+	SendRequest(TEXT("GET"), Path, TEXT(""), MoveTemp(Callback));
+}
+
 // ── Internal HTTP ─────────────────────────────────────────────────────────────
 
 void UWYAApiClient::SendRequest(

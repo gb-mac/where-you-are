@@ -46,6 +46,18 @@ public:
 		EWYAItemType Type, double Lat, double Lon, double Alt,
 		TFunction<void(bool, FWYAItemData)> Callback);
 
+	// ── Territory API ──────────────────────────────────────────────────────────
+
+	/**
+	 * GET /v1/territory?lat=X&lon=Y
+	 * Returns the territory region JSON for the geohash cell containing (Lat, Lon).
+	 * Server generates or returns cached OSM-scored territory for that region.
+	 * Fires Callback(bSuccess, RegionJsonObject).
+	 */
+	void GetTerritoryRegion(
+		double Lat, double Lon,
+		TFunction<void(bool, TSharedPtr<FJsonObject>)> Callback);
+
 	/** Delegate fired once authentication succeeds (or permanently fails). */
 	DECLARE_MULTICAST_DELEGATE_OneParam(FOnAuthReady, bool /*bSuccess*/);
 	FOnAuthReady OnAuthReady;

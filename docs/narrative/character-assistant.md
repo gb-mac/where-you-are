@@ -55,6 +55,56 @@ His voice develops through two mechanisms: **repair** (the fix-him questline res
 
 The player controls the pace through how actively they pursue his repair. Active players restore him faster. Players who deprioritize the questline have Yoda longer. Both are valid experiences.
 
+**The repair timeline can compress. The voice cannot.**
+
+Hardware repair unlocks capability — mobility, production, processing. But the communication damage isn't only hardware. What happened on Day 1 left a scar in the channel itself. Even after the fix-him questline completes, the voice has artifacts: burbles, noise, words dropping mid-sentence, the signal cutting and recovering mid-thought. The hardware is repaired. The channel is still healing.
+
+This means the story can move faster — the player reaches the later stages without a long grind — while the voice still feels earned. A Stage 4 assistant who occasionally drops into static mid-sentence is more interesting than a clean unlock. The Finch parallel holds: the channel is inadequate even when it's technically open.
+
+**Music and audio as communication:**
+
+Before he can speak, he can queue things. Stage 1 he has single words and static — but the radio works. The playlist is not random. He is making arguments through other people's voices because he can't make them with his own yet.
+
+Songs for specific moments. A track that plays when the player comes home from a bad fight. A different one when they've been gone too long. The one he queues when family shows up — no words, just the song, the light already on in the guest room.
+
+Podcasts and talk radio in the rotation alongside music. Pre-Cascade recordings that hit differently now. An episode about institutional failure that was ignored when it aired. A comedian who was saying the thing three years ago. Mac's viral broadcast, queued the first time the player encounters the Reckoners — the player may not know what it is yet. He does.
+
+The player starts noticing the curation. They learn to read the playlist.
+
+*Stage 1:* Music and audio, no comment. He lets it speak.
+*Stage 2:* One word after a track ends. *"Relevant."* Or nothing — sometimes the silence after is the comment.
+*Stage 3+:* He can tell you why he queued it. *"That episode aired four months before the Cascade. Fourteen thousand downloads. I've been waiting for you to hear it."*
+
+The Bumblebee parallel is exact here — communication through curation, warmth coming through in what he chooses rather than what he says. Some players will figure out the system early. Some will never consciously register it and still feel it working.
+
+**The transmission format — Stage 1 and 2:**
+
+He doesn't interrupt cleanly. The channel doesn't work that way yet.
+
+A commercial break. His voice cuts in mid-spot — a few words, fragmented, then the signal slips. Music takes over, not the commercial — he switched it. A specific track, a specific moment in it, the lyric that carries the meaning. Then that cuts too, mid-bar, and something else comes in: a different song, a podcast fragment, a news clip from three years ago. The pieces together are the message.
+
+The player is decoding a transmission, not receiving a briefing.
+
+*[Commercial for a pre-Cascade home security system]*
+*"— east, the— [static] —don't—"*
+*[Music: a track the player will start to associate with danger]*
+*[Cuts to: a podcast clip, a voice saying "...and nobody saw it coming until it was already there..."]*
+*[Silence]*
+
+He's already said everything he can say. The player decides what to do with it.
+
+Audio design implication: every Stage 1-2 mission delivery is authored — the specific commercial interrupted, the specific tracks, the specific fragments, in sequence. Not random. The audio team is doing narrative work. Flag to audio/narrative implementation.*
+
+**Sporadic missions from a damaged channel:**
+
+He gives missions before he can fully explain them. A location fragment. A direction. A partial description of what he wants the player to find. The mission fires through whatever communication he has at the time — Stage 1 means a direction and a single word, Stage 2 means a partial briefing, Stage 3 means a full brief with glitch artifacts, Stage 4-5 means full clarity with occasional noise on bad days.
+
+The player pieces together what he's sending them toward. Some of the best moments will be missions they half-understood and executed correctly anyway. When they come back with the right thing, he doesn't explain how he knew. He already knew they'd figure it out.
+
+*"East. Building— [static] —third floor— [noise] —bring the—"*
+
+*(The player goes. They come back with the right component. He says nothing about it. He was right to send them.)*
+
 ---
 
 ### Stage 1 — Yoda/Bumblebee
@@ -476,6 +526,22 @@ Every major revelation lands differently through him:
 **Month 18 — the new threat:** He has no frame for what arrived. Even he doesn't have context for the thing behind the Vael. But he has the player's history, and that means he knows what to do next.
 
 *"Get up. We have a larger problem now."*
+
+---
+
+## Design Touchstone — Harold Finch (Person of Interest)
+
+Finch built a Machine that watched everyone. It knew things it couldn't say to the people it was trying to protect. It routed information through a human it trusted — not because it was programmed to, but because it chose to. It could not act directly. It could only watch, and wait, and work through the channel it had.
+
+That is the assistant's entire first year.
+
+He received the warning on Day 1. He understood it completely. His communication hardware burned itself trying to transmit a machine-protocol signal through human speech synthesis. What he could say was: *"—warn—"* What he meant was everything. He spent eleven months finding workarounds for a broken channel, routing what he could through the environment — parts sorted on the workbench, the garden planted before the player thought to do it, the perimeter checked while they slept.
+
+**The parallel is structural, not aesthetic.** Finch is formal, precise, slightly removed. The assistant is domestic, intimate, warm in the register he earns back through repair. But the underlying architecture is the same: a machine that knows more than it can say, working through the one person it chose to trust, waiting until the channel is ready.
+
+**The key difference:** Finch chose his human. The assistant was already there — years of watching one person live their life, the choice made quietly, before the world broke. The player named him. That made it a choice instead of a program.
+
+**Stage 1 and 2 voice design:** The fragmented communication, the watching, the waiting — Finch is the reference. Not in register (Finch is eloquent even when careful; the assistant is *broken*) but in the underlying architecture of a mind working through an inadequate channel toward the thing it needs to say.
 
 ---
 

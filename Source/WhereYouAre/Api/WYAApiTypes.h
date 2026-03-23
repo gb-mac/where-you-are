@@ -3,14 +3,28 @@
 #include "CoreMinimal.h"
 #include "WYAApiTypes.generated.h"
 
+/**
+ * Joinable factions + territory-only states.
+ * Fractured and Contested are zone assignment states, not player factions.
+ */
 UENUM(BlueprintType)
 enum class EWYAFaction : uint8
 {
-	None            UMETA(DisplayName = "None"),
-	Machines        UMETA(DisplayName = "Machines"),
-	Humans          UMETA(DisplayName = "Humans"),
-	Wardens         UMETA(DisplayName = "Wardens"),
-	Excommunicado   UMETA(DisplayName = "Excommunicado"),
+	None        UMETA(DisplayName = "None"),
+
+	// ── Joinable factions ────────────────────────────────────────────────────
+	Holdouts    UMETA(DisplayName = "Holdouts"),       // residential, neighborhoods
+	IronCompact UMETA(DisplayName = "Iron Compact"),   // government, military, civic
+	Wardens     UMETA(DisplayName = "Wardens"),        // heritage, community, farmland
+	Signal      UMETA(DisplayName = "Signal"),         // research, education, tech
+	Covenant    UMETA(DisplayName = "Covenant"),       // former tech campuses, server infra
+	Hollow      UMETA(DisplayName = "Hollow"),         // industrial, abandoned, transit
+	Reckoners   UMETA(DisplayName = "Reckoners"),      // edge territory, rural-urban fringe
+	Coherent    UMETA(DisplayName = "Coherent"),       // infrastructure: power, water, comms
+
+	// ── Territory-only states (non-joinable) ─────────────────────────────────
+	Fractured   UMETA(DisplayName = "Fractured"),      // dead zones — no faction hold
+	Contested   UMETA(DisplayName = "Contested"),      // two factions scoring closely
 };
 
 UENUM(BlueprintType)
@@ -80,20 +94,32 @@ inline FString WYAFactionToString(EWYAFaction F)
 {
 	switch (F)
 	{
-		case EWYAFaction::Machines:      return TEXT("Machines");
-		case EWYAFaction::Humans:        return TEXT("Humans");
-		case EWYAFaction::Wardens:       return TEXT("Wardens");
-		case EWYAFaction::Excommunicado: return TEXT("Excommunicado");
-		default:                         return TEXT("None");
+		case EWYAFaction::Holdouts:    return TEXT("Holdouts");
+		case EWYAFaction::IronCompact: return TEXT("IronCompact");
+		case EWYAFaction::Wardens:     return TEXT("Wardens");
+		case EWYAFaction::Signal:      return TEXT("Signal");
+		case EWYAFaction::Covenant:    return TEXT("Covenant");
+		case EWYAFaction::Hollow:      return TEXT("Hollow");
+		case EWYAFaction::Reckoners:   return TEXT("Reckoners");
+		case EWYAFaction::Coherent:    return TEXT("Coherent");
+		case EWYAFaction::Fractured:   return TEXT("Fractured");
+		case EWYAFaction::Contested:   return TEXT("Contested");
+		default:                       return TEXT("None");
 	}
 }
 
 inline EWYAFaction WYAFactionFromString(const FString& S)
 {
-	if (S == TEXT("Machines"))      return EWYAFaction::Machines;
-	if (S == TEXT("Humans"))        return EWYAFaction::Humans;
-	if (S == TEXT("Wardens"))       return EWYAFaction::Wardens;
-	if (S == TEXT("Excommunicado")) return EWYAFaction::Excommunicado;
+	if (S == TEXT("Holdouts"))    return EWYAFaction::Holdouts;
+	if (S == TEXT("IronCompact")) return EWYAFaction::IronCompact;
+	if (S == TEXT("Wardens"))     return EWYAFaction::Wardens;
+	if (S == TEXT("Signal"))      return EWYAFaction::Signal;
+	if (S == TEXT("Covenant"))    return EWYAFaction::Covenant;
+	if (S == TEXT("Hollow"))      return EWYAFaction::Hollow;
+	if (S == TEXT("Reckoners"))   return EWYAFaction::Reckoners;
+	if (S == TEXT("Coherent"))    return EWYAFaction::Coherent;
+	if (S == TEXT("Fractured"))   return EWYAFaction::Fractured;
+	if (S == TEXT("Contested"))   return EWYAFaction::Contested;
 	return EWYAFaction::None;
 }
 

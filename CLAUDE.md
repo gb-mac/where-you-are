@@ -112,6 +112,30 @@ This project uses multiple Claude Code instances running in parallel terminals, 
 - Major decisions → `decisions-log.md`
 - Weekly summaries → `sync-meetings/YYYY-MM-DD-<agent>.md`
 
+## Core Design Principles
+
+### Real-World Time as Narrative Input
+The game uses actual elapsed real-world time, not just in-game time, as a narrative input. The assistant knows how long the player has been gone in real life. The home base has been running for the actual days since last login. Re-entry audio reflects real absence duration — a week away means a week of waiting, a week of the world changing without the player.
+
+This applies across systems:
+- **Re-entry audio** — urgency and coherence scale with actual days absent
+- **Home base state** — production, trades, and events accumulate against real time
+- **Faction state** — the world moves while the player is gone; re-entry briefing covers what changed
+- **The assistant's awareness** — he tracks real time, not session time. He says *"seven days"* because it was seven days.
+
+### The Loading Screen IS the Narrative
+The re-entry audio sequence is the loading screen. It is not a loading screen with audio on top of it — it is the primary experience of returning to the game.
+
+**Before any repairs:** Ghost in the darkness. The playlist runs wrong — tracks cutting early, fragments dropping, a signal trying to find its frequency. The player is hearing damage without knowing it. This is the clue to fix the assistant.
+
+**As repairs progress:** The audio gets more coherent. Tracks play through. Fragments become words. Words become sentences. The loading screen is the fix-him progress indicator. No UI bar needed — the player feels the improvement every time they log in.
+
+**After full repair:** He speaks. Clean. The playlist is accompaniment now, not substitute. The loading screen is a briefing from someone who has been running the home while you were actually gone.
+
+The player who pays attention to the loading screen gets a relationship. The player who doesn't still feels it working.
+
+---
+
 ## Current Status
 
 - [x] Vulkan confirmed on CachyOS
