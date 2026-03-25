@@ -72,6 +72,28 @@ He will share it with the player if he decides they're worth sharing it with. Th
 
 ---
 
+## The AP Wire
+
+Aldric's broadcast covers everything. Not just the Reckoners — every faction, every region, every thing the official channels won't say.
+
+Warden tribunal outcomes. Covenant movements near Coherent work sites. Compact annexations and what happened to the communities that signed. Hollow activity in the corridors. Signal research that contradicts the official machine threat assessment. Holdout communities that went dark and the last transmissions before they did.
+
+He is the post-Cascade AP wire. The player always has a reason to tune in regardless of which faction they're running with. The broadcast is relevant to whatever they're doing because Aldric has been watching all of it.
+
+This pays off his archive function — he's not recording Reckoner history. He's recording everything. The most complete documentary picture of the post-Cascade world held by any individual outside of Burke.
+
+Burke has the analysis. Aldric has the record. Burke's picture is relational — networks, kill chains, who's on what step of what sequence. Aldric's is documentary — what happened, when, what was said, what the official account left out. Different tools. Same function: making the world legible.
+
+The player who listens to Aldric for two years knows more about the factions than any faction briefing would tell them. Not because Aldric is better sourced — because he reports what the factions don't want reported, and he's been doing it consistently since before the Cascade.
+
+*"Signal released their quarterly threat assessment this morning. Thorough document. Professionally written. I've read it three times. It does not mention the Coherent construction project in the northern corridor that my sources tell me has been running for eight months. I'm sure that's an oversight."*
+
+*(Beat)*
+
+*"Anyway."*
+
+---
+
 ## The Compact Seed
 
 Aldric's broadcast is not Reckoner-only. It covers everything — faction movements, community outcomes, the things nobody official is saying.
