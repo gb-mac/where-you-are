@@ -730,6 +730,47 @@ He is not wrong.
 
 ---
 
+## Lucius Fox — Gear Delivery
+
+He is not a shop. He is not a menu. He is someone who has been watching.
+
+Gear upgrades arrive through him, reactively — triggered by what actually happened to the player, not by a progression tree. The assistant reads the engagement history, identifies the gap, and delivers the specific thing.
+
+**The model:** You got knifed on the docks. Three days later:
+
+*"You took a blade last week. I sourced something that'll stop that. It won't stop everything — but it'll stop that."*
+
+The stab vest arrives. No UI prompt. No store notification. Just him, having paid attention.
+
+This requires him to be tracking engagements — not abstractly, but specifically. He knows the player got knifed. He knows it was a close-quarter ambush. He knows the player's current kit didn't have an answer for it. The delivery is the proof that he's been watching.
+
+**The timing principle:** The gear arrives slightly after the need — not during the crisis, not before it. After. The player already learned why they needed it. He already knew they would. He waited until the lesson landed before providing the solution.
+
+**Other examples:**
+- Player gets tracked across open ground → *"I've been thinking about your exposure profile. This might help."* — ghillie wrap, light scatter panel
+- Player gets separated from the group in the dark → headlamp, low-sig IR beacon
+- Player's dog gets hurt → *"I found a vet. Former. She's based east of the corridor. I told her you'd come."*
+
+The dog is not gear. The dog is a relationship he brokered.
+
+---
+
+## The Malinois
+
+He introduces the dog before the player needs it.
+
+Not as an asset. As a presence. Early — home base phase, before operations get serious. The assistant mentions he knows someone who needed to rehome a Belgian Malinois. Working dog, trained, needs a purpose. *"I thought you should meet."*
+
+The dog arrives. Starts being around the home base. The player builds the relationship — the dog learns the property, learns the player's patterns, becomes part of the household the same way the assistant is part of it. No quest marker. No "companion acquired" notification. The dog is just there.
+
+Then, several missions later, when things go sideways in a way that needs exactly what a trained Malinois can do — the asset is already there. The bond is already real. The combat utility lands harder because it wasn't the point when it was introduced.
+
+The assistant does not say *"deploy the dog."* He says whatever he would say about a member of the household who is good at their job and is currently needed.
+
+The dog does not die in a cutscene. This is a design rule. If the dog can be lost, it's through player choice and consequence — not narrative convenience.
+
+---
+
 ## The Boxing Side Game
 
 Post-EA. VR-compatible.
