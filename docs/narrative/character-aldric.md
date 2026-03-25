@@ -78,9 +78,23 @@ Aldric plays on the radio. Not as a quest trigger, not as a cutscene — as back
 
 He doesn't demand attention. He rewards it. The player half-listening will catch fragments. The player paying attention will catch the thread. The player who stops what they're doing when something lands — that's the moment working.
 
-This is the same register as Maren's mutual aid broadcasts and the assistant's ambient home commentary — the layer that makes the world feel inhabited during the quiet work. Except Aldric's is always plot-adjacent. Something he says while the player is driving recontextualizes what they're about to walk into. A fragment from three sessions ago suddenly makes sense.
+This is the same register as Maren's mutual aid broadcasts — the layer that makes the world feel inhabited during the quiet work. Except Aldric's is always plot-adjacent. Something he says while the player is driving recontextualizes what they're about to walk into. A fragment from three sessions ago suddenly makes sense.
 
 The two voices that run under everything: the assistant and Aldric. One intimate, one external. Home and world. Neither demands focus. Both accumulate.
+
+**The radio is not a feature. It is infrastructure.**
+
+Radios broke during the Cascade and never fully recovered. They come on when they come on. They go off when they go off. The player has no control — no on switch, no off switch, no channel selection. It lands on what it lands on.
+
+Aldric mid-sentence. Static. Covenant broadcast already in progress. Static. Maren's recipe for rendered fat. The player doesn't choose. The world does.
+
+This means Covenant propaganda arrives the same way the news does. No opt-in. The faction trying to reach the player doesn't need the player to find them — the broken radio does it. The player is subject to the same information environment as everyone else in the post-Cascade world.
+
+**The liability:** The radio comes on during a mission. The player is hiding — from a Compact patrol, from a Hollow crew, from something worse. A passionate Covenant broadcast opens up behind them. They can't turn it off. Position compromised. They have to move.
+
+The radio doesn't know. It just comes on. The world doesn't care about timing.
+
+**Design rule:** The radio is never in the player's control. Asset and liability, never predictable, always the world doing what the world does.
 
 ---
 
