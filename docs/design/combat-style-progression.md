@@ -103,11 +103,21 @@ Knocked out or wounded badly enough — the screen goes. Not a death screen. Not
 
 The Malinois introduced early, the bond built before the asset was needed — this is the asset. He finds the player when they go down. It is not a game mechanic bolted onto a dog. It is a dog being a dog, which is the same thing.
 
-**Two outcomes depending on situation and assistant capability:**
+**Moe leads you to supplies.** If the player is mobile but in no condition to navigate — wounded, disoriented, not thinking clearly — Moe leads them to the nearest pharmacy, grocery store, or drug store. Shoppers Drug Mart. Rexall. Walmart. Real GPS-anchored locations near the player's actual position. He knows where they are. The player follows.
 
-*You wake up where you are.* Minor incapacitation, low-threat aftermath — Moe got you conscious, the situation has shifted around you, you're still in it. The engagement may have resolved. It may not have.
+The store is a real place in the world. It may be looted. It may have Hollow activity. It may be held by someone who will or won't let the player in depending on who they are and what the Mark says. Getting there while already hurt is its own problem. What's on the shelves depends on when anyone last came through. The player assembles what they can find — improvised treatment, better than field stabilization, not as good as proper care.
 
-*The assistant gets you out.* Significant incapacitation, the assistant has had enough time and capability to arrange extraction or guide someone to you. You come back at home or at a safe location. What you missed while you were out is real — the world moved, the mission may have changed state.
+**Three recovery tiers:**
+
+1. *Field stabilization* — what you have on you. Buys time, costs nothing but degrades performance and compounds if you take more damage.
+2. *Moe leads you to supplies* — GPS-anchored real stores. Better recovery, costs getting there while hurt and navigating what's in the building.
+3. *Doctor or vet* — proper care, full recovery, relationship-based access. The resource you build before you need it.
+
+**Two outcomes for going fully down:**
+
+*You wake up where you are.* Minor incapacitation, low-threat aftermath — Moe got you conscious, the situation has shifted around you, you're still in it.
+
+*The assistant gets you out.* Significant incapacitation, the assistant arranges extraction or guides someone to you. You come back at home or a safe location. What you missed is real.
 
 **Assistant repair affects recovery.** Early game, damaged assistant — limited options. He knows you went down, he can't do much about it. Moe is what you have. As the fix-him questline progresses, recovery options improve — he can reach people, route extraction, call in contacts. The repair has a mechanical payoff beyond the emotional one.
 
