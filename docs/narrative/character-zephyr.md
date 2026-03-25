@@ -16,15 +16,17 @@ He wants to be wrong about this. He keeps proving himself right.
 
 ---
 
-## The Joker Register
+## The Register
 
-Heath Ledger's Joker — not the chaos-for-chaos-sake reading. The deeper one.
+Heath Ledger's Joker and the Bowery King — not the chaos-for-chaos-sake reading. The deeper one.
 
-The man with a point. The philosopher with a bat. He pushes on the order until the order shows its teeth, and when it does he turns to whoever is watching and says: *there it is. That's what it always was. I just made it visible.*
+Two registers in one man. The philosopher with a bat. The underground sovereign who holds a territory not through force but through the loyalty of people the city decided didn't exist. He pushes on the order until the order shows its teeth, and when it does he turns to whoever is watching and says: *there it is. That's what it always was. I just made it visible.*
 
 His argument is not wrong. That's what makes him dangerous. The structures he targets are organized violence with better PR. He says it out loud and then proves it by making them respond. The response is always the proof.
 
 He does not want to win. Winning would mean replacing the system with another system and he is done with systems. He wants to demonstrate. The demonstration is the point. The world burning is not the goal — the world burning is the evidence that it was already burning before he arrived, just at a temperature people had learned to ignore.
+
+The Bowery King register: he holds territory not through force but through the loyalty of people the other factions wrote off. His network is built entirely from the people the Compact checkpointed, the Covenant didn't ascend, the Reckoners couldn't diagnose, the Wardens couldn't formally protect. They came to him because he was the only one who didn't tell them what they were allowed to be.
 
 ---
 
@@ -123,4 +125,4 @@ He does not raise his voice. He does not need to. When the room is loud he gets 
 
 ---
 
-*v0.1 — Zephyr. Just Zephyr. The Riven leader. Heath Ledger's Joker register — the philosopher with a bat, the devotion without destination, the demonstration as the point. Right about the diagnosis, no solution, wrong about nothing that matters to him.*
+*v0.1 — Zephyr. Just Zephyr. The Riven leader. Heath Ledger's Joker + Bowery King register — the philosopher with a bat, the underground sovereign, the devotion without destination, the demonstration as the point. Right about the diagnosis, no solution, wrong about nothing that matters to him.*
