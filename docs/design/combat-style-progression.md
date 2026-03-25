@@ -40,6 +40,40 @@ This means a player who switches faction alignment or operation type watches the
 
 ---
 
+## The Two Systems
+
+**Ranged layer** — The Division/Tarkov/CoD. Cover, positioning, angles, ammo economy. TTK in the Division range: engagements have weight, a hit matters, decisions have consequences. Not Tarkov's one-tap lethality but not a health-pool shooter either.
+
+**Close combat layer** — Arkham. Rhythm-based, fluid, combo-driven. Footwork, clinch, distance management, environmental use. The system that carries the visible history of the player's development.
+
+**The transition** — proximity-driven, not player-initiated. No mode switch button. No menu. Distance collapses below threshold and the close combat vocabulary becomes available. Distance opens and the ranged options come back forward. The player can push into close range deliberately or get forced there — the system reads the same either way. A gunfight that closes to five feet doesn't pause. The player folds the gun into the fight or drops it for what's in reach. It continues.
+
+---
+
+## Survivability
+
+The Division's squishiness was a gear problem — low-level players were under-statted, not under-skilled. WYA doesn't gate survivability through gear.
+
+Base survivability is higher than Division. The player is not fragile. But they are vulnerable until their reads are good — because the margin for error in close quarters is positioning and timing, not hit points.
+
+The skill ceiling is movement and reading, not build optimization. A month-1 player eats hits because they're not reading yet. A month-12 player slips the same punch two beats out because they've seen it enough times to know what comes before it. The difference is visible. It's earned.
+
+Gear from the assistant (stab vest, reinforced kit) expands the margin to develop those reads — not by gating content but by giving the player room to make mistakes while they're learning. The Lucius Fox function: you got hit badly, the gear arrives. He's not upgrading your stats. He's buying you time to get better.
+
+---
+
+## No Counter Indicator
+
+The counter system is learned, not prompted.
+
+No UI flash. No spider-sense indicator. The player reads the enemy's animation — the wind-up, the weight shift, the tell. Early sessions they miss it and absorb the hit. Later sessions they've seen the animation enough times to know it two beats out.
+
+This is how the history shows. Not in a skill tree or a counter stat — in what the player recognizes before it arrives. A veteran player looks different in close combat because they're reacting to something earlier in the sequence. The game doesn't tell them when. They learned when.
+
+The assistant notices this too. He's been watching.
+
+---
+
 ## Close Combat Focus
 
 The evolution system is primarily for close combat. Ranged and tactical play have their own progression, but the *visible* character of the player's development shows most clearly at close range — footwork, clinch behavior, how they manage distance, what they do when the weapon is gone.
