@@ -104,6 +104,20 @@ Excommunicado players who learn to operate in Dark Corridors find a different ki
 
 Dark Corridors are high-risk, high-resource zones. They're where excommunicado players go to rebuild — and where the most desperate or dangerous people in the world already operate.
 
+**Zephyr**
+
+Zephyr has been watching the excommunicado player since the Declaration. Not to recruit — that's not his method. To see what the player does when the system that was protecting them turns on them.
+
+His network is built entirely from this population. Not criminals, not revolutionaries — people the institutions trusted, right up until they didn't. The Compact officer who refused an order. The Sworn who held the code when the House didn't. The player with a Mark that doesn't tell the whole story. Zephyr finds them when they reach the Dark Corridors because the Dark Corridors are where his people end up.
+
+The encounter is not an offer. It's a question: *what did you learn?*
+
+He already knows what happened. He's interested in whether the player has drawn the right conclusions from it. If they have — if they've named the thing accurately, without softening it into a grievance or hardening it into a grudge — he gives them something. Access to his network. A contact. A piece of information the system buried. Not because he owes them anything. Because a person who can see the thing clearly is more useful than a person who is still telling themselves the story they were given.
+
+If they haven't — if they're still running the institutional logic, still trying to find the path back into the system's good graces — he's patient. He's seen it before. Most people need a few more data points.
+
+*"You're angry at what happened to you. That's fair. When you're done being angry at the specifics — when you're angry at the structure that made the specifics inevitable — come find me. The door doesn't close."*
+
 ---
 
 ## The Wrongful Excommunicado
