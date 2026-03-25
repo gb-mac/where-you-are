@@ -4,7 +4,42 @@
 
 ## The Problem
 
-Home base has the stockpile, the assistant, the infrastructure. When the player is operating far from their GPS home location, none of that is reachable. The vehicle is what they have.
+Home base has the stockpile, the assistant, the infrastructure. When the player is operating far from their GPS home location, none of that is reachable. Beyond roughly 50km, the player needs a node — somewhere to resupply, recover, and regroup that isn't a four-hour drive home hurt.
+
+The Continental network is that node.
+
+---
+
+## The Continentals as Forward Bases
+
+The Wayhouse network is distributed. Burke's network has nodes positioned across the region — real GPS-anchored locations, hotels, roadhouses, community halls that have been brought into the network and set up with a Keeper. Not evenly distributed. There are gaps. Some areas have nothing nearby and the player has to know that before they go in.
+
+**What a Continental provides at range:**
+- Medical care — the Keeper has supplies, may have a medic on rotation
+- Resupply — what the network can source, which is more than a looted pharmacy
+- Storage — secure, faction-neutral, accessible when you return
+- A bed — real recovery, not field rest
+- Information — the Keeper knows the local situation. Who's moving where, what changed since the player was last through, what the other guests have said
+
+**What it costs:** Warden coin. Relationship. Standing. A player who is excommunicado finds the door closed or the welcome conditional. A player with deep Warden standing finds the Keeper already knows them by reputation.
+
+---
+
+## Getting There While Hurt
+
+The journey to the Continental is the mechanic. Not a loading screen — a gauntlet.
+
+The player is hurt, reduced, operating at degraded capacity in territory they may not know well. The Continental is 8km away through contested ground. The options: move carefully, use cover, hide and wait for a patrol to pass, crawl the last stretch if necessary. Moe runs ahead and comes back. The assistant tracks the route if he can.
+
+Arriving is the payoff. The Keeper sees what state the player is in and doesn't comment on it — just gets them inside and gets them what they need. The room, the supplies, the information. The world outside stops for a moment.
+
+**The network has gaps.** Some operations take the player into areas where the nearest Continental is 40km out. Burke knows the network better than anyone — if the player has the relationship and the communication, he can route them to the nearest node or to a contact who can shelter them in the gap. Without that, the player is navigating by what they know and what they've scouted.
+
+**Unlocking nodes.** New Continentals become accessible as the player's network expands — Burke introduces new Keepers, faction relationships open doors, the player completes a questline in a new area and the local Wayhouse becomes available. The network grows with the player's reach.
+
+---
+
+## The Vehicle as Mobile Base
 
 ---
 
