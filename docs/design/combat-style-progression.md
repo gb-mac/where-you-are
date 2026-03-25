@@ -40,6 +40,22 @@ This means a player who switches faction alignment or operation type watches the
 
 ---
 
+## The First Fight
+
+The player's first real engagement happens in a store. Real GPS-anchored location — Cabela's, Bass Pro Shop, Walmart, Canadian Tire. Wherever is actually near the player's home coordinates.
+
+They don't have a weapon when it starts. The store does.
+
+Frying pan from the camping section. Toaster from the appliance aisle. Whatever is in reach when the first person comes through the door. The Arkham layer activates before the player knows there is an Arkham layer — they're managing distance and timing with a skillet because that's what they have.
+
+The gun section is at the back. The player works toward it. By the time they get there they've learned close range the hard way. They pick up a handgun or a rifle — whatever's left, whatever's accessible — and the ranged layer opens.
+
+The rifle doesn't stop being a melee weapon when they pick it up. Someone closes distance mid-reload, they swing it. Stock as a bat, barrel as a lever. The three-range system is introduced in one location without a single tutorial prompt. The store taught it.
+
+The same stores Moe leads the player to later — bleeding, looking for supplies — are stores the player has already been in when things went wrong the first time. The familiarity is earned.
+
+---
+
 ## The Three Ranges
 
 **Close** — Arkham. Rhythm, clinch, footwork, distance management. No counter indicator — the player reads the animation. The vocabulary that carries the player's visible history.
