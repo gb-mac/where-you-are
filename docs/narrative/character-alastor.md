@@ -56,6 +56,18 @@ The player who pays attention will eventually identify the gap between what Alas
 
 ---
 
+## The Hollow Layer
+
+Alastor moves information through the Hollow's route network. Syndicate contacts — built before the Cascade, maintained after, never officially acknowledged. The player never quite knows if a random Hollow encounter was random.
+
+Dead drops, chance meetings, the stranger in a bar who has exactly what the player needs and doesn't ask why they need it. Some of those strangers are Alastor's. Some of them don't know they're Alastor's. The distinction doesn't affect the transaction.
+
+This is how Signal intelligence moves without leaving a Signal fingerprint. The Compact is watching Signal channels. They are not watching every Hollow intermediary in every corridor in every city. Alastor has been using that gap since before the Signal existed.
+
+*"I know a person. They know a person. Nobody knows me."*
+
+---
+
 ## Voice
 
 Unhurried. Precise word choice — the habit of a man who spent years in environments where imprecision had consequences. Dark humor delivered so dry it takes a moment to land. The smile arrives before the joke, which is disorienting.

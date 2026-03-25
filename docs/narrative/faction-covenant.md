@@ -86,6 +86,12 @@ Her research notes are the most important documents in the Covenant archive and 
 
 **What the player gets from her:** The archive. And, if they earn her specific trust — if they ask the right questions, the specific ones, not the comfort questions — her working notes. The working notes are the Act 3 key that unlocks Dr. Osei's final framework piece. Mira and Osei have never met. The data they've been developing independently produces the same picture from two angles.
 
+**The equipment pipeline:** Mira has decided the transition requires certain tools. Not officially sanctioned — the Covenant doesn't arm people, theologically. But she spent three weeks in Signal after the Cascade and she understands what operational reality looks like. She knows which players are going to be in the places where what's coming arrives first. She makes sure they're equipped for it.
+
+Military-tier gear moves through her to the player. Quietly. Never acknowledged inside the Covenant. The Vigil has noted the supply discrepancies and filed them under *Shepherd discretionary resources* because Strand has decided that Mira's operational value exceeds the theological inconvenience. Neither of them has said this out loud.
+
+The player receives equipment through a Covenant contact and nobody in the Covenant officially knows about it. Mira doesn't confirm or deny. She asks if it fit the need.
+
 **Voice:**
 Precise. She corrects imprecision gently, reflexively, without emphasis — like removing a small obstacle from a path. The humor is dry and arrives in footnotes. She will not shorten a thought for comfort.
 
