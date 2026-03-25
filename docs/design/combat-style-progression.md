@@ -54,6 +54,22 @@ The rifle doesn't stop being a melee weapon when they pick it up. Someone closes
 
 The same stores Moe leads the player to later — bleeding, looking for supplies — are stores the player has already been in when things went wrong the first time. The familiarity is earned.
 
+**The liquor store.** High-proof alcohol cleans wounds. The player learns this early — looking for something to treat a cut with, they end up in a liquor store. The encounter finds them there mid-task, already hurt, already at a disadvantage.
+
+The shelves are full of weapons they don't have to think about.
+
+---
+
+## Contextual Weapon Pickup
+
+No inventory management. No weapon wheel. No prompt.
+
+The player presses punch. The system reads what's in reach — bottle on a shelf, pan on a counter, bat propped against a wall — and the character grabs it mid-swing. One motion. The grab is the wind-up and the swing is the follow-through. The environment is the armory.
+
+A bottle knocked off a shelf in a liquor store fight becomes the next hit. A rifle that runs dry becomes a bat when someone closes distance. A toaster becomes a close-range problem-solver in a kitchen aisle. The system asks one question: what's here, and can it be swung? If yes, the punch button uses it.
+
+The fluidity is the point. Combat that stops to manage items breaks the rhythm. The Arkham layer only works if the player never has to leave it to pick something up.
+
 ---
 
 ## The Three Ranges
