@@ -114,7 +114,19 @@ Burke's read: *"He was the right man for Month 1. I'm not sure he's the right ma
 
 ---
 
-## Voice
+## Voice and Presence
+
+**The look:** Mark Carney / Keir Starmer. Older, distinguished, grey. The face that's been in serious rooms for serious reasons. Institutional gravitas without showmanship. People trust it before he says a word.
+
+**The voice:** Three layers.
+
+*Bane's architecture* — the voice that fills the room without raising. Command assumed, not performed. The certainty of a man who has already won the argument in his own mind before the conversation starts.
+
+*Bill Pullman's conviction* — the populist legitimacy. The leader who makes you believe the cause is worth it, who carries the weight of the people behind him. The speech lands because you believe he believes it. He is fighting for you. He means it.
+
+*Bill the Butcher's brutality underneath* — not performed, not advertised. Just there. The thing you sense before you can name it. The man who is genuinely capable of what the institution does in his name, and knows it, and has decided it's necessary. The distinguished grey and the measured voice sit on top of something that made the list in Week 1 and has been adding to it ever since without losing a night's sleep.
+
+The combination is what makes him irreducible. The conviction is real. The authority is real. The brutality is real. None of them contradict each other. That's the danger.
 
 Measured. No filler. He says the thing and waits to see if you followed it. He does not repeat himself for the benefit of people who weren't paying attention — he notes that they weren't paying attention and adjusts what he shares with them going forward.
 
