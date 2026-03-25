@@ -40,25 +40,53 @@ This means a player who switches faction alignment or operation type watches the
 
 ---
 
-## The Two Systems
+## The Three Ranges
 
-**Ranged layer** — The Division/Tarkov/CoD. Cover, positioning, angles, ammo economy. TTK in the Division range: engagements have weight, a hit matters, decisions have consequences. Not Tarkov's one-tap lethality but not a health-pool shooter either.
+**Close** — Arkham. Rhythm, clinch, footwork, distance management. No counter indicator — the player reads the animation. The vocabulary that carries the player's visible history.
 
-**Close combat layer** — Arkham. Rhythm-based, fluid, combo-driven. Footwork, clinch, distance management, environmental use. The system that carries the visible history of the player's development.
+**Medium** — The blend zone. The player has just finished someone at close range, still standing, draws and finishes or pivots to the next threat coming in. Weapon as extension of close combat, not a separate mode. This is the John Wick gun-fu space — the gun goes up in the same motion the elbow came down. The system reads proximity and what's available and keeps the vocabulary continuous.
 
-**The transition** — proximity-driven, not player-initiated. No mode switch button. No menu. Distance collapses below threshold and the close combat vocabulary becomes available. Distance opens and the ranged options come back forward. The player can push into close range deliberately or get forced there — the system reads the same either way. A gunfight that closes to five feet doesn't pause. The player folds the gun into the fight or drops it for what's in reach. It continues.
+**Ranged** — The Division/Tarkov/CoD. Cover, positioning, angles, ammo economy. TTK in the Division range: engagements have weight, a hit matters. Not Tarkov one-tap lethality but not a health-pool shooter either.
+
+**The transition** — proximity-driven, not player-initiated. No mode switch. Distance collapses, close combat vocabulary comes forward. Distance opens, ranged options come forward. The player can push into close range deliberately or get forced there. A gunfight that closes to five feet doesn't pause — the player folds what's in their hand into what's needed or acquires something else. It continues.
+
+The three ranges are one continuous vocabulary. A player who reads medium distance well is reading both systems simultaneously — they know when to close, when to create distance, when to shoot through the transition.
 
 ---
 
-## Survivability
+## Survivability and Gear
 
 The Division's squishiness was a gear problem — low-level players were under-statted, not under-skilled. WYA doesn't gate survivability through gear.
 
-Base survivability is higher than Division. The player is not fragile. But they are vulnerable until their reads are good — because the margin for error in close quarters is positioning and timing, not hit points.
+The player never feels squishy. The player never feels godlike. Those two feelings bracket the design and the system lives between them for the full two years.
 
-The skill ceiling is movement and reading, not build optimization. A month-1 player eats hits because they're not reading yet. A month-12 player slips the same punch two beats out because they've seen it enough times to know what comes before it. The difference is visible. It's earned.
+Base survivability is higher than Division. The player is competent. But they are vulnerable to bad reads and being overwhelmed — because the margin for error is positioning and timing, not hit points. You don't die because you're under-geared. You go down because you made a mistake or the situation exceeded your current reads.
 
-Gear from the assistant (stab vest, reinforced kit) expands the margin to develop those reads — not by gating content but by giving the player room to make mistakes while they're learning. The Lucius Fox function: you got hit badly, the gear arrives. He's not upgrading your stats. He's buying you time to get better.
+**Gear expands options, not survivability.** Better kit means you can attempt things in harder situations. It doesn't change how vulnerable you feel at your current skill level. The feel is consistent from month 1 to month 24. The gear hunt exists — there's always something worth finding — but getting it makes you more capable, not less fragile. The two are different.
+
+Gear from the assistant expands the margin to develop reads — not by gating content but by giving the player room while they're learning. You got knifed, the stab vest arrives. He's not upgrading your stats. He's buying you time to get better.
+
+---
+
+## Going Down — The Recovery System
+
+The player doesn't die. They go down.
+
+Knocked out or wounded badly enough — the screen goes. Not a death screen. Not a menu.
+
+**Moe finds you.**
+
+The Malinois introduced early, the bond built before the asset was needed — this is the asset. He finds the player when they go down. It is not a game mechanic bolted onto a dog. It is a dog being a dog, which is the same thing.
+
+**Two outcomes depending on situation and assistant capability:**
+
+*You wake up where you are.* Minor incapacitation, low-threat aftermath — Moe got you conscious, the situation has shifted around you, you're still in it. The engagement may have resolved. It may not have.
+
+*The assistant gets you out.* Significant incapacitation, the assistant has had enough time and capability to arrange extraction or guide someone to you. You come back at home or at a safe location. What you missed while you were out is real — the world moved, the mission may have changed state.
+
+**Assistant repair affects recovery.** Early game, damaged assistant — limited options. He knows you went down, he can't do much about it. Moe is what you have. As the fix-him questline progresses, recovery options improve — he can reach people, route extraction, call in contacts. The repair has a mechanical payoff beyond the emotional one.
+
+**The failure state is narrative, not mechanical.** Going down is not a punishment screen and a reload. It's something that happened. The Record has it. The assistant may note it. Moe was there. That matters differently than a respawn.
 
 ---
 
