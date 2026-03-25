@@ -72,6 +72,18 @@ He will share it with the player if he decides they're worth sharing it with. Th
 
 ---
 
+## Background Presence
+
+Aldric plays on the radio. Not as a quest trigger, not as a cutscene — as background. While the player builds in the garage, tends the garden, drives to a mission, walks a corridor. He's there the way radio is there.
+
+He doesn't demand attention. He rewards it. The player half-listening will catch fragments. The player paying attention will catch the thread. The player who stops what they're doing when something lands — that's the moment working.
+
+This is the same register as Maren's mutual aid broadcasts and the assistant's ambient home commentary — the layer that makes the world feel inhabited during the quiet work. Except Aldric's is always plot-adjacent. Something he says while the player is driving recontextualizes what they're about to walk into. A fragment from three sessions ago suddenly makes sense.
+
+The two voices that run under everything: the assistant and Aldric. One intimate, one external. Home and world. Neither demands focus. Both accumulate.
+
+---
+
 ## The AP Wire
 
 Aldric's broadcast covers everything. Not just the Reckoners — every faction, every region, every thing the official channels won't say.
