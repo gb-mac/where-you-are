@@ -60,6 +60,18 @@ PR0PH3CY uses this channel sparingly. The assistant hack is not routine contact 
 
 The player who ignores it ignores it at their own cost.
 
+**The partnership runs both ways.**
+
+PR0PH3CY also works through the assistant as an asset — not just intrusion but intervention. Pushes a patch to a system the player needs operational. Unlocks something the assistant couldn't crack alone. Reroutes a signal that was about to get the player killed. Quietly fixes the perimeter system without being asked because it had a vulnerability PR0PH3CY noticed and couldn't leave alone.
+
+The assistant is intimate and local. PR0PH3CY is external and networked. Together they can do things neither can do alone. Neither of them asked for this partnership. Both of them recognize the utility.
+
+The assistant doesn't entirely trust PR0PH3CY. He appreciates the help. He doesn't say either of those things directly.
+
+*"PR0PH3CY patched the perimeter system last night. I didn't ask them to. It works better now. I've noted it."*
+
+The player benefits from this without fully controlling it — PR0PH3CY acts when PR0PH3CY decides action is warranted, through a system that belongs to the player's home. The assistant manages the relationship as best he can. It is not always comfortable. It is frequently useful.
+
 ---
 
 ## Operational Style
