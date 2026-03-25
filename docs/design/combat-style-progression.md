@@ -107,11 +107,18 @@ The Malinois introduced early, the bond built before the asset was needed — th
 
 The store is a real place in the world. It may be looted. It may have Hollow activity. It may be held by someone who will or won't let the player in depending on who they are and what the Mark says. Getting there while already hurt is its own problem. What's on the shelves depends on when anyone last came through. The player assembles what they can find — improvised treatment, better than field stabilization, not as good as proper care.
 
-**Three recovery tiers:**
+**Moe makes the call.** He takes you to the closer source — nearest pharmacy or nearest Wayhouse, whichever is reachable. He knows the difference. A Wayhouse has better care than a looted Shoppers and someone who will actually treat you. If the Continental is closer, that's where you're going.
 
-1. *Field stabilization* — what you have on you. Buys time, costs nothing but degrades performance and compounds if you take more damage.
+**Supplies at home.** Whatever the player scavenges and brings back, the assistant uses. Medical supplies stocked at home mean he can treat the player there — not as good as a doctor, better than improvised field care, and he knows the player's history in a way no clinic does. His capability scales with what's on the shelf and how repaired he is. Early game, limited repair, he does what he can with what's there. Late game he's working with proper stock and full diagnostic capability.
+
+This makes proactive scavenging worthwhile — clearing a pharmacy before you need it means the assistant has supplies when you come home hurt. The home base is a resource you build, not just a place you return to.
+
+**Four recovery tiers:**
+
+1. *Field stabilization* — what you have on you. Buys time, degrades performance, compounds if you take more damage.
 2. *Moe leads you to supplies* — GPS-anchored real stores. Better recovery, costs getting there while hurt and navigating what's in the building.
-3. *Doctor or vet* — proper care, full recovery, relationship-based access. The resource you build before you need it.
+3. *The assistant at home* — scales with what's been stocked and his repair state. He knows you. He's been watching the patterns.
+4. *Doctor, vet, or the Continental* — proper care, full recovery, relationship-based access. The resource you build before you need it.
 
 **Two outcomes for going fully down:**
 
