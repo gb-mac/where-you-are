@@ -14,6 +14,38 @@ But you also keep playing. And the world keeps watching.
 
 ---
 
+## Trigger Dynamics — The Record Weighs the Act
+
+Excommunicado is not triggered by actions. It is triggered by actions read against the Record.
+
+The same act — using a Syndicate contact for personal advantage, withholding information from an Arbiter, forcing entry to Neutral Ground — produces a Declaration at month 6 and a formal caution at month 18. The Arbiter reviewing the act is reviewing everything behind it. A six-month Record is thin. An eighteen-month Record has texture: the communities protected, the times the player operated with discipline under pressure, the debts paid and the word kept. The Arbiter weighs all of it.
+
+This is not a bug. It is the code working as designed. The code is not a list of prohibited actions — it is a standard of conduct. Conduct is cumulative.
+
+**What this means in practice:**
+
+A month-6 player who exploits the House Crane Syndicate connection (choice 5 in that questline) triggers excommunicado. A month-12 player who makes the same choice has a Record that changes how the Arbiter reads the motivation. The Declaration may not come — or it may come differently, with a formal warning logged first, an opportunity to account for the action before the ruling.
+
+The month-12 player is not above the code. They are known to it. That's different.
+
+**The inverse:** A player deep into the game with high Warden standing has more to lose from a Declaration — and the Arbiters know it. A decorated Sworn going excommunicado is a world event. The same act from an unknown player is a quiet notation.
+
+---
+
+## The Deliberate Trigger
+
+Word gets around.
+
+Players who hear about the Zephyr encounter — through other players, through the informal excommunicado network, through fragments in the Dark Corridors — will want it. Some of them will look for a trigger deliberately. A month-12 player with a long clean Record, deciding they want to see what's at the end of that road.
+
+The system accommodates this. There are multiple paths to excommunicado — faction dynamics, questline choices, PvP decisions, NPC relationships. A player who has been careful for a year has, by that point, encountered several situations that could have gone the other way. The triggers exist. The decision to pull one is its own act.
+
+What changes for the deliberate trigger: Zephyr knows. He doesn't say so. But the quality of his attention is different with a player who chose this versus a player it happened to. The question he asks — *what did you learn?* — lands differently when the answer is *I came to find out.*
+
+He finds that interesting too.
+
+---
+
 ## The Declaration
 
 Excommunicado begins with a formal Declaration by an Arbiter — always in-person, always witnessed, always logged to the Record.
