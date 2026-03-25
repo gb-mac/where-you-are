@@ -20,9 +20,9 @@ He is not Iron Compact. He called the Compact's institutional failure mode in th
 
 He is Burke. He has a fire, a table, and a lot to say. Whether you listen is your business.
 
-He is also the Keeper — the head of the Wayhouse network, the post-Cascade equivalent of the Continental. His property is the original. Every Wayhouse location in the world operates under a commission he issued and a standard he holds. The rules are absolute, the enforcement is his, and the Warden Neutral Ground guarantee is a co-sign on an institution he built before the Wardens had a name for it.
+He is also the Keeper — the head of the The Common network, the post-Cascade equivalent of the Continental. His property is the original. Every Common location in the world operates under a commission he issued and a standard he holds. The rules are absolute, the enforcement is his, and the Warden Neutral Ground guarantee is a co-sign on an institution he built before the Wardens had a name for it.
 
-Winston Scott runs the Continental. Burke runs the Wayhouses. The parallel is exact and intentional — same function, post-Cascade world, his voice instead of Winston's.
+Winston Scott runs the Continental. Burke runs The Commons. The parallel is exact and intentional — same function, post-Cascade world, his voice instead of Winston's.
 
 ---
 

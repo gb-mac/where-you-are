@@ -11,7 +11,7 @@ House Crane is one of the oldest Warden Houses in the region. Three generations 
 
 When the Cascade hit, Eleanor Crane opened the gates on Day 3. Not because someone told her to. Because the people on her land and the people near her land needed somewhere to be, and she had somewhere. The community that formed around House Crane in the first month became the model for what a Warden House Seat was supposed to look like. The code formalized around practices Eleanor had already established.
 
-House Crane holds a substantial corridor in their region — two Wayhouse locations, a Moot Hall, three Holdout communities under formal Warden protection. The House's word carries the most weight of any Old House in the area. This is why what Thomas did is a problem.
+House Crane holds a substantial corridor in their region — two Common locations, a Moot Hall, three Holdout communities under formal Warden protection. The House's word carries the most weight of any Old House in the area. This is why what Thomas did is a problem.
 
 ---
 
@@ -119,7 +119,7 @@ The player has to decide what they're holding and what they're willing to let be
 - Warden faction → `factions-wardens.md`
 - Warden spaces → `warden-spaces.md`
 - Warden code, Arbiter function → `factions-wardens.md`
-- Burke's Wayhouse network, Keeper role → `character-burke.md`
+- Burke's The Common network, Keeper role → `character-burke.md`
 
 ---
 

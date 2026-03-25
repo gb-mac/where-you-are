@@ -107,7 +107,7 @@ The Malinois introduced early, the bond built before the asset was needed — th
 
 The store is a real place in the world. It may be looted. It may have Hollow activity. It may be held by someone who will or won't let the player in depending on who they are and what the Mark says. Getting there while already hurt is its own problem. What's on the shelves depends on when anyone last came through. The player assembles what they can find — improvised treatment, better than field stabilization, not as good as proper care.
 
-**Moe makes the call.** He takes you to the closer source — nearest pharmacy or nearest Wayhouse, whichever is reachable. He knows the difference. A Wayhouse has better care than a looted Shoppers and someone who will actually treat you. If the Continental is closer, that's where you're going.
+**Moe makes the call.** He takes you to the closer source — nearest pharmacy or nearest Common, whichever is reachable. He knows the difference. A Common has better care than a looted Shoppers and someone who will actually treat you. If The Common is closer, that's where you're going.
 
 **Supplies at home.** Whatever the player scavenges and brings back, the assistant uses. Medical supplies stocked at home mean he can treat the player there — not as good as a doctor, better than improvised field care, and he knows the player's history in a way no clinic does. His capability scales with what's on the shelf and how repaired he is. Early game, limited repair, he does what he can with what's there. Late game he's working with proper stock and full diagnostic capability.
 

@@ -24,7 +24,7 @@ Six distinct space types, each with a different function and a different spatial
 | **The Maker Spaces** | Individual Makers (affiliated to a House) | Craft, repair, provenance assessment, apprenticeship | Workshops, outbuildings, adapted industrial spaces |
 | **Sworn Chapters** | Sworn Wardens (non-House) | Oath administration, Vanguard staging, field operations base | Community centers, repurposed civic buildings |
 | **Warden Corridors** | The route network | Safe passage between spaces — not a base, claimed territory | Heritage trails, rural roads, specific GPS-tracked paths |
-| **Wayhouses** | Warden-administered, Keeper-run | Operational neutral ground — services, rest, trade, faction business | Inns, roadhouses, hotels, large heritage properties on routes |
+| **Commons** | Warden-administered, Keeper-run | Operational neutral ground — services, rest, trade, faction business | Inns, roadhouses, hotels, large heritage properties on routes |
 
 ---
 
@@ -169,58 +169,58 @@ The Corridor network is the Wardens' most visible infrastructure contribution to
 
 ---
 
-## Wayhouses
+## Commons
 
 The operational neutral ground network. Where factions meet at the working level.
 
 The Moot Hall is for the Table. The House Seat is the faction home. Neither is where a Compact commander and a Hollow Syndicate boss sit across from each other to negotiate a corridor arrangement, where a player gets their gear repaired and their wounds treated without a faction taking note of it, where information moves between people who need to move it but can't be seen doing so.
 
-That's the Wayhouse.
+That's The Common.
 
-Burke's property is the archetype — a fire, a table, every faction has sat at it, no violence, full conversation. The Wayhouse network formalizes that principle across a distributed chain of establishments administered under Warden Neutral Ground rules but operating as service locations, not governance structures.
+Burke's property is the archetype — a fire, a table, every faction has sat at it, no violence, full conversation. The The Common network formalizes that principle across a distributed chain of establishments administered under Warden Neutral Ground rules but operating as service locations, not governance structures.
 
 ---
 
-**What a Wayhouse is:**
+**What a Common is:**
 
-A specific building — an inn, a roadhouse, a hotel that survived the Cascade or was repurposed after it — administered by a **Keeper** who holds a formal Warden commission. The Keeper is not necessarily Warden-affiliated by background. They are Warden-commissioned: they have taken a specific oath to hold the Wayhouse to the rules, and the Wardens have staked their Neutral Ground guarantee on the Keeper's word.
+A specific building — an inn, a roadhouse, a hotel that survived the Cascade or was repurposed after it — administered by a **Keeper** who holds a formal Warden commission. The Keeper is not necessarily Warden-affiliated by background. They are Warden-commissioned: they have taken a specific oath to hold The Common to the rules, and the Wardens have staked their Neutral Ground guarantee on the Keeper's word.
 
 The Keeper is the Winston of this network. They enforce the rules. They do not take sides. They have the authority — backed by the full Warden institutional weight — to remove anyone who violates the conditions. A Keeper who enforces selectively loses the commission. A Keeper who looks the other way once loses it faster.
 
-What makes the Wayhouse work is what makes the Continental work: the rules are absolute and the consequence for breaking them is worse than whatever you'd gain. The Compact cannot formally condone an officer who drew on someone inside a Wayhouse without losing the Warden relationship that keeps their supply corridors intact. The Hollow cannot protect a Crew member who took from a Wayhouse without paying across their entire operation. The math always runs the same direction.
+What makes The Common work is what makes the Continental work: the rules are absolute and the consequence for breaking them is worse than whatever you'd gain. The Compact cannot formally condone an officer who drew on someone inside a Common without losing the Warden relationship that keeps their supply corridors intact. The Hollow cannot protect a Crew member who took from a Common without paying across their entire operation. The math always runs the same direction.
 
 ---
 
-**What a Wayhouse provides:**
+**What a Common provides:**
 
 | Service | Notes |
 |---|---|
-| **Rooms** | Clean, secure, no surveillance. What happens in the room is not the Wayhouse's business. Who came and went is logged by the Keeper — the Record requires it — but not distributed unless an Arbiter formally requests it. |
-| **Food and fire** | The baseline. Whatever the region produces, the Wayhouse has it. The quality varies by location. The availability does not. |
-| **Medical** | A working medical space. Not a hospital — a competent field-medicine setup with supplies maintained by the Keeper. Players can recover here. NPCs can recover here. The Wayhouse does not ask how you got hurt. |
-| **Gear maintenance** | A workshop. Not a Maker's space — the Maker's craft requires relationship and provenance. The Wayhouse workshop is competent field-level repair and cleaning. Enough to keep gear functional. |
+| **Rooms** | Clean, secure, no surveillance. What happens in the room is not The Common's business. Who came and went is logged by the Keeper — the Record requires it — but not distributed unless an Arbiter formally requests it. |
+| **Food and fire** | The baseline. Whatever the region produces, The Common has it. The quality varies by location. The availability does not. |
+| **Medical** | A working medical space. Not a hospital — a competent field-medicine setup with supplies maintained by the Keeper. Players can recover here. NPCs can recover here. The Common does not ask how you got hurt. |
+| **Gear maintenance** | A workshop. Not a Maker's space — the Maker's craft requires relationship and provenance. The Common workshop is competent field-level repair and cleaning. Enough to keep gear functional. |
 | **The common room** | The operational heart. Tables, fire, food, people from every faction sitting in the same room under the same rules. This is where the interesting conversations happen — and the dangerous ones, spoken quietly enough that the Keeper isn't obligated to hear them. |
-| **Message drop** | The Keeper holds messages. A player or NPC can leave a message at any Wayhouse addressed to anyone who has standing to receive it. Messages are held, not read. The Keeper does not know the content. They know the sender and the intended recipient and they keep that in the log. |
+| **Message drop** | The Keeper holds messages. A player or NPC can leave a message at any Common addressed to anyone who has standing to receive it. Messages are held, not read. The Keeper does not know the content. They know the sender and the intended recipient and they keep that in the log. |
 
 ---
 
-**Wayhouse coin:**
+**Common coin:**
 
-Faction currency doesn't work at Wayhouses. The Compact's scrip, the Hollow's barter credit, the Signal's digital tokens — none of it. The Wayhouse operates on **Warden coin**: small stamped tokens issued at any Wayhouse against labor, goods, or Markers. They carry no value outside the Wayhouse network and full value within it.
+Faction currency doesn't work at Commons. The Compact's scrip, the Hollow's barter credit, the Signal's digital tokens — none of it. The Common operates on **Warden coin**: small stamped tokens issued at any Common against labor, goods, or Markers. They carry no value outside the The Common network and full value within it.
 
-Warden coin is faction-neutral by design. A Compact officer and a former Hollow Crew member have the same purchasing power at a Wayhouse table if they have the same number of coins. The coin is the social equalizer the space requires.
+Warden coin is faction-neutral by design. A Compact officer and a former Hollow Crew member have the same purchasing power at a Common table if they have the same number of coins. The coin is the social equalizer the space requires.
 
-Earning coin: completing work for the Keeper or the Wayhouse community, converting Markers at a discount, or being paid in coin by someone who already has it. Coin moves. The Wayhouse network is the most liquid economy in the post-Cascade world that isn't controlled by a faction.
+Earning coin: completing work for the Keeper or The Common community, converting Markers at a discount, or being paid in coin by someone who already has it. Coin moves. The The Common network is the most liquid economy in the post-Cascade world that isn't controlled by a faction.
 
 ---
 
 **The Keeper:**
 
-Not a warrior. Not primarily. The Keeper's tools are the commission, the rules, and the network's reputation — which is worth more than any weapon in the Wayhouse context.
+Not a warrior. Not primarily. The Keeper's tools are the commission, the rules, and the network's reputation — which is worth more than any weapon in The Common context.
 
 Every Keeper has a specific skill set that made the Wardens commission them. Some are former hospitality industry — they know how to run a building, manage inventory, read a room. Some are former intelligence — they know how to hold information correctly. Some are former medics. The common thread is competence and the specific kind of trustworthiness that produces: they do what they say they'll do, they don't do what they say they won't, and they don't need anyone watching them to maintain the standard.
 
-The Keeper is one of the most interesting recurring NPC types in the game. They know everyone who has passed through. They've heard conversations they aren't supposed to repeat. They have opinions about every faction that they express obliquely and precisely. They will help a player who has demonstrated they understand what the Wayhouse is and will not help a player who treats it as a convenience rather than a institution.
+The Keeper is one of the most interesting recurring NPC types in the game. They know everyone who has passed through. They've heard conversations they aren't supposed to repeat. They have opinions about every faction that they express obliquely and precisely. They will help a player who has demonstrated they understand what The Common is and will not help a player who treats it as a convenience rather than a institution.
 
 *"You can sleep here. You can eat. You can have your gear looked at. What you can't do is use this room to conduct business that puts someone at risk on my premises. I don't care what the business is. I care what it requires of my building."*
 
@@ -230,9 +230,9 @@ The Keeper is one of the most interesting recurring NPC types in the game. They 
 
 Not a Keeper at one location. The Keeper — the head of the network, the one who built it, the one who commissioned every individual location keeper and holds them to the standard.
 
-His property is not the archetype of the Wayhouse. It is the original. He was running it as neutral ground before the Wardens formalized the concept, before the network existed, before anyone had a name for what he was doing. Every faction has sat at his fire. That is not a coincidence or a side effect of his neutrality — it is the operational result of a deliberate institution he built and maintains.
+His property is not the archetype of The Common. It is the original. He was running it as neutral ground before the Wardens formalized the concept, before the network existed, before anyone had a name for what he was doing. Every faction has sat at his fire. That is not a coincidence or a side effect of his neutrality — it is the operational result of a deliberate institution he built and maintains.
 
-The individual Wayhouse locations have their own keepers — people Burke commissioned, trained, and holds accountable. They run the buildings. He holds the standard. If a keeper fails — looks the other way, enforces selectively, takes a side — Burke pulls the commission. The Warden Neutral Ground guarantee goes with it. That combination is the enforcement mechanism, and it has never needed to be tested twice in the same location.
+The individual Common locations have their own keepers — people Burke commissioned, trained, and holds accountable. They run the buildings. He holds the standard. If a keeper fails — looks the other way, enforces selectively, takes a side — Burke pulls the commission. The Warden Neutral Ground guarantee goes with it. That combination is the enforcement mechanism, and it has never needed to be tested twice in the same location.
 
 The Wardens co-sign the Neutral Ground guarantee because Burke's network and the Warden institution serve each other's purposes. The relationship is mutual recognition between two institutions that respect each other's function. Burke does not have a Warden commission and has not taken the oath. He doesn't need to. His institution predates the formalization and would function without the co-sign — the co-sign just makes it more expensive for factions to test.
 
@@ -244,15 +244,15 @@ He has said this once, to a faction leader who wanted to negotiate an exception.
 
 **GPS anchor:**
 
-Wayhouses appear at real-world locations with prior hospitality or way-station function: hotels, inns, roadhouses, large heritage properties on historically-used routes. OSM tags: `tourism=hotel`, `tourism=hostel`, `amenity=pub` (large, with accommodation), `historic=*` with large footprint on a route. Rural Wayhouses skew toward old coaching inns and farmstead accommodation. Urban Wayhouses are former boutique hotels, heritage inns, or converted civic buildings with guest capacity.
+Commons appear at real-world locations with prior hospitality or way-station function: hotels, inns, roadhouses, large heritage properties on historically-used routes. OSM tags: `tourism=hotel`, `tourism=hostel`, `amenity=pub` (large, with accommodation), `historic=*` with large footprint on a route. Rural Commons skew toward old coaching inns and farmstead accommodation. Urban Commons are former boutique hotels, heritage inns, or converted civic buildings with guest capacity.
 
-There is always at least one Wayhouse within the player's active territory radius. In dense urban areas there may be several. The GPS anchor algorithm prioritizes buildings on or adjacent to Warden Corridors — the Wayhouse and the Corridor network reinforce each other.
+There is always at least one Common within the player's active territory radius. In dense urban areas there may be several. The GPS anchor algorithm prioritizes buildings on or adjacent to Warden Corridors — The Common and the Corridor network reinforce each other.
 
 ---
 
 **The common room at night:**
 
-The scene that defines what a Wayhouse is:
+The scene that defines what a Common is:
 
 Fire. Three or four tables. A Compact logistics officer eating alone, not in uniform but not trying to hide what she is. Two Hollow at the bar — not Crew, independent, here because there's nowhere else to sleep tonight that doesn't cost something they don't have. A Signal courier who came in on the Corridor and will leave before dawn. A Warden Sworn who is either here to rest or here to watch, and you can't tell which.
 
