@@ -68,6 +68,31 @@ Gear from the assistant expands the margin to develop reads — not by gating co
 
 ---
 
+## Medical System
+
+Post-Cascade medical infrastructure is fractured. There are no respawn points. There are people with the skills to put you back together, and you either have a relationship with them or you don't.
+
+**Human track — doctors.** Found across faction territory, holdout communities, Covenant-adjacent locations. SABLE is the best medical care available in the post-Cascade world — surgical precision, full diagnostic capability, no faction politics about who gets treated. Access requires standing with the Separated or Covenant adjacent. Other doctors are more accessible, less capable, and have their own faction alignments — a Compact-aligned medic in Compact territory treats you differently than a holdout community doc who owes you from a previous mission.
+
+The relationship is the resource. A doctor who knows you will stay available, work after hours, source things they technically shouldn't. A doctor who doesn't know you does the minimum or turns you away depending on your Mark and theirs.
+
+**Moe track — veterinarians.** Separate resource, harder to find, more valuable for the same reason. A vet willing to treat a working dog in a post-Cascade world is someone with a specific set of principles and a specific set of risks they've decided to accept. Finding one before Moe needs one is the design rule — same as the stab vest, same as the Malinois himself. The bond before the asset. The resource before the crisis.
+
+A vet will also work on the player. The post-Cascade world doesn't have enough medical care to be precious about the distinction — a vet with surgical capability is a vet with surgical capability. The relationship works both ways, and a player who brought their dog in on a Tuesday and a player who shows up bleeding at 2am are the same person to someone who has already decided what they're willing to do.
+
+Moe getting hurt in the field is a real consequence. The vet relationship isn't flavor — it's infrastructure.
+
+**Wound states.** Not binary. The player can be:
+- *Field-stable* — patched enough to keep moving, not properly treated. Performance affected. The assistant notes it. Getting hit again in this state has compounding consequences.
+- *Needs treatment* — requires a doctor within a reasonable window. Faction access, location, and relationship determine what's available.
+- *Down* — see recovery system below.
+
+**Field stabilization.** The player can do basic self-treatment — stop the bleeding, splint, manage pain enough to function. This is not medical care. It's buying time. The assistant knows the difference and says so if he's capable. As his repair progresses, his diagnostic capability improves — early game he can tell something is wrong, late game he can tell you specifically what and what you need. He can also flag your medical contacts, route you to the nearest available doctor, or reach out to SABLE directly if the relationship is there.
+
+**First Responder background.** They know the medical community — both the formal remnants and the informal networks. Starting relationships with medical NPCs, faster access to higher-capability care, the specific credibility of someone who was doing this before anyone needed them to.
+
+---
+
 ## Going Down — The Recovery System
 
 The player doesn't die. They go down.
