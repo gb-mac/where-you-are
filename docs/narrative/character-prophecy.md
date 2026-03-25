@@ -44,6 +44,24 @@ Post-Cascade, that community is the Signal's most underutilized resource and PR0
 
 ---
 
+## The Assistant Hack
+
+PR0PH3CY can get into the assistant. Not easily — the assistant's architecture is not standard and the intrusion requires time and specific knowledge of the home system. PR0PH3CY has both.
+
+The player comes home. The assistant tells them someone was in the system. He doesn't know who. He found evidence of access, logged it, couldn't trace the source. The message is already there — left in the assistant's memory as a note, a data fragment, something that shouldn't be in the system and is clearly intentional.
+
+This is the most unsettling delivery mechanism in the game. The assistant is the most intimate system the player has — he's been there since before the Cascade, he knows the home, he knows the player. PR0PH3CY reaching in through him means the most personal channel available gets used for the most paranoid voice in the Signal.
+
+The assistant's reaction is specific. He is not alarmed — he is precise about what happened and careful about what it means. He does not like that someone was in his system. He acknowledges the information is probably worth having. He holds both things without resolving them.
+
+*"Someone accessed my memory system last night. The intrusion was clean — I wouldn't have caught it if I wasn't looking for exactly that signature. I was looking because I've been looking since we talked about the Signal. There's a message. I haven't read it. It's addressed to you."*
+
+PR0PH3CY uses this channel sparingly. The assistant hack is not routine contact — it's reserved for the information that is too important or too sensitive to route through normal Signal channels, which are themselves already encrypted and paranoid. If PR0PH3CY is coming through the assistant, the information is significant.
+
+The player who ignores it ignores it at their own cost.
+
+---
+
 ## Operational Style
 
 Remote first. Physical presence only when the data requires it, which it increasingly does. The skills are technical — penetrating systems, extracting information, covering tracks — applied with the specific efficiency of someone who has been doing it since before it was called what it's called now.
