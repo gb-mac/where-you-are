@@ -72,6 +72,26 @@ He will share it with the player if he decides they're worth sharing it with. Th
 
 ---
 
+## The Compact Seed
+
+Aldric's broadcast is not Reckoner-only. It covers everything — faction movements, community outcomes, the things nobody official is saying.
+
+The player who never engages with the Iron Compact still hears the shape of it through Aldric. Two years of fragments arriving through the broadcast: a checkpoint that went too far, a Holdout community that signed the Annexation Protocol and went quiet, a Project Tether incident that doesn't add up, a tribunal verdict that makes no sense if you believe the official account.
+
+He never names it as a pattern. He reports it as documentary. The humor lands first. The implication arrives underneath. By the time the player has context to read what Aldric has been building toward, the record is already there — they've been listening for two years.
+
+This is the seed mechanism for the Compact's Act 3 confrontation. The player who worked closely with the Compact reads it from inside. The player who avoided them reads it through Aldric. Either way, when the Compact leader sits across from the player and walks through the reasonable decisions in sequence — the player has been watching those decisions accumulate. Aldric made sure of it.
+
+He reports it straight. He doesn't tell the player what to think. He trusts them to do the math.
+
+*"Compact tribunal in the eastern corridor found three Holdout leaders guilty of 'interference with order restoration.' Sentences handed down yesterday. I've been trying to find out what the interference was. Nobody at the checkpoint will say. The Holdout community in question has stopped responding on all channels."*
+
+*(Beat)*
+
+*"Anyway. Moving on."*
+
+---
+
 ## The Act 4 Moment
 
 Aldric's broadcast is the thing that plays on the speakers in Act 4 when everything the Reckoners believed turns out to be incomplete.
