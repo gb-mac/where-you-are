@@ -20,6 +20,12 @@ They go down near a Common. They wake up in a room with a doctor. The doctor exp
 
 The coin is Warden currency. Faction-neutral. Valid across the entire Common network. The player who finds one early and holds onto it has infrastructure they don't know they have yet.
 
+**The player who sold it** wakes up in the same room, same doctor. But the Keeper is standing there when they come around. They pulled you in without the coin — someone saw you go down near the door and the Keeper made a call. You're alive. You don't have what you owe. The Keeper will tell you what the debt is when you're ready to hear it.
+
+The debt is not punitive. It's the network operating correctly. The coin is one way in — payment in advance, no questions, no obligation. The debt is another way in — the Keeper extended credit, and credit has terms. Both are relationships with The Common. One you came to prepared. One you came to on the floor.
+
+The debt becomes a questline hook. What the Keeper asks for is specific, proportionate, and tells the player something about how the network actually works. It is not a fine. It is a favour — the kind that builds standing when it's paid.
+
 ---
 
 ## The Common as Forward Base
