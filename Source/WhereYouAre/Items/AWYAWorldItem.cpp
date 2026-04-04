@@ -69,12 +69,16 @@ void AWYAWorldItem::SetItemData(const FWYAItemData& Data, const FWYAGeoCoord& Wo
 			Params.AddIgnoredActor(*It);
 		if (World->LineTraceSingleByChannel(Hit, TraceStart, TraceEnd, ECC_WorldStatic, Params))
 		{
-			FinalPos = Hit.ImpactPoint + FVector(0.f, 0.f, 100.f); // hover 1m above ground
+			FinalPos = Hit.ImpactPoint + FVector(0.f, 0.f, 100.f);
 			UE_LOG(LogTemp, Log, TEXT("WYAItem: placed %s at Z=%.0f (terrain hit)"), *Data.Id, FinalPos.Z);
 		}
 		else
 		{
-			UE_LOG(LogTemp, Warning, TEXT("WYAItem: terrain trace missed for %s — tiles not loaded yet, placed at Z=%.0f"), *Data.Id, FinalPos.Z);
+			UE_LOG(LogTemp, Warning, TEXT("WYAItem: terrain trace missed for %s — retrying"), *Data.Id);
+			// Park above terrain and retry — Cesium tiles may still be streaming
+			SetActorLocation(FVector(WorldPos.X, WorldPos.Y, WorldPos.Z + 500000.f));
+			RetryTerrainPlacement(WorldPos, 60); // retry every 1s up to 60s
+			return;
 		}
 	}
 	SetActorLocation(FinalPos);
@@ -86,6 +90,39 @@ void AWYAWorldItem::SetItemData(const FWYAItemData& Data, const FWYAGeoCoord& Wo
 	}
 
 	OnItemDataUpdated();
+}
+
+void AWYAWorldItem::RetryTerrainPlacement(FVector ComputedWorldPos, int32 AttemptsLeft)
+{
+	UWorld* World = GetWorld();
+	if (!World || !IsValid(this)) return;
+
+	const FVector TraceStart = FVector(ComputedWorldPos.X, ComputedWorldPos.Y, ComputedWorldPos.Z + 500000.f);
+	const FVector TraceEnd   = FVector(ComputedWorldPos.X, ComputedWorldPos.Y, ComputedWorldPos.Z - 100000.f);
+	FHitResult Hit;
+	FCollisionQueryParams Params;
+	Params.AddIgnoredActor(this);
+	for (TActorIterator<APawn> It(World); It; ++It) Params.AddIgnoredActor(*It);
+
+	if (World->LineTraceSingleByChannel(Hit, TraceStart, TraceEnd, ECC_WorldStatic, Params))
+	{
+		const FVector FinalPos = Hit.ImpactPoint + FVector(0.f, 0.f, 100.f);
+		SetActorLocation(FinalPos);
+		UE_LOG(LogTemp, Log, TEXT("WYAItem: retry placed %s at Z=%.0f"), *ItemData.Id, FinalPos.Z);
+		return;
+	}
+
+	if (AttemptsLeft <= 0)
+	{
+		// Give up — leave at fallback above origin, visible but floating
+		SetActorLocation(FVector(ComputedWorldPos.X, ComputedWorldPos.Y, ComputedWorldPos.Z + 200.f));
+		UE_LOG(LogTemp, Warning, TEXT("WYAItem: terrain never loaded for %s"), *ItemData.Id);
+		return;
+	}
+
+	World->GetTimerManager().SetTimer(TerrainRetryHandle,
+		FTimerDelegate::CreateUObject(this, &AWYAWorldItem::RetryTerrainPlacement, ComputedWorldPos, AttemptsLeft - 1),
+		1.0f, false);
 }
 
 float AWYAWorldItem::DistanceTo(const FVector& WorldPos) const

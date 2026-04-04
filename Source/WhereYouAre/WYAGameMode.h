@@ -7,6 +7,7 @@
 
 class UWYALocationSubsystem;
 class UWYAQuestSubsystem;
+class AWYAOpponentCharacter;
 
 UCLASS()
 class WHEREYOUARE_API AWYAGameMode : public AGameModeBase
@@ -36,6 +37,12 @@ private:
 
     /** Try to assign an opening side quest; retries once after a short delay if AI isn't ready. */
     void TryAssignOpeningSideQuest(APlayerController* PC);
+
+    /**
+     * Spawn the initial set of opponents once terrain is confirmed loaded.
+     * Terrain Z is taken from the player's trace hit so they spawn on-surface.
+     */
+    void SpawnOpponents(float TerrainZ);
 
     FTimerHandle SideQuestRetryHandle;
     FTimerHandle TerrainSpawnRetryHandle;

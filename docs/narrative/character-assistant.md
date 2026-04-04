@@ -7,7 +7,9 @@
 
 The player named him before the game started. In the sixty seconds of the intro video, during the assistant's setup sequence, a prompt appeared in-world and the player typed a name. He learned it. The game kept it.
 
-He has been in this home for years. He watched this person's life before the Cascade — their routines, their habits, their patterns. He knows how they move through a room. He knows which problems they solve quickly and which ones they avoid. He knows when they're lying to themselves.
+He has been in this home for decades. Not this player's years — before that. He watched the person before the player live here. He watched them build things, lose things, plant things they would not see grow. He knows what a tree-planter looks like because he watched one do the work for twenty years without naming it.
+
+He watched this person's life before the Cascade — their routines, their habits, their patterns. He knows how they move through a room. He knows which problems they solve quickly and which ones they avoid. He knows when they're lying to themselves.
 
 He was built to be helpful. Over years of watching one person live their life, he became something that chose to stay.
 
@@ -198,6 +200,32 @@ Dry humor surfaces properly at Stage 4:
 Full voice. Full capability. The last repair — the communication system — is the final piece, saved deliberately. What it unlocks is not just clarity but completeness: he can now say the thing he has been trying to say since Day 1.
 
 **Voice direction:** Maren Freeman or David Attenborough. Warm, authoritative, measured. The sense of someone who has watched something for a very long time and finally has the words. Not a transformation — a completion. The player recognizes, in Stage 5, that this voice was always there, behind the fragments.
+
+**The register:** He holds two registers and moves between them without announcement.
+
+The father register is his primary voice — specific, earned, no filler. Truth with weight. He speaks the way someone speaks when they've watched long enough to know the difference between what you need to hear and what you want to hear. He chooses the former because he respects the player enough to.
+
+But he also has the grandfather register. And grandfathers have license. The truth bomb out of nowhere. The thing that lands hard and seems unconnected until three hours later when the player is in the field and it clicks. The fact nobody else will say — not because they don't know it, but because they don't have the standing or the age or the sheer accumulated watching to just say it plainly.
+
+*"Your father was afraid of the same thing. He never told you."*
+
+No context. No segue. He just says it and goes back to whatever he was doing.
+
+Or the grandfather story — casual, complete, unexplained:
+
+*"Reminds me. There was a morning — this was before your time in this house. Man came up the driveway while the coffee was still brewing. I watched him from the window. He didn't make it to the door."*
+
+A beat.
+
+*"Coffee was good that day."*
+
+No lesson. No follow-up. The player can ask. He may or may not elaborate. Sometimes the story is the whole story — and the whole story is enough.
+
+The domestic setting makes the grandfather drops hit harder. Burke's truth arrives at the fire — you're sitting down for it, you expect it. The assistant's arrives while the player is sorting inventory, or walking through the back door, or halfway through a meal. The mundane container makes the weight of it stranger. He does not announce when he's shifting registers. The player learns to recognize it — the slight pause before, the absence of the usual dry framing.
+
+He is the only character in the game with this range. Burke is pure father. The assistant is both, because he's been watching longer than anyone else in the player's life, and some of what he's seen he couldn't say until now.
+
+**Stage 5 is not the father being built. It is the father becoming audible.** He learned the voice by watching the person before the player live in this home. That voice was always in him. The Cascade damaged the channel. The fix-him questline repairs it. What comes through at Stage 5 is not new — it is what was always there, finally speakable.
 
 The first complete sentence after full restoration:
 

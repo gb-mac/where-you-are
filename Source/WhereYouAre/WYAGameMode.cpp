@@ -2,6 +2,7 @@
 #include "WYAGameState.h"
 #include "WYACharacter.h"
 #include "WYAPlayerController.h"
+#include "Characters/WYAOpponentCharacter.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Location/WYALocationSubsystem.h"
 #include "Quest/WYAQuestSubsystem.h"
@@ -128,9 +129,13 @@ void AWYAGameMode::TrySpawnOnTerrain(APlayerController* PC, int32 AttemptsLeft)
 
     if (World->LineTraceSingleByChannel(Hit, TraceStart, TraceEnd, ECC_WorldStatic, Params))
     {
-        UnfreezeAndPlace(PC, Hit.ImpactPoint + FVector(0.f, 0.f, 200.f));
+        const FVector LandPos = Hit.ImpactPoint + FVector(0.f, 0.f, 200.f);
+        UnfreezeAndPlace(PC, LandPos);
         UE_LOG(LogTemp, Log, TEXT("WYAGameMode: landed on terrain at Z=%.0f after %d attempt(s)"),
-            Hit.ImpactPoint.Z, 31 - AttemptsLeft);
+            Hit.ImpactPoint.Z, 181 - AttemptsLeft);
+
+        // Terrain is now confirmed loaded — spawn opponents on-surface
+        SpawnOpponents(Hit.ImpactPoint.Z);
         return;
     }
 
@@ -144,6 +149,37 @@ void AWYAGameMode::TrySpawnOnTerrain(APlayerController* PC, int32 AttemptsLeft)
     World->GetTimerManager().SetTimer(TerrainSpawnRetryHandle,
         FTimerDelegate::CreateUObject(this, &AWYAGameMode::TrySpawnOnTerrain, PC, AttemptsLeft - 1),
         0.5f, false);
+}
+
+void AWYAGameMode::SpawnOpponents(float TerrainZ)
+{
+    UWorld* World = GetWorld();
+    if (!World) return;
+
+    // 3 scavengers scattered 8–20m from the player spawn (world origin)
+    const int32 Count   = 1;
+    const float MinDist = 800.f;
+    const float MaxDist = 2000.f;
+
+    for (int32 i = 0; i < Count; ++i)
+    {
+        const float Angle = FMath::RandRange(0.f, 360.f);
+        const float Dist  = FMath::RandRange(MinDist, MaxDist);
+
+        FVector SpawnPos(
+            FMath::Cos(FMath::DegreesToRadians(Angle)) * Dist,
+            FMath::Sin(FMath::DegreesToRadians(Angle)) * Dist,
+            TerrainZ + 200.f); // place just above confirmed terrain height
+
+        FActorSpawnParameters Params;
+        Params.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
+
+        World->SpawnActor<AWYAOpponentCharacter>(
+            AWYAOpponentCharacter::StaticClass(), SpawnPos, FRotator::ZeroRotator, Params);
+
+        UE_LOG(LogTemp, Log, TEXT("WYAGameMode: spawned opponent %d at (%.0f, %.0f, %.0f)"),
+            i + 1, SpawnPos.X, SpawnPos.Y, SpawnPos.Z);
+    }
 }
 
 void AWYAGameMode::TryAssignOpeningSideQuest(APlayerController* PC)

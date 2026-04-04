@@ -7,6 +7,7 @@
 class USpringArmComponent;
 class UCameraComponent;
 class UWYALocationSubsystem;
+class UWYACombatComponent;
 
 /**
  * Third-person character for Where You Are.
@@ -28,6 +29,9 @@ public:
     UFUNCTION(BlueprintCallable, Category = "Location")
     FWYAGeoCoord GetCurrentGeoCoord() const;
 
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "WYA|Combat")
+    TObjectPtr<UWYACombatComponent> Combat;
+
 protected:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
     TObjectPtr<USpringArmComponent> CameraBoom;
@@ -42,6 +46,7 @@ private:
     void LookRight(float Value);
     void StartSprint();
     void StopSprint();
+    void OnAttack();
 
     static constexpr float WalkSpeed   = 600.0f;
     static constexpr float SprintSpeed = 1200.0f;

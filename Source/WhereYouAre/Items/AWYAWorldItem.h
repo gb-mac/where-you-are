@@ -52,4 +52,9 @@ protected:
 
 	UPROPERTY(BlueprintReadOnly, Category = "WYA|Items")
 	FWYAItemData ItemData;
+
+	/** Retries terrain placement until Cesium collision is ready. */
+	void RetryTerrainPlacement(FVector ComputedWorldPos, int32 AttemptsLeft);
+
+	FTimerHandle TerrainRetryHandle;
 };

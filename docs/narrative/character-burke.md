@@ -178,6 +178,26 @@ He gives no speech about it. He states what he needs, why, and what it costs. He
 
 ---
 
+## The Loss He Carries
+
+Burke does not have one loss. He has everyone's.
+
+Every person who has come through his door since the Cascade has brought something they haven't put down — someone they're looking for, something they failed to protect, a cost they're still paying. He has not forgotten a single one. He holds them the way you hold things that are not yours to dispose of.
+
+His own loss is negative space. The game does not name it. What it shows is the shape of everything he built after. You do not commission a network of keepers across the world, hold every standard yourself, and position people for decades unless something made you understand — specifically, personally — that the shade from the trees you plant will fall on people you will never meet.
+
+He knows what the tree-planting costs. He paid it. He kept building.
+
+**The codec call — to any player who walks in carrying something:**
+
+*"You're not the first person to walk in here carrying something. You won't be the last. The question is what you build with it."*
+
+No elaboration. He means it exactly as stated.
+
+**His register:** Burke speaks in the father register, not the grandfather register. Grandfathers have license — warmth without accountability, the long story that doesn't need to land anywhere. Fathers bring truth with weight. Specific. Earned. No filler. Burke has watched enough, paid enough, and built enough to speak with that authority — and he knows the difference between a man who earned the register and one who claimed it. He does not claim it. He demonstrates it. The player feels the difference without being told.
+
+---
+
 ## The Continental Manager
 
 Burke is Winston Scott. Not the owner of a safe house — the man who runs the framework that makes all the other structures possible.
