@@ -8,6 +8,7 @@ class USpringArmComponent;
 class UCameraComponent;
 class UWYALocationSubsystem;
 class UWYACombatComponent;
+class UWYAInventoryComponent;
 
 /**
  * Third-person character for Where You Are.
@@ -31,6 +32,9 @@ public:
 
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "WYA|Combat")
     TObjectPtr<UWYACombatComponent> Combat;
+
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "WYA|Inventory")
+    TObjectPtr<UWYAInventoryComponent> Inventory;
 
 protected:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")

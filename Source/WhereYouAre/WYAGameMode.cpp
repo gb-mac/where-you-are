@@ -6,6 +6,9 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Location/WYALocationSubsystem.h"
 #include "Quest/WYAQuestSubsystem.h"
+#include "Save/WYASaveSubsystem.h"
+#include "Save/WYASaveGame.h"
+#include "Inventory/WYAInventoryComponent.h"
 #include "Engine/World.h"
 #include "CesiumGeoreference.h"
 #include "EngineUtils.h"
@@ -86,6 +89,25 @@ void AWYAGameMode::OnLocationResolved(FWYAGeoCoord Coord, bool bSuccess)
 void AWYAGameMode::SpawnPlayer(APlayerController* PC)
 {
     RestartPlayer(PC);
+
+    // Restore saved inventory onto the new pawn
+    if (UWYASaveSubsystem* SaveSub = GetGameInstance()->GetSubsystem<UWYASaveSubsystem>())
+    {
+        if (SaveSub->HasSaveData())
+        {
+            if (AWYACharacter* Char = PC ? Cast<AWYACharacter>(PC->GetPawn()) : nullptr)
+            {
+                if (Char->Inventory)
+                {
+                    const UWYASaveGame* Save = SaveSub->GetSaveGame();
+                    for (const FWYAInventoryItem& SavedItem : Save->SavedInventory)
+                    {
+                        Char->Inventory->AddItem(SavedItem.Type, SavedItem.Quantity);
+                    }
+                }
+            }
+        }
+    }
 
     // Freeze movement so the pawn can't fall through terrain while Cesium
     // collision meshes are still streaming in.

@@ -1,5 +1,6 @@
 #include "WYACharacter.h"
 #include "Combat/WYACombatComponent.h"
+#include "Inventory/WYAInventoryComponent.h"
 #include "Engine/OverlapResult.h"
 #include "Location/WYAGeoTypes.h"
 #include "Location/WYALocationSubsystem.h"
@@ -12,7 +13,8 @@
 AWYACharacter::AWYACharacter()
 {
     PrimaryActorTick.bCanEverTick = true;
-    Combat = CreateDefaultSubobject<UWYACombatComponent>(TEXT("Combat"));
+    Combat    = CreateDefaultSubobject<UWYACombatComponent>(TEXT("Combat"));
+    Inventory = CreateDefaultSubobject<UWYAInventoryComponent>(TEXT("Inventory"));
 
     // Mannequin mesh — Third Person content pack
     static ConstructorHelpers::FObjectFinder<USkeletalMesh> MannequinMesh(

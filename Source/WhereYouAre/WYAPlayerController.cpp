@@ -5,6 +5,8 @@
 #include "Api/WYAApiClient.h"
 #include "Location/WYALocationSubsystem.h"
 #include "Vehicles/WYAVehicleBase.h"
+#include "HomeBase/AWYAWorkbench.h"
+#include "Inventory/WYAInventoryComponent.h"
 #include "WYACharacter.h"
 #include "Blueprint/UserWidget.h"
 #include "Kismet/GameplayStatics.h"
@@ -55,6 +57,25 @@ void AWYAPlayerController::Tick(float DeltaSeconds)
 
 void AWYAPlayerController::OnInteract()
 {
+    // Workbench takes priority over GPS item claiming.
+    if (AWYAWorkbench* Bench = FindClosestWorkbench())
+    {
+        AWYACharacter* Char = Cast<AWYACharacter>(GetPawn());
+        if (Char && Char->Inventory)
+        {
+            const bool bHasFixHimPart =
+                Char->Inventory->HasItem(EWYACarriedItemType::FixHim_MobilityParts)
+                || Char->Inventory->HasItem(EWYACarriedItemType::FixHim_PowerCore)
+                || Char->Inventory->HasItem(EWYACarriedItemType::FixHim_CommHardware);
+
+            if (bHasFixHimPart)
+            {
+                Bench->TryInstallComponent(this);
+                return;
+            }
+        }
+    }
+
     AWYAWorldItem* Item = FocusedItem.Get();
     if (!Item || !Item->IsAvailable()) return;
 
@@ -148,6 +169,33 @@ AWYAVehicleBase* AWYAPlayerController::FindClosestVehicle() const
         {
             BestDist = Dist;
             Best     = V;
+        }
+    }
+
+    return Best;
+}
+
+// ── Workbench ─────────────────────────────────────────────────────────────────
+
+AWYAWorkbench* AWYAPlayerController::FindClosestWorkbench() const
+{
+    APawn* MyPawn = GetPawn();
+    if (!MyPawn) return nullptr;
+    const FVector MyPos = MyPawn->GetActorLocation();
+
+    AWYAWorkbench* Best     = nullptr;
+    float          BestDist = InteractionRadius;
+
+    for (TActorIterator<AWYAWorkbench> It(GetWorld()); It; ++It)
+    {
+        AWYAWorkbench* Bench = *It;
+        if (!IsValid(Bench)) continue;
+
+        const float Dist = FVector::Dist(MyPos, Bench->GetActorLocation());
+        if (Dist < BestDist)
+        {
+            BestDist = Dist;
+            Best     = Bench;
         }
     }
 
