@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Combat/WYACombatComponent.h"
+#include "Survival/WYASurvivalComponent.h"
 #include "WYACharacter.generated.h"
 
 class USpringArmComponent;
@@ -36,6 +37,9 @@ public:
 
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "WYA|Inventory")
     TObjectPtr<UWYAInventoryComponent> Inventory;
+
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "WYA|Survival")
+    TObjectPtr<UWYASurvivalComponent> Survival;
 
     /** Called when the player goes Down — implement ragdoll / camera in Blueprint. */
     UFUNCTION(BlueprintImplementableEvent, Category = "WYA|Combat")

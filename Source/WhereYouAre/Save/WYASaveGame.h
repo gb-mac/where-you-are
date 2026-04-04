@@ -54,6 +54,14 @@ public:
     UPROPERTY(SaveGame, BlueprintReadWrite, Category = "WYA|Save")
     bool bFixHimQuestlineTriggered = false;
 
+    // ── Survival ──────────────────────────────────────────────────────────────
+
+    UPROPERTY(SaveGame, BlueprintReadWrite, Category = "WYA|Save")
+    float SavedWater = 100.f;
+
+    UPROPERTY(SaveGame, BlueprintReadWrite, Category = "WYA|Save")
+    float SavedFood = 100.f;
+
     // ── Slot metadata ─────────────────────────────────────────────────────────
 
     static const FString SlotName;

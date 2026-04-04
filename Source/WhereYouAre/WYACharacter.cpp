@@ -1,6 +1,7 @@
 #include "WYACharacter.h"
 #include "Combat/WYACombatComponent.h"
 #include "Inventory/WYAInventoryComponent.h"
+#include "Survival/WYASurvivalComponent.h"
 #include "Inventory/WYAInventoryTypes.h"
 #include "Engine/OverlapResult.h"
 #include "Location/WYAGeoTypes.h"
@@ -17,6 +18,7 @@ AWYACharacter::AWYACharacter()
     PrimaryActorTick.bCanEverTick = true;
     Combat    = CreateDefaultSubobject<UWYACombatComponent>(TEXT("Combat"));
     Inventory = CreateDefaultSubobject<UWYAInventoryComponent>(TEXT("Inventory"));
+    Survival  = CreateDefaultSubobject<UWYASurvivalComponent>(TEXT("Survival"));
 
     // Mannequin mesh — Third Person content pack
     static ConstructorHelpers::FObjectFinder<USkeletalMesh> MannequinMesh(
@@ -139,6 +141,8 @@ void AWYACharacter::LookRight(float Value)
 
 void AWYACharacter::StartSprint()
 {
+    if (Survival) Survival->SetExerting(true);
+
     if (!Combat) { GetCharacterMovement()->MaxWalkSpeed = 1200.f; return; }
 
     switch (Combat->GetWoundState())
@@ -158,6 +162,8 @@ void AWYACharacter::StartSprint()
 
 void AWYACharacter::StopSprint()
 {
+    if (Survival) Survival->SetExerting(false);
+
     // Restore to the walk speed for current wound state
     if (!Combat) { GetCharacterMovement()->MaxWalkSpeed = WalkSpeed; return; }
 

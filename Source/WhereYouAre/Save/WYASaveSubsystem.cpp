@@ -3,6 +3,7 @@
 #include "Quest/WYAFixHimQuestSubsystem.h"
 #include "Inventory/WYAInventoryComponent.h"
 #include "WYACharacter.h"
+#include "Survival/WYASurvivalComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "GameFramework/PlayerController.h"
 #include "Engine/World.h"
@@ -62,7 +63,7 @@ void UWYASaveSubsystem::SaveGame()
         SaveObj->bFixHimQuestlineTriggered = CachedSave->bFixHimQuestlineTriggered;
     }
 
-    // Inventory — gather from local player pawn
+    // Inventory and survival — gather from local player pawn
     if (UGameInstance* GI = GetGameInstance())
     {
         if (APlayerController* PC = GI->GetFirstLocalPlayerController())
@@ -72,6 +73,11 @@ void UWYASaveSubsystem::SaveGame()
                 if (UWYAInventoryComponent* Inv = Char->Inventory)
                 {
                     SaveObj->SavedInventory = Inv->GetItems();
+                }
+
+                if (UWYASurvivalComponent* Surv = Char->Survival)
+                {
+                    Surv->GetSaveData(SaveObj->SavedWater, SaveObj->SavedFood);
                 }
             }
         }
@@ -129,16 +135,22 @@ void UWYASaveSubsystem::LoadGame()
             }
         }
 
+        // Survival state is restored on the character pawn in OnSaveLoaded —
+        // the pawn may not exist yet at load time, so we carry CachedSave forward
+        // and apply it in ApplySurvivalToCharacter() after BeginPlay.
+
         UE_LOG(LogTemp, Log,
             TEXT("WYASaveSubsystem: save loaded (mobility=%d processing=%d power=%d comms=%d "
-                 "playtime=%.0fs sessions=%d fixhim_triggered=%d)"),
+                 "playtime=%.0fs sessions=%d fixhim_triggered=%d water=%.0f food=%.0f)"),
             CachedSave->bMobilityRepaired,
             CachedSave->bProcessingRepaired,
             CachedSave->bPowerRepaired,
             CachedSave->bCommsRepaired,
             CachedSave->TotalPlaytimeSecs,
             CachedSave->SessionCount,
-            CachedSave->bFixHimQuestlineTriggered ? 1 : 0);
+            CachedSave->bFixHimQuestlineTriggered ? 1 : 0,
+            CachedSave->SavedWater,
+            CachedSave->SavedFood);
     }
 
     OnSaveLoaded.Broadcast();

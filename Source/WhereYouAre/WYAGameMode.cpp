@@ -10,6 +10,7 @@
 #include "Save/WYASaveSubsystem.h"
 #include "Save/WYASaveGame.h"
 #include "Inventory/WYAInventoryComponent.h"
+#include "Survival/WYASurvivalComponent.h"
 #include "Engine/World.h"
 #include "CesiumGeoreference.h"
 #include "EngineUtils.h"
@@ -98,13 +99,19 @@ void AWYAGameMode::SpawnPlayer(APlayerController* PC)
         {
             if (AWYACharacter* Char = PC ? Cast<AWYACharacter>(PC->GetPawn()) : nullptr)
             {
+                const UWYASaveGame* Save = SaveSub->GetSaveGame();
+
                 if (Char->Inventory)
                 {
-                    const UWYASaveGame* Save = SaveSub->GetSaveGame();
                     for (const FWYAInventoryItem& SavedItem : Save->SavedInventory)
                     {
                         Char->Inventory->AddItem(SavedItem.Type, SavedItem.Quantity);
                     }
+                }
+
+                if (Char->Survival)
+                {
+                    Char->Survival->ApplySaveData(Save->SavedWater, Save->SavedFood);
                 }
             }
         }
