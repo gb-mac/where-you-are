@@ -115,6 +115,11 @@ void UWYAApiClient::TryRegister()
 					FString FactionStr;
 					(*AccObj)->TryGetStringField(TEXT("faction"),  FactionStr);
 					Acc.Faction = WYAFactionFromString(FactionStr);
+					double GoldNum = 0.0, SilverNum = 0.0;
+					(*AccObj)->TryGetNumberField(TEXT("goldBalance"),   GoldNum);
+					(*AccObj)->TryGetNumberField(TEXT("silverBalance"), SilverNum);
+					Acc.GoldBalance   = FMath::RoundToInt(GoldNum);
+					Acc.SilverBalance = FMath::RoundToInt(SilverNum);
 				}
 				OnAuthSuccess(NewJWT, Acc);
 			}
@@ -189,6 +194,11 @@ void UWYAApiClient::TryLogin()
 			FString FactionStr;
 			(*AccObj)->TryGetStringField(TEXT("faction"),  FactionStr);
 			Acc.Faction = WYAFactionFromString(FactionStr);
+			double GoldNum = 0.0, SilverNum = 0.0;
+			(*AccObj)->TryGetNumberField(TEXT("goldBalance"),   GoldNum);
+			(*AccObj)->TryGetNumberField(TEXT("silverBalance"), SilverNum);
+			Acc.GoldBalance   = FMath::RoundToInt(GoldNum);
+			Acc.SilverBalance = FMath::RoundToInt(SilverNum);
 		}
 		OnAuthSuccess(NewJWT, Acc);
 	});
@@ -266,7 +276,7 @@ void UWYAApiClient::GetNearbyItems(
 
 void UWYAApiClient::ClaimItem(
 	const FString& ItemId, double ClaimerLat, double ClaimerLon,
-	TFunction<void(bool, FWYAItemData)> Callback)
+	TFunction<void(EWYAClaimResult, FWYAItemData)> Callback)
 {
 	if (!IsAuthenticated())
 	{
@@ -285,31 +295,77 @@ void UWYAApiClient::ClaimItem(
 	TSharedRef<TJsonWriter<>> W = TJsonWriterFactory<>::Create(&BodyStr);
 	FJsonSerializer::Serialize(Body.ToSharedRef(), W);
 
-	const FString Path = TEXT("/items/") + ItemId + TEXT("/claim");
+	const FString URL = BaseURL + TEXT("/items/") + ItemId + TEXT("/claim");
 
-	SendRequest(TEXT("PATCH"), Path, BodyStr,
-		[CB = MoveTemp(Callback)](bool bOk, TSharedPtr<FJsonObject> Json)
+	// Handle inline — need to distinguish 402 from other failures, which
+	// OnRequestComplete's (bool, Json) signature can't express.
+	TSharedRef<IHttpRequest, ESPMode::ThreadSafe> Req = FHttpModule::Get().CreateRequest();
+	Req->SetURL(URL);
+	Req->SetVerb(TEXT("PATCH"));
+	Req->SetHeader(TEXT("Content-Type"), TEXT("application/json"));
+	Req->SetHeader(TEXT("Authorization"), TEXT("Bearer ") + JWT);
+	Req->SetContentAsString(BodyStr);
+
+	Req->OnProcessRequestComplete().BindLambda(
+		[this, CB = MoveTemp(Callback)](FHttpRequestPtr, FHttpResponsePtr Resp, bool bOk) mutable
 	{
+		if (!bOk || !Resp.IsValid())
+		{
+			CB(EWYAClaimResult::Failed, FWYAItemData{});
+			return;
+		}
+
+		const int32 Code = Resp->GetResponseCode();
+
+		if (Code == 402)
+		{
+			UE_LOG(LogTemp, Log, TEXT("WYAApiClient: ClaimItem 402 — insufficient funds"));
+			CB(EWYAClaimResult::InsufficientFunds, FWYAItemData{});
+			return;
+		}
+
+		if (Code == 401)
+		{
+			JWT.Empty();
+			EnsureAuth();
+			CB(EWYAClaimResult::Failed, FWYAItemData{});
+			return;
+		}
+
+		if (Code < 200 || Code >= 300)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("WYAApiClient: ClaimItem HTTP %d"), Code);
+			CB(EWYAClaimResult::Failed, FWYAItemData{});
+			return;
+		}
+
+		TSharedPtr<FJsonObject> Json;
+		TSharedRef<TJsonReader<>> R = TJsonReaderFactory<>::Create(Resp->GetContentAsString());
+		FJsonSerializer::Deserialize(R, Json);
+
 		FWYAItemData Item;
-		if (bOk && Json.IsValid())
+		if (Json.IsValid())
 		{
 			const TSharedPtr<FJsonObject>* ItemObj;
 			if (Json->TryGetObjectField(TEXT("item"), ItemObj))
 				WYAParseItemData(*ItemObj, Item);
 		}
-		CB(bOk, Item);
+		CB(EWYAClaimResult::Success, Item);
 	});
+
+	Req->ProcessRequest();
 }
 
 void UWYAApiClient::PlaceItem(
 	EWYAItemType Type, double Lat, double Lon, double Alt,
+	int32 PriceAmount, const FString& PriceCurrency,
 	TFunction<void(bool, FWYAItemData)> Callback)
 {
 	if (!IsAuthenticated())
 	{
-		PendingCalls.Add([this, Type, Lat, Lon, Alt, CB = MoveTemp(Callback)]() mutable
+		PendingCalls.Add([this, Type, Lat, Lon, Alt, PriceAmount, PriceCurrency, CB = MoveTemp(Callback)]() mutable
 		{
-			PlaceItem(Type, Lat, Lon, Alt, MoveTemp(CB));
+			PlaceItem(Type, Lat, Lon, Alt, PriceAmount, PriceCurrency, MoveTemp(CB));
 		});
 		EnsureAuth();
 		return;
@@ -320,6 +376,11 @@ void UWYAApiClient::PlaceItem(
 	Body->SetNumberField(TEXT("lat"),  Lat);
 	Body->SetNumberField(TEXT("lon"),  Lon);
 	Body->SetNumberField(TEXT("alt"),  Alt);
+	if (PriceAmount > 0 && !PriceCurrency.IsEmpty())
+	{
+		Body->SetNumberField(TEXT("priceAmount"),   PriceAmount);
+		Body->SetStringField(TEXT("priceCurrency"), PriceCurrency);
+	}
 	FString BodyStr;
 	TSharedRef<TJsonWriter<>> W = TJsonWriterFactory<>::Create(&BodyStr);
 	FJsonSerializer::Serialize(Body.ToSharedRef(), W);

@@ -36,6 +36,19 @@ enum class EWYAItemType : uint8
 	FactionCache    UMETA(DisplayName = "Faction Cache"),
 };
 
+/**
+ * Result of a ClaimItem attempt.
+ * InsufficientFunds is 402 — player can't afford the Dead Drop price.
+ * Failed is any other non-success (distance, already claimed, network).
+ */
+UENUM(BlueprintType)
+enum class EWYAClaimResult : uint8
+{
+	Success           UMETA(DisplayName = "Success"),
+	InsufficientFunds UMETA(DisplayName = "Insufficient Funds"),
+	Failed            UMETA(DisplayName = "Failed"),
+};
+
 /** Mirror of WorldItemDTO from the backend (types.ts). */
 USTRUCT(BlueprintType)
 struct FWYAItemData
@@ -54,7 +67,12 @@ struct FWYAItemData
 	UPROPERTY(BlueprintReadOnly) FString       ClaimedBy;   // empty = available
 	UPROPERTY(BlueprintReadOnly) FString       ClaimedAt;
 
-	bool IsAvailable() const { return ClaimedBy.IsEmpty(); }
+	/** 0 = free. Currency is "Gold", "Silver", or "" (free). */
+	UPROPERTY(BlueprintReadOnly) int32         PriceAmount   = 0;
+	UPROPERTY(BlueprintReadOnly) FString       PriceCurrency;
+
+	bool IsAvailable()  const { return ClaimedBy.IsEmpty(); }
+	bool IsPriced()     const { return PriceAmount > 0 && !PriceCurrency.IsEmpty(); }
 };
 
 /** Mirror of AccountDTO. */
@@ -65,7 +83,9 @@ struct FWYAAccountData
 
 	UPROPERTY(BlueprintReadOnly) FString     Id;
 	UPROPERTY(BlueprintReadOnly) FString     Username;
-	UPROPERTY(BlueprintReadOnly) EWYAFaction Faction = EWYAFaction::None;
+	UPROPERTY(BlueprintReadOnly) EWYAFaction Faction      = EWYAFaction::None;
+	UPROPERTY(BlueprintReadOnly) int32       GoldBalance   = 0;
+	UPROPERTY(BlueprintReadOnly) int32       SilverBalance = 0;
 };
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -137,9 +157,16 @@ inline bool WYAParseItemData(const TSharedPtr<class FJsonObject>& Obj, FWYAItemD
 	Obj->TryGetNumberField(TEXT("lon"),       Out.Lon);
 	Obj->TryGetNumberField(TEXT("alt"),       Out.Alt);
 	FString TypeStr, FactionStr;
-	Obj->TryGetStringField(TEXT("type"),    TypeStr);
-	Obj->TryGetStringField(TEXT("faction"), FactionStr);
+	Obj->TryGetStringField(TEXT("type"),          TypeStr);
+	Obj->TryGetStringField(TEXT("faction"),        FactionStr);
+	Obj->TryGetStringField(TEXT("priceCurrency"),  Out.PriceCurrency);
 	Out.Type    = WYAItemTypeFromString(TypeStr);
 	Out.Faction = WYAFactionFromString(FactionStr);
+
+	// priceAmount may come as a number or be absent (free item)
+	double PriceNum = 0.0;
+	if (Obj->TryGetNumberField(TEXT("priceAmount"), PriceNum))
+		Out.PriceAmount = FMath::RoundToInt(PriceNum);
+
 	return !Out.Id.IsEmpty();
 }

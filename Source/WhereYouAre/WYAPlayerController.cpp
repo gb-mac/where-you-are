@@ -105,13 +105,23 @@ void AWYAPlayerController::OnInteract()
     const FString ItemId = Item->GetItemData().Id;
 
     Api->ClaimItem(ItemId, Origin.Latitude, Origin.Longitude,
-        [this](bool bOk, FWYAItemData UpdatedItem)
+        [this](EWYAClaimResult Result, FWYAItemData UpdatedItem)
     {
         if (!HUDWidget) return;
-        const FText Msg = bOk
-            ? FText::FromString(TEXT("Claimed!"))
-            : FText::FromString(TEXT("Claim failed — too far or already taken"));
-        HUDWidget->ShowClaimResult(bOk, Msg);
+        FText Msg;
+        switch (Result)
+        {
+        case EWYAClaimResult::Success:
+            Msg = FText::FromString(TEXT("Claimed!"));
+            break;
+        case EWYAClaimResult::InsufficientFunds:
+            Msg = FText::FromString(TEXT("Can't afford this — not enough Gold or Silver"));
+            break;
+        default:
+            Msg = FText::FromString(TEXT("Claim failed — too far or already taken"));
+            break;
+        }
+        HUDWidget->ShowClaimResult(Result == EWYAClaimResult::Success, Msg);
     });
 }
 
@@ -130,6 +140,7 @@ void AWYAPlayerController::OnPlaceItem()
 
     Api->PlaceItem(EWYAItemType::SupplyCache,
         PlaceGeo.Latitude, PlaceGeo.Longitude, PlaceGeo.Altitude,
+        /*PriceAmount=*/0, /*PriceCurrency=*/TEXT(""),
         [this](bool bOk, FWYAItemData NewItem)
     {
         UE_LOG(LogTemp, Log, TEXT("WYAPlayerController: PlaceItem %s (id=%s)"),

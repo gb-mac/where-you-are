@@ -36,14 +36,24 @@ public:
 		double Lat, double Lon, float RadiusMetres,
 		TFunction<void(bool, TArray<FWYAItemData>)> Callback);
 
-	/** PATCH /v1/items/:id/claim — fires Callback(bSuccess, UpdatedItem). */
+	/**
+	 * PATCH /v1/items/:id/claim
+	 * Backend handles payment atomically (Option A from dead-drop-audit.md).
+	 * 402 → EWYAClaimResult::InsufficientFunds.
+	 * Other failure → EWYAClaimResult::Failed.
+	 */
 	void ClaimItem(
 		const FString& ItemId, double ClaimerLat, double ClaimerLon,
-		TFunction<void(bool, FWYAItemData)> Callback);
+		TFunction<void(EWYAClaimResult, FWYAItemData)> Callback);
 
-	/** POST /v1/items — fires Callback(bSuccess, NewItem). */
+	/**
+	 * POST /v1/items — fires Callback(bSuccess, NewItem).
+	 * PriceAmount = 0 / PriceCurrency empty = free item (SupplyCache).
+	 * Set price to create a Dead Drop with a Gold or Silver cost.
+	 */
 	void PlaceItem(
 		EWYAItemType Type, double Lat, double Lon, double Alt,
+		int32 PriceAmount, const FString& PriceCurrency,
 		TFunction<void(bool, FWYAItemData)> Callback);
 
 	// ── Territory API ──────────────────────────────────────────────────────────
