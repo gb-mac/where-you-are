@@ -5,6 +5,7 @@
 #include "WYASaveSubsystem.generated.h"
 
 class UWYASaveGame;
+class UWYAFixHimQuestSubsystem;
 
 /** Fired after LoadGame() completes (even when no save data exists). */
 DECLARE_MULTICAST_DELEGATE(FOnSaveLoaded);
@@ -46,7 +47,22 @@ public:
     /** Fired after LoadGame() completes (even when no save data was found). */
     FOnSaveLoaded OnSaveLoaded;
 
+    /** Minimum playtime before the fix-him questline can trigger (seconds). Default 7200 = 2 hours. */
+    UPROPERTY(EditDefaultsOnly, Category = "WYA|Save")
+    float FixHimTriggerPlaytimeThreshold = 7200.f;
+
 private:
     UPROPERTY()
     TObjectPtr<UWYASaveGame> CachedSave;
+
+    FTimerHandle PlaytimeTickHandle;
+
+    /** Increments TotalPlaytimeSecs every 60s and saves periodically. */
+    void OnPlaytimeTick();
+
+    /** Checks whether the fix-him questline should now be triggered. */
+    void CheckFixHimTrigger();
+
+    /** Tick counter used to save every 5th tick (every 5 minutes). */
+    int32 PlaytimeTickCount = 0;
 };

@@ -5,13 +5,37 @@
 #include "WYACharacter.h"
 #include "Kismet/GameplayStatics.h"
 #include "GameFramework/PlayerController.h"
+#include "Engine/World.h"
+#include "TimerManager.h"
 
 void UWYASaveSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
+    // Ensure fix-him subsystem is up before we touch its state.
+    Collection.InitializeDependency<UWYAFixHimQuestSubsystem>();
+
     Super::Initialize(Collection);
 
     // Load immediately so fix-him state is available before SpawnPlayer fires.
     LoadGame();
+
+    // Increment session count now that we have (or created) a save object.
+    if (CachedSave)
+    {
+        CachedSave->SessionCount++;
+        UE_LOG(LogTemp, Log, TEXT("WYASaveSubsystem: session %d started (%.0fs played so far)"),
+            CachedSave->SessionCount, CachedSave->TotalPlaytimeSecs);
+    }
+
+    // Tick playtime every 60 seconds.
+    if (UWorld* World = GetGameInstance()->GetWorld())
+    {
+        World->GetTimerManager().SetTimer(
+            PlaytimeTickHandle,
+            this,
+            &UWYASaveSubsystem::OnPlaytimeTick,
+            60.f,
+            /*bLooping=*/true);
+    }
 }
 
 void UWYASaveSubsystem::SaveGame()
@@ -28,6 +52,14 @@ void UWYASaveSubsystem::SaveGame()
         SaveObj->bPowerRepaired      = FixHim->IsPowerRepaired();
         SaveObj->bCommsRepaired      = FixHim->IsCommsRepaired();
         SaveObj->bQuestlineActive    = FixHim->IsQuestlineActive();
+    }
+
+    // Carry forward playtime / session / trigger flag from cached save
+    if (CachedSave)
+    {
+        SaveObj->TotalPlaytimeSecs        = CachedSave->TotalPlaytimeSecs;
+        SaveObj->SessionCount             = CachedSave->SessionCount;
+        SaveObj->bFixHimQuestlineTriggered = CachedSave->bFixHimQuestlineTriggered;
     }
 
     // Inventory — gather from local player pawn
@@ -64,7 +96,16 @@ void UWYASaveSubsystem::LoadGame()
             UGameplayStatics::LoadGameFromSlot(UWYASaveGame::SlotName, UWYASaveGame::UserIndex));
     }
 
-    if (CachedSave)
+    if (!CachedSave)
+    {
+        // Fresh start — create an empty save object so the rest of Initialize() can
+        // write to it (session count, playtime) without null-checks everywhere.
+        CachedSave = Cast<UWYASaveGame>(
+            UGameplayStatics::CreateSaveGameObject(UWYASaveGame::StaticClass()));
+
+        UE_LOG(LogTemp, Log, TEXT("WYASaveSubsystem: no save found — fresh start"));
+    }
+    else
     {
         // Restore fix-him state without triggering dialogue
         if (UWYAFixHimQuestSubsystem* FixHim = GetGameInstance()->GetSubsystem<UWYAFixHimQuestSubsystem>())
@@ -74,17 +115,30 @@ void UWYASaveSubsystem::LoadGame()
                 CachedSave->bProcessingRepaired,
                 CachedSave->bPowerRepaired,
                 CachedSave->bCommsRepaired);
+
+            // If the questline was already triggered on a previous session, mark it
+            // on the subsystem so we don't fire it again.
+            if (CachedSave->bFixHimQuestlineTriggered && !FixHim->IsQuestlineActive())
+            {
+                // The questline has been triggered before but save state shows it's
+                // not yet active (no repairs done yet on first play-through this
+                // can happen if player triggered the conversation but hasn't repaired
+                // anything). Call TriggerQuestline() silently — it guards against
+                // double-fire internally.
+                FixHim->TriggerQuestline();
+            }
         }
 
-        UE_LOG(LogTemp, Log, TEXT("WYASaveSubsystem: save loaded (mobility=%d processing=%d power=%d comms=%d)"),
+        UE_LOG(LogTemp, Log,
+            TEXT("WYASaveSubsystem: save loaded (mobility=%d processing=%d power=%d comms=%d "
+                 "playtime=%.0fs sessions=%d fixhim_triggered=%d)"),
             CachedSave->bMobilityRepaired,
             CachedSave->bProcessingRepaired,
             CachedSave->bPowerRepaired,
-            CachedSave->bCommsRepaired);
-    }
-    else
-    {
-        UE_LOG(LogTemp, Log, TEXT("WYASaveSubsystem: no save found — fresh start"));
+            CachedSave->bCommsRepaired,
+            CachedSave->TotalPlaytimeSecs,
+            CachedSave->SessionCount,
+            CachedSave->bFixHimQuestlineTriggered ? 1 : 0);
     }
 
     OnSaveLoaded.Broadcast();
@@ -93,4 +147,57 @@ void UWYASaveSubsystem::LoadGame()
 bool UWYASaveSubsystem::HasSaveData() const
 {
     return IsValid(CachedSave);
+}
+
+// ---------------------------------------------------------------------------
+// Playtime tracking
+// ---------------------------------------------------------------------------
+
+void UWYASaveSubsystem::OnPlaytimeTick()
+{
+    if (!CachedSave) return;
+
+    CachedSave->TotalPlaytimeSecs += 60.f;
+    PlaytimeTickCount++;
+
+    CheckFixHimTrigger();
+
+    // Persist to disk every 5th tick (every 5 minutes).
+    if (PlaytimeTickCount % 5 == 0)
+    {
+        UE_LOG(LogTemp, Verbose, TEXT("WYASaveSubsystem: periodic save (%.0fs played)"),
+            CachedSave->TotalPlaytimeSecs);
+        SaveGame();
+    }
+}
+
+void UWYASaveSubsystem::CheckFixHimTrigger()
+{
+    if (!CachedSave) return;
+
+    if (CachedSave->bFixHimQuestlineTriggered) return;
+
+    if (CachedSave->TotalPlaytimeSecs < FixHimTriggerPlaytimeThreshold) return;
+
+    UWYAFixHimQuestSubsystem* FixHim = GetGameInstance()->GetSubsystem<UWYAFixHimQuestSubsystem>();
+    if (!FixHim) return;
+
+    // If it's already active (repairs started), just mark and return.
+    if (FixHim->IsQuestlineActive())
+    {
+        CachedSave->bFixHimQuestlineTriggered = true;
+        SaveGame();
+        return;
+    }
+
+    UE_LOG(LogTemp, Log,
+        TEXT("WYASaveSubsystem: playtime threshold reached (%.0fs) — triggering fix-him questline"),
+        CachedSave->TotalPlaytimeSecs);
+
+    FixHim->TriggerQuestline();
+
+    CachedSave->bFixHimQuestlineTriggered = true;
+
+    // Persist immediately so the trigger survives a crash or quit.
+    SaveGame();
 }

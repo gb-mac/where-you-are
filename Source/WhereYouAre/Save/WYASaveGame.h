@@ -43,6 +43,17 @@ public:
     UPROPERTY(SaveGame, BlueprintReadWrite, Category = "WYA|Save")
     EWYAFaction PlayerFaction = EWYAFaction::None;
 
+    // ── Playtime tracking & questline trigger ─────────────────────────────────
+
+    UPROPERTY(SaveGame, BlueprintReadWrite, Category = "WYA|Save")
+    float TotalPlaytimeSecs = 0.f;
+
+    UPROPERTY(SaveGame, BlueprintReadWrite, Category = "WYA|Save")
+    int32 SessionCount = 0;
+
+    UPROPERTY(SaveGame, BlueprintReadWrite, Category = "WYA|Save")
+    bool bFixHimQuestlineTriggered = false;
+
     // ── Slot metadata ─────────────────────────────────────────────────────────
 
     static const FString SlotName;
