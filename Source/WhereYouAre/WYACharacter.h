@@ -2,12 +2,12 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Combat/WYACombatComponent.h"
 #include "WYACharacter.generated.h"
 
 class USpringArmComponent;
 class UCameraComponent;
 class UWYALocationSubsystem;
-class UWYACombatComponent;
 class UWYAInventoryComponent;
 
 /**
@@ -23,6 +23,7 @@ class WHEREYOUARE_API AWYACharacter : public ACharacter
 public:
     AWYACharacter();
 
+    virtual void BeginPlay() override;
     virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
     virtual void Tick(float DeltaSeconds) override;
 
@@ -35,6 +36,26 @@ public:
 
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "WYA|Inventory")
     TObjectPtr<UWYAInventoryComponent> Inventory;
+
+    /** Called when the player goes Down — implement ragdoll / camera in Blueprint. */
+    UFUNCTION(BlueprintImplementableEvent, Category = "WYA|Combat")
+    void BP_OnPlayerDowned(AActor* Attacker);
+
+    /** Called on every hit — implement screen shake / vignette in Blueprint. */
+    UFUNCTION(BlueprintImplementableEvent, Category = "WYA|Combat")
+    void BP_OnPlayerHitReact(AActor* Attacker, float Damage);
+
+    /** Called when wound state changes — drive animation blend in Blueprint. */
+    UFUNCTION(BlueprintImplementableEvent, Category = "WYA|Combat")
+    void BP_OnWoundStateChanged(EWYAWoundState NewState);
+
+    /** Called on melee swing — play punch/weapon animation in Blueprint. */
+    UFUNCTION(BlueprintImplementableEvent, Category = "WYA|Combat")
+    void BP_OnMeleeSwing(bool bArmed);
+
+    /** Called on ranged fire — play fire animation / muzzle flash in Blueprint. */
+    UFUNCTION(BlueprintImplementableEvent, Category = "WYA|Combat")
+    void BP_OnRangedFire(bool bHit);
 
 protected:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
@@ -52,6 +73,25 @@ private:
     void StopSprint();
     void OnAttack();
 
-    static constexpr float WalkSpeed   = 600.0f;
-    static constexpr float SprintSpeed = 1200.0f;
+    /** Weapon-aware attack dispatch. */
+    void DoMeleeSwing(bool bArmed);
+    void DoRangedFire();
+
+    /** Wound-state callbacks bound in BeginPlay. */
+    UFUNCTION()
+    void OnWoundStateChanged(EWYAWoundState NewState);
+
+    UFUNCTION()
+    void OnHealthChanged(float NewHealth, float MaxHealth);
+
+    /** Bound to Combat->OnDowned via AddDynamic. */
+    UFUNCTION()
+    void HandleDowned(AActor* Attacker);
+
+    /** Called 30 seconds after going Down — revives with minimal health. */
+    void RecoverFromDown();
+
+    FTimerHandle RecoveryHandle;
+
+    static constexpr float WalkSpeed = 600.0f;
 };
