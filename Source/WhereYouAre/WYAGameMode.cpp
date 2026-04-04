@@ -11,6 +11,7 @@
 #include "Save/WYASaveGame.h"
 #include "Inventory/WYAInventoryComponent.h"
 #include "Survival/WYASurvivalComponent.h"
+#include "Economy/WYACurrencySubsystem.h"
 #include "Engine/World.h"
 #include "CesiumGeoreference.h"
 #include "EngineUtils.h"
@@ -113,6 +114,13 @@ void AWYAGameMode::SpawnPlayer(APlayerController* PC)
                 {
                     Char->Survival->ApplySaveData(Save->SavedWater, Save->SavedFood);
                 }
+            }
+
+            // Currency — subsystem-level, not pawn-level
+            if (UWYACurrencySubsystem* Currency = GetGameInstance()->GetSubsystem<UWYACurrencySubsystem>())
+            {
+                const UWYASaveGame* Save = SaveSub->GetSaveGame();
+                Currency->ApplySaveData(Save->SavedGold, Save->SavedSilver);
             }
         }
     }

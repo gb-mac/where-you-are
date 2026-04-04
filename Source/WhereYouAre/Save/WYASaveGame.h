@@ -54,6 +54,14 @@ public:
     UPROPERTY(SaveGame, BlueprintReadWrite, Category = "WYA|Save")
     bool bFixHimQuestlineTriggered = false;
 
+    // ── Currency ──────────────────────────────────────────────────────────────
+
+    UPROPERTY(SaveGame, BlueprintReadWrite, Category = "WYA|Save")
+    int32 SavedGold = 0;
+
+    UPROPERTY(SaveGame, BlueprintReadWrite, Category = "WYA|Save")
+    int32 SavedSilver = 0;
+
     // ── Survival ──────────────────────────────────────────────────────────────
 
     UPROPERTY(SaveGame, BlueprintReadWrite, Category = "WYA|Save")

@@ -4,6 +4,7 @@
 #include "Inventory/WYAInventoryComponent.h"
 #include "WYACharacter.h"
 #include "Survival/WYASurvivalComponent.h"
+#include "Economy/WYACurrencySubsystem.h"
 #include "Kismet/GameplayStatics.h"
 #include "GameFramework/PlayerController.h"
 #include "Engine/World.h"
@@ -61,6 +62,12 @@ void UWYASaveSubsystem::SaveGame()
         SaveObj->TotalPlaytimeSecs        = CachedSave->TotalPlaytimeSecs;
         SaveObj->SessionCount             = CachedSave->SessionCount;
         SaveObj->bFixHimQuestlineTriggered = CachedSave->bFixHimQuestlineTriggered;
+    }
+
+    // Currency
+    if (UWYACurrencySubsystem* Currency = GetGameInstance()->GetSubsystem<UWYACurrencySubsystem>())
+    {
+        Currency->GetSaveData(SaveObj->SavedGold, SaveObj->SavedSilver);
     }
 
     // Inventory and survival — gather from local player pawn

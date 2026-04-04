@@ -228,11 +228,7 @@ Design intent: death from survival neglect should feel like a slow accumulation 
 
 ## Gold Supply Mechanics
 
-Gold is **milestone-minted** — new Gold enters the economy when players complete qualifying events. There is no fixed global supply cap, but there is a per-player weekly earning cap that prevents farming.
-
-### Per-Player Weekly Cap: 100 Gold
-
-Active players can earn up to 100 Gold per week through normal play. The cap resets weekly. It is not possible to earn more than 100 Gold in a week regardless of activity level — surplus milestone completions are logged and awarded in the following week's cap.
+Gold is **milestone-minted** — new Gold enters the economy when players complete qualifying events. No per-player cap. If you want to run contracts all week, you earn Gold all week.
 
 ### Gold Sources
 
@@ -253,7 +249,7 @@ Active players can earn up to 100 Gold per week through normal play. The cap res
 
 ### Anti-Inflation Design
 
-The weekly cap prevents Gold farming. Faction rank-ups and narrative milestones are finite per player. The primary ongoing source (High Table contracts) is limited by contract availability per region — not infinite on demand. Gold supply grows with the active player base, but not faster than new players completing milestones.
+Contract availability per region is finite at any given time — not infinite on demand. Faction rank-ups and narrative milestones are one-time per player. Gold supply grows with the active player base and the rate at which players complete qualifying events. The natural friction is the game itself, not an artificial weekly ceiling.
 
 Gold is not exchangeable for Silver. Silver cannot be converted to Gold. These rails are hard and do not bend.
 

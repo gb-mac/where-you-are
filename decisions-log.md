@@ -113,11 +113,12 @@ Record of major architectural and design decisions. Add an entry whenever a sign
 **Reasoning:** They serve different gameplay functions. High Table zones are a purchased economic service (monetisation-adjacent). Neutral Ground is a social institution gated by Warden standing/conduct, not payment.
 **Impact:** Economy docs updated. Silver is the currency for High Table zone access only — Neutral Ground has no Silver cost. Excommunicado economic consequences (loss of Neutral Ground) are a reputation penalty, not a monetary one.
 
-### Gold Supply: Milestone-Minted with Weekly Per-Player Cap
-**Decision:** Gold is milestone-minted (new Gold enters when players complete qualifying events). Per-player weekly earning cap of 100 Gold. No fixed global supply cap.
-**Reasoning:** Prevents early-player Gold advantage (no fixed cap to race toward), prevents farming (weekly cap), grows supply proportionally with active player base. Gold/Silver exchange remains blocked.
+### Gold Supply: Milestone-Minted, No Cap
+**Decision:** Gold is milestone-minted (new Gold enters when players complete qualifying events). No per-player cap — if you want to run contracts all week, you earn Gold. No fixed global supply cap.
+**Reasoning:** A weekly cap punishes dedicated players and undermines the High Table contractor archetype. The natural limit is contract availability per region and the time cost of completing them — that's enough friction. Gold/Silver exchange remains blocked.
 **Sources:** High Table contracts (20–50 Gold), faction rank-ups (25–100 Gold, one-time per tier), major milestones (50–200 Gold, one-time).
 **Sinks:** T3 blueprints (50–300 Gold), High Table bounty posting (20–100 Gold), player-to-player trade.
+**Supersedes:** Earlier design had a 100 Gold/week per-player cap. Dropped — artificial ceiling that punishes the hitman playstyle the game is built around.
 
 ### Survival Consumption: Activity-Based with Real-Time Floor
 **Decision:** Food and water drain faster during combat/exertion, slowly while idle. Operative baseline: water depletes in 90 minutes active / 4 hours idle; food in 3 hours active / 12 hours idle. Environmental and wound modifiers apply. Starvation/dehydration causes debuff cascades, not instant death. Contractor: 50% rates. Survivor: 150%/130% rates.
