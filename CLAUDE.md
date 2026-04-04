@@ -150,7 +150,8 @@ The player who pays attention to the loading screen gets a relationship. The pla
 - [x] CesiumForUnreal added to .uproject + CesiumRuntime added to Build.cs
 - [x] CesiumGeoreference wired to WYALocationSubsystem — sets origin on location resolve
 - [x] 6 test items seeded near Calgary on backend
-- [ ] Build WhereYouAreEditor with Cesium dependency (in progress)
+- [x] Build WhereYouAreEditor with Cesium dependency — confirmed clean (2026-04-04)
+- [x] Fix-him quest subsystem — WYAFixHimQuestSubsystem, four repair callbacks, stage advances wired (2026-04-04)
 - [ ] Drop CesiumWorldTerrain + Google Photorealistic 3D Tiles in level
 - [ ] Debug item spawning in Play (verify 6 seeded items appear)
 - [x] AI pipeline CPU test — phi3.5 @ 11.6 t/s CPU-only, async pre-gen viable (2026-03-18)
