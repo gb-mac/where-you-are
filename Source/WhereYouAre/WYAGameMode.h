@@ -44,6 +44,13 @@ private:
      */
     void SpawnOpponents(float TerrainZ);
 
+    /**
+     * Spawn a small set of debug loot actors near the world origin.
+     * Called right after SpawnOpponents() so all debug content lands at the
+     * same confirmed terrain height.
+     */
+    void SpawnDebugLoot(float TerrainZ);
+
     FTimerHandle SideQuestRetryHandle;
     FTimerHandle TerrainSpawnRetryHandle;
 };

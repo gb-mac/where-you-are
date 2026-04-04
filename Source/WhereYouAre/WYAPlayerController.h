@@ -8,6 +8,7 @@ class UWYAInteractionWidget;
 class AWYAWorldItem;
 class AWYAVehicleBase;
 class AWYAWorkbench;
+class AWYALootActor;
 
 UCLASS()
 class WHEREYOUARE_API AWYAPlayerController : public APlayerController
@@ -35,10 +36,12 @@ private:
     void OnPlaceItem();
     void OnVehicle();   // F key — enter nearby vehicle or exit current
 
-    AWYAWorkbench*   FindClosestWorkbench() const;
-    AWYAWorldItem*   FindClosestItem()      const;
-    AWYAVehicleBase* FindClosestVehicle()   const;
+    AWYAWorkbench*   FindClosestWorkbench()  const;
+    AWYAWorldItem*   FindClosestItem()       const;
+    AWYAVehicleBase* FindClosestVehicle()    const;
+    AWYALootActor*   FindClosestLootActor()  const;
     void             SetFocusedItem(AWYAWorldItem* Item);
+    void             SetFocusedLootActor(AWYALootActor* Actor);
 
     /** Radius (UU) in which vehicles are enterable. */
     UPROPERTY(EditDefaultsOnly, Category = "WYA|Vehicles")
@@ -47,4 +50,5 @@ private:
     UPROPERTY() TObjectPtr<UWYAInteractionWidget> HUDWidget;
     UPROPERTY() TWeakObjectPtr<AWYAWorldItem>     FocusedItem;
     UPROPERTY() TWeakObjectPtr<AWYAVehicleBase>   CurrentVehicle;
+    UPROPERTY() TWeakObjectPtr<AWYALootActor>     FocusedLootActor;
 };

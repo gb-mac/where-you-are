@@ -3,6 +3,7 @@
 #include "WYACharacter.h"
 #include "WYAPlayerController.h"
 #include "Characters/WYAOpponentCharacter.h"
+#include "Loot/AWYALootActor.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Location/WYALocationSubsystem.h"
 #include "Quest/WYAQuestSubsystem.h"
@@ -156,8 +157,9 @@ void AWYAGameMode::TrySpawnOnTerrain(APlayerController* PC, int32 AttemptsLeft)
         UE_LOG(LogTemp, Log, TEXT("WYAGameMode: landed on terrain at Z=%.0f after %d attempt(s)"),
             Hit.ImpactPoint.Z, 181 - AttemptsLeft);
 
-        // Terrain is now confirmed loaded — spawn opponents on-surface
+        // Terrain is now confirmed loaded — spawn opponents and debug loot on-surface
         SpawnOpponents(Hit.ImpactPoint.Z);
+        SpawnDebugLoot(Hit.ImpactPoint.Z);
         return;
     }
 
@@ -201,6 +203,51 @@ void AWYAGameMode::SpawnOpponents(float TerrainZ)
 
         UE_LOG(LogTemp, Log, TEXT("WYAGameMode: spawned opponent %d at (%.0f, %.0f, %.0f)"),
             i + 1, SpawnPos.X, SpawnPos.Y, SpawnPos.Z);
+    }
+}
+
+void AWYAGameMode::SpawnDebugLoot(float TerrainZ)
+{
+    UWorld* World = GetWorld();
+    if (!World) return;
+
+    struct FLootEntry
+    {
+        EWYACarriedItemType Type;
+        int32               Quantity;
+    };
+
+    const FLootEntry LootTable[] = {
+        { EWYACarriedItemType::FixHim_MobilityParts, 1 },
+        { EWYACarriedItemType::Food,                 3 },
+        { EWYACarriedItemType::Scrap,                2 },
+    };
+
+    FActorSpawnParameters Params;
+    Params.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
+
+    for (const FLootEntry& Entry : LootTable)
+    {
+        const float Angle = FMath::RandRange(0.f, 360.f);
+        const float Dist  = FMath::RandRange(500.f, 1500.f);
+
+        FVector SpawnPos(
+            FMath::Cos(FMath::DegreesToRadians(Angle)) * Dist,
+            FMath::Sin(FMath::DegreesToRadians(Angle)) * Dist,
+            TerrainZ + 100.f);
+
+        AWYALootActor* Loot = World->SpawnActor<AWYALootActor>(
+            AWYALootActor::StaticClass(), SpawnPos, FRotator::ZeroRotator, Params);
+
+        if (Loot)
+        {
+            Loot->ItemType = Entry.Type;
+            Loot->Quantity = Entry.Quantity;
+
+            UE_LOG(LogTemp, Log, TEXT("WYAGameMode: spawned debug loot '%s' x%d at (%.0f, %.0f, %.0f)"),
+                *AWYALootActor::GetTypeDisplayName(Entry.Type).ToString(),
+                Entry.Quantity, SpawnPos.X, SpawnPos.Y, SpawnPos.Z);
+        }
     }
 }
 

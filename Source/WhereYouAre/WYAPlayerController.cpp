@@ -1,5 +1,6 @@
 #include "WYAPlayerController.h"
 #include "UI/WYAInteractionWidget.h"
+#include "Loot/AWYALootActor.h"
 #include "Items/AWYAWorldItem.h"
 #include "Items/WYAItemSubsystem.h"
 #include "Api/WYAApiClient.h"
@@ -51,6 +52,12 @@ void AWYAPlayerController::Tick(float DeltaSeconds)
     {
         SetFocusedItem(Closest);
     }
+
+    AWYALootActor* ClosestLoot = FindClosestLootActor();
+    if (ClosestLoot != FocusedLootActor.Get())
+    {
+        SetFocusedLootActor(ClosestLoot);
+    }
 }
 
 // ── Interaction ───────────────────────────────────────────────────────────────
@@ -73,6 +80,16 @@ void AWYAPlayerController::OnInteract()
                 Bench->TryInstallComponent(this);
                 return;
             }
+        }
+    }
+
+    // Loot pickup (after workbench, before GPS item claiming)
+    if (AWYALootActor* Loot = FocusedLootActor.Get())
+    {
+        if (AWYACharacter* Char = Cast<AWYACharacter>(GetPawn()))
+        {
+            Loot->TryPickup(Char);
+            return;
         }
     }
 
@@ -259,4 +276,52 @@ void AWYAPlayerController::SetFocusedItem(AWYAWorldItem* Item)
     HUDWidget->UpdateDisplay(
         FText::FromString(TypeLabel),
         FText::FromString(TEXT("[E] Claim")));
+}
+
+// ── Loot Actor Focus ──────────────────────────────────────────────────────────
+
+AWYALootActor* AWYAPlayerController::FindClosestLootActor() const
+{
+    APawn* MyPawn = GetPawn();
+    if (!MyPawn) return nullptr;
+    const FVector MyPos = MyPawn->GetActorLocation();
+
+    AWYALootActor* Best     = nullptr;
+    float          BestDist = InteractionRadius;
+
+    for (TActorIterator<AWYALootActor> It(GetWorld()); It; ++It)
+    {
+        AWYALootActor* Candidate = *It;
+        if (!IsValid(Candidate)) continue;
+
+        const float Dist = FVector::Dist(MyPos, Candidate->GetActorLocation());
+        if (Dist < BestDist)
+        {
+            BestDist = Dist;
+            Best     = Candidate;
+        }
+    }
+
+    return Best;
+}
+
+void AWYAPlayerController::SetFocusedLootActor(AWYALootActor* Actor)
+{
+    FocusedLootActor = Actor;
+
+    if (!HUDWidget) return;
+
+    // GPS item takes HUD priority — don't override its display
+    if (FocusedItem.IsValid()) return;
+
+    if (!Actor)
+    {
+        HUDWidget->SetVisibility(ESlateVisibility::Hidden);
+        return;
+    }
+
+    HUDWidget->SetVisibility(ESlateVisibility::Visible);
+    HUDWidget->UpdateDisplay(
+        AWYALootActor::GetTypeDisplayName(Actor->ItemType),
+        Actor->GetPickupPrompt());
 }
