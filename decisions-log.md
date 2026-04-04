@@ -103,3 +103,48 @@ Record of major architectural and design decisions. Add an entry whenever a sign
 ### Revenue Model: Free-to-Play
 **Decision:** F2P with in-game economy.
 **Reasoning:** Maximum player acquisition for an AR game requiring real-world location.
+
+## 2026-04-04 (Economy)
+
+### Two Distinct Safe Zone Types
+**Decision:** High Table Zones and Neutral Ground are separate systems with different controllers, locations, and access mechanics.
+- **High Table Zones** — indoor, building-specific, Silver entry fee, operated by the High Table, access revocable
+- **Neutral Ground** — outdoor, world-space, free access, enforced by Warden Vanguard, barred to excommunicado players
+**Reasoning:** They serve different gameplay functions. High Table zones are a purchased economic service (monetisation-adjacent). Neutral Ground is a social institution gated by Warden standing/conduct, not payment.
+**Impact:** Economy docs updated. Silver is the currency for High Table zone access only — Neutral Ground has no Silver cost. Excommunicado economic consequences (loss of Neutral Ground) are a reputation penalty, not a monetary one.
+
+### Gold Supply: Milestone-Minted with Weekly Per-Player Cap
+**Decision:** Gold is milestone-minted (new Gold enters when players complete qualifying events). Per-player weekly earning cap of 100 Gold. No fixed global supply cap.
+**Reasoning:** Prevents early-player Gold advantage (no fixed cap to race toward), prevents farming (weekly cap), grows supply proportionally with active player base. Gold/Silver exchange remains blocked.
+**Sources:** High Table contracts (20–50 Gold), faction rank-ups (25–100 Gold, one-time per tier), major milestones (50–200 Gold, one-time).
+**Sinks:** T3 blueprints (50–300 Gold), High Table bounty posting (20–100 Gold), player-to-player trade.
+
+### Survival Consumption: Activity-Based with Real-Time Floor
+**Decision:** Food and water drain faster during combat/exertion, slowly while idle. Operative baseline: water depletes in 90 minutes active / 4 hours idle; food in 3 hours active / 12 hours idle. Environmental and wound modifiers apply. Starvation/dehydration causes debuff cascades, not instant death. Contractor: 50% rates. Survivor: 150%/130% rates.
+**Reasoning:** Real-time floor ensures the system always presses; activity multiplier rewards active play management without punishing casual sessions in Contractor mode.
+
+### T3 Crafting: Gold Blueprint + Maker Standing for Full Output
+**Decision:** T3 blueprints require Gold to purchase AND Maker peer standing to execute at full T3 quality. Without Maker standing, output is capped at T2.5. With Maker standing, full T3 unlocked.
+**Reasoning:** Reconciles economy-core.md (Gold gates blueprints) with arc-tradesperson.md (Maker network gates technique). Gold buys the document; relationship earns the understanding. Two different barriers serving different functions — one economic, one social/narrative.
+
+### Bounty System: Two Types
+**Decision:** Player-posted bounties (Silver-funded, 30 Silver posting fee, server escrow, 7-day expiry) and High Table-mediated bounties (Gold-funded, institutional, no expiry). Warden Hunter registration gives AR tracking advantages for excommunicado targets. Fulfillment inside Neutral Ground is a code violation regardless of bounty status.
+**Impact:** Silver sink (posting fees burned), Gold source (High Table bounties). Informal Hollow bounty system operates in parallel with no server escrow.
+
+### Shadow Economy: Syndicate Black Market
+**Decision:** Shadow Market Boards exist in Hollow Syndicate territory. No High Table tax, no server escrow, fenced goods accepted, Syndicate protection fee instead of tax. Access requires Hollow standing. Item provenance metadata is preserved server-side — fenced items are never "clean." Compact raids create periodic disruption. Builds Hollow standing, noted by Wardens/Compact.
+**Reasoning:** Parallel economy should have genuine texture and real costs — not a simple tax avoidance vehicle. Designed so the math only works if you're already in the Hollow world.
+
+### Workshop Placement: Biome Affinity + Territory Effects, No Hard Zone Lock
+**Decision:** Workshops can be placed anywhere the player controls territory. Biome affinity affects output efficiency (off-biome T3 costs more materials). Territory faction affects access and risk (Warden territory = Maker network access; Hollow territory = Shadow Market access + raid risk). Hire-out permitted in two modes: private (designated accounts) and open station (Silver fee, public access). Ownership/access enforced by reputation, not server lock.
+
+### Profession Progression: Activity XP to T2, Instruction Required for T3
+**Decision:** T1→T2 is activity-based XP (craft things, get better). T2→T3 requires an instruction event — a Maker, a faction questline unlock, or another T3 crafter teaching the technique. T3 knowledge is held in people, not grindable.
+**Reasoning:** Consistent with post-Cascade information economy. Prevents T3 from being purely time-gated while keeping it narratively earned.
+
+### Dead Drop Gap: Payment Infrastructure Missing (Flagged to Core)
+**Decision:** Dead Drop payment flow is unimplemented. `FWYAItemData` has no price field; `ClaimItem` sends no payment; backend has no payment transfer logic. Spec documented in `docs/economy/dead-drop-audit.md`. Recommended approach: Option A (backend-implicit, 402 on insufficient funds). Not a blocker today; must be addressed before vertical slice economy ships.
+
+### Bittensor Integration: Fully Deferred Post-EA
+**Decision:** No Bittensor/blockchain integration in scope for Early Access. Placeholder doc created at `docs/economy/blockchain/bittensor-placeholder.md`. Any future design requires legal review in all operating jurisdictions before work begins.
+**Legal flags logged:** Securities law (TAO classification), gambling regulations, platform terms (Steam policy), tax reporting obligations.

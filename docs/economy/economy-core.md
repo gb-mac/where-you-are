@@ -122,6 +122,30 @@ Silver drops from barter participation via a mixed system:
 
 ---
 
+## Safe Zones — Two Distinct Types
+
+There are two separate safe zone systems with different controllers, locations, and access mechanics.
+
+### High Table Zones
+Indoor, building-specific safe zones operated by the High Table. Think a secure bar, a fixer's office, a fortified market floor.
+
+- **Access:** Costs Silver to enter
+- **Coverage:** The building interior only — stepping outside ends protection
+- **Authority:** High Table can revoke access for players who break the rules inside
+- **Distribution:** Urban-dense and Industrial biomes — wherever the High Table has established a footprint
+
+### Neutral Ground (Warden-Controlled)
+Outdoor, world-space safe zones maintained by the Warden Vanguard. Specific locations in the open world — crossroads, bridges, established waypoints — designated as unconditional no-combat zones.
+
+- **Access:** Free by default — but excommunicado players are barred entirely
+- **Coverage:** A defined outdoor area (no building required)
+- **Authority:** Wardens enforce it physically — Vanguard present or on-call
+- **Distribution:** GPS-anchored to real-world landmarks and transit nodes; more common in rural and transit biomes, present but sparser in dense urban areas
+
+**Key difference:** High Table zones are a purchased service. Neutral Ground is a social institution. One costs Silver; the other costs reputation — you lose it the moment you're excommunicado.
+
+---
+
 ## The High Table
 
 The High Table is the in-world faction that issues contracts and enforces the coin system. It is the lore justification for Gold's authority.
@@ -129,9 +153,9 @@ The High Table is the in-world faction that issues contracts and enforces the co
 **What the High Table does:**
 - Posts contracts (assassination, escort, retrieval, merchant protection)
 - Pays out Gold on contract completion
-- Operates safe zones — players inside cannot be attacked (costs Silver to enter)
+- Operates High Table Zones (indoor safe zones, Silver entry fee)
 - Takes the Market Board tax cut (lore)
-- Can revoke safe zone access for players who break the rules
+- Can revoke High Table Zone access for players who break the rules
 
 **Contract posting** — any player can post a contract (costs Silver). The High Table validates it. Fulfillment pays Gold to the contractor.
 
@@ -163,9 +187,80 @@ Crafted items feed the barter layer. Blueprints/patterns for high-tier gear are 
 
 ---
 
+## Survival Resource Consumption Rates
+
+Consumption is **activity-based with a real-time floor** — resources drain faster during exertion, but also drain slowly while idle. Running out has real consequences; the rates are tuned so that active play without resupply creates meaningful pressure within a session.
+
+### Baseline Rates (Operative Mode)
+
+| Resource | Full depletion (active play) | Full depletion (idle) | Activity multiplier |
+|----------|-----------------------------|-----------------------|--------------------|
+| Water | 90 minutes | 4 hours | 2× during combat/sprint |
+| Food | 3 hours | 12 hours | 1.5× during sustained activity |
+
+**Environmental modifiers:**
+- Heat zones (urban summer, near industrial Fractured): water drain ×1.5
+- Cold zones (rural winter): food drain ×1.2
+- Vael Displacement Zone proximity: water drain ×1.3 (disrupted biology)
+
+**Wound modifiers:**
+- Any active bleed: water drain ×1.2
+- Toxin exposure: food drain ×1.3
+- Multiple wounds stacked: both resources drain faster
+
+### Mode Adjustments
+
+| Mode | Water rate | Food rate |
+|------|-----------|-----------|
+| Contractor | 50% of baseline | 50% of baseline |
+| Operative | Baseline | Baseline |
+| Survivor | 150% of baseline | 130% of baseline |
+
+### Death Penalty for Starvation/Dehydration
+
+- **Dehydration to zero:** Debuff cascade (reduced stamina → impaired accuracy → movement penalty). Does not cause instant death. Gives a 10-minute grace window before the next tier applies. Sustained dehydration causes Severe Dehydration wound state — requires treatment, not just drinking.
+- **Starvation to zero:** Slower cascade, longer grace window (30 minutes). Severe Hunger wound state at bottom.
+- **Combined zero:** Both hitting zero simultaneously accelerates the cascade significantly. This is the kill condition for neglect, not a single resource running out.
+
+Design intent: death from survival neglect should feel like a slow accumulation of bad decisions, not a surprise. Players get plenty of warning.
+
+---
+
+## Gold Supply Mechanics
+
+Gold is **milestone-minted** — new Gold enters the economy when players complete qualifying events. There is no fixed global supply cap, but there is a per-player weekly earning cap that prevents farming.
+
+### Per-Player Weekly Cap: 100 Gold
+
+Active players can earn up to 100 Gold per week through normal play. The cap resets weekly. It is not possible to earn more than 100 Gold in a week regardless of activity level — surplus milestone completions are logged and awarded in the following week's cap.
+
+### Gold Sources
+
+| Source | Amount | Notes |
+|--------|--------|-------|
+| High Table contract completion | 20–50 Gold | Primary ongoing source |
+| Faction rank-up (each tier) | 25–100 Gold | One-time per tier per faction |
+| Major milestone/achievement | 50–200 Gold | One-time, narrative milestones |
+| Player-to-player trade | Variable | Gold can change hands; no new Gold created |
+
+### Gold Sinks
+
+| Sink | Cost |
+|------|------|
+| T3 blueprint purchase | 50–300 Gold |
+| High Table bounty posting | 20–100 Gold |
+| Player-to-player trade | Variable |
+
+### Anti-Inflation Design
+
+The weekly cap prevents Gold farming. Faction rank-ups and narrative milestones are finite per player. The primary ongoing source (High Table contracts) is limited by contract availability per region — not infinite on demand. Gold supply grows with the active player base, but not faster than new players completing milestones.
+
+Gold is not exchangeable for Silver. Silver cannot be converted to Gold. These rails are hard and do not bend.
+
+---
+
 ## Open Questions
 
-- [ ] Consumption rates for food/water — real-time drain vs activity-based
-- [ ] Death penalty for starvation/dehydration
-- [ ] Exact Silver earn rates and caps (balance pass needed)
-- [ ] Gold coin supply mechanics — fixed cap or milestone-minted?
+- [ ] Exact Silver earn rates — final balance pass needed once playtesting begins
+- [ ] High Table contract Gold amounts — needs calibration against T3 blueprint costs
+- [ ] Whether Survivor mode players earn bonus Gold (currently: they earn enhanced loot, not bonus Gold — confirm this is right)
