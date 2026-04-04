@@ -49,7 +49,8 @@ bool AWYAWorkbench::TryInstallComponent(APlayerController* PC)
         return true;
     }
 
-    if (FixHim->IsMobilityRepaired() && !FixHim->IsPowerRepaired()
+    if (FixHim->IsMobilityRepaired() && FixHim->IsProcessingRepaired()
+        && !FixHim->IsPowerRepaired()
         && Inv->HasItem(EWYACarriedItemType::FixHim_PowerCore))
     {
         Inv->RemoveItem(EWYACarriedItemType::FixHim_PowerCore);
@@ -105,9 +106,12 @@ FText AWYAWorkbench::GetInteractionPrompt(APlayerController* PC) const
         return FText::FromString(TEXT("Nothing to install"));
     }
 
-    // Power — requires Mobility
+    // Power — requires Mobility + Processing (Dr. Osei)
     if (!FixHim->IsPowerRepaired())
     {
+        if (!FixHim->IsProcessingRepaired())
+            return FText::FromString(TEXT("Find Dr. Osei — processing core needs his help"));
+
         if (Inv->HasItem(EWYACarriedItemType::FixHim_PowerCore))
             return FText::FromString(TEXT("Install power core"));
 

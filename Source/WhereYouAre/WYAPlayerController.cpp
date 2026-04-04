@@ -1,5 +1,6 @@
 #include "WYAPlayerController.h"
 #include "UI/WYAInteractionWidget.h"
+#include "UI/WYAHUDWidget.h"
 #include "Loot/AWYALootActor.h"
 #include "Items/AWYAWorldItem.h"
 #include "Items/WYAItemSubsystem.h"
@@ -7,7 +8,11 @@
 #include "Location/WYALocationSubsystem.h"
 #include "Vehicles/WYAVehicleBase.h"
 #include "HomeBase/AWYAWorkbench.h"
+#include "HomeBase/AWYADrOsei.h"
 #include "Inventory/WYAInventoryComponent.h"
+#include "Combat/WYACombatComponent.h"
+#include "Survival/WYASurvivalComponent.h"
+#include "Economy/WYACurrencySubsystem.h"
 #include "WYACharacter.h"
 #include "Blueprint/UserWidget.h"
 #include "Kismet/GameplayStatics.h"
@@ -25,11 +30,20 @@ void AWYAPlayerController::BeginPlay()
 
     if (InteractionWidgetClass)
     {
-        HUDWidget = CreateWidget<UWYAInteractionWidget>(this, InteractionWidgetClass);
-        if (HUDWidget)
+        InteractionWidget = CreateWidget<UWYAInteractionWidget>(this, InteractionWidgetClass);
+        if (InteractionWidget)
         {
-            HUDWidget->AddToViewport();
-            HUDWidget->SetVisibility(ESlateVisibility::Hidden);
+            InteractionWidget->AddToViewport();
+            InteractionWidget->SetVisibility(ESlateVisibility::Hidden);
+        }
+    }
+
+    if (HUDWidgetClass)
+    {
+        MainHUDWidget = CreateWidget<UWYAHUDWidget>(this, HUDWidgetClass);
+        if (MainHUDWidget)
+        {
+            MainHUDWidget->AddToViewport(1); // above interaction widget
         }
     }
 }
@@ -58,13 +72,15 @@ void AWYAPlayerController::Tick(float DeltaSeconds)
     {
         SetFocusedLootActor(ClosestLoot);
     }
+
+    TickHUD(DeltaSeconds);
 }
 
 // ── Interaction ───────────────────────────────────────────────────────────────
 
 void AWYAPlayerController::OnInteract()
 {
-    // Workbench takes priority over GPS item claiming.
+    // Workbench — fix-him component installation
     if (AWYAWorkbench* Bench = FindClosestWorkbench())
     {
         AWYACharacter* Char = Cast<AWYACharacter>(GetPawn());
@@ -83,7 +99,14 @@ void AWYAPlayerController::OnInteract()
         }
     }
 
-    // Loot pickup (after workbench, before GPS item claiming)
+    // Dr. Osei — Stage 3 processing repair (no item needed, NPC interaction)
+    if (AWYADrOsei* Osei = FindClosestDrOsei())
+    {
+        Osei->TryInteract(this);
+        return;
+    }
+
+    // Loot pickup
     if (AWYALootActor* Loot = FocusedLootActor.Get())
     {
         if (AWYACharacter* Char = Cast<AWYACharacter>(GetPawn()))
@@ -93,6 +116,7 @@ void AWYAPlayerController::OnInteract()
         }
     }
 
+    // GPS world item claiming
     AWYAWorldItem* Item = FocusedItem.Get();
     if (!Item || !Item->IsAvailable()) return;
 
@@ -101,13 +125,12 @@ void AWYAPlayerController::OnInteract()
     if (!Api || !LocSys || !LocSys->IsResolved()) return;
 
     const FWYAGeoCoord& Origin = LocSys->GetOrigin();
-    // Player is always at world origin → GPS origin
     const FString ItemId = Item->GetItemData().Id;
 
     Api->ClaimItem(ItemId, Origin.Latitude, Origin.Longitude,
         [this](EWYAClaimResult Result, FWYAItemData UpdatedItem)
     {
-        if (!HUDWidget) return;
+        if (!InteractionWidget) return;
         FText Msg;
         switch (Result)
         {
@@ -121,7 +144,7 @@ void AWYAPlayerController::OnInteract()
             Msg = FText::FromString(TEXT("Claim failed — too far or already taken"));
             break;
         }
-        HUDWidget->ShowClaimResult(Result == EWYAClaimResult::Success, Msg);
+        InteractionWidget->ShowClaimResult(Result == EWYAClaimResult::Success, Msg);
     });
 }
 
@@ -264,15 +287,15 @@ void AWYAPlayerController::SetFocusedItem(AWYAWorldItem* Item)
 {
     FocusedItem = Item;
 
-    if (!HUDWidget) return;
+    if (!InteractionWidget) return;
 
     if (!Item)
     {
-        HUDWidget->SetVisibility(ESlateVisibility::Hidden);
+        InteractionWidget->SetVisibility(ESlateVisibility::Hidden);
         return;
     }
 
-    HUDWidget->SetVisibility(ESlateVisibility::Visible);
+    InteractionWidget->SetVisibility(ESlateVisibility::Visible);
 
     const FWYAItemData& Data = Item->GetItemData();
     FString TypeLabel;
@@ -284,7 +307,7 @@ void AWYAPlayerController::SetFocusedItem(AWYAWorldItem* Item)
         case EWYAItemType::FactionCache:  TypeLabel = TEXT("Faction Cache");  break;
     }
 
-    HUDWidget->UpdateDisplay(
+    InteractionWidget->UpdateDisplay(
         FText::FromString(TypeLabel),
         FText::FromString(TEXT("[E] Claim")));
 }
@@ -320,19 +343,82 @@ void AWYAPlayerController::SetFocusedLootActor(AWYALootActor* Actor)
 {
     FocusedLootActor = Actor;
 
-    if (!HUDWidget) return;
+    if (!InteractionWidget) return;
 
     // GPS item takes HUD priority — don't override its display
     if (FocusedItem.IsValid()) return;
 
     if (!Actor)
     {
-        HUDWidget->SetVisibility(ESlateVisibility::Hidden);
+        InteractionWidget->SetVisibility(ESlateVisibility::Hidden);
         return;
     }
 
-    HUDWidget->SetVisibility(ESlateVisibility::Visible);
-    HUDWidget->UpdateDisplay(
+    InteractionWidget->SetVisibility(ESlateVisibility::Visible);
+    InteractionWidget->UpdateDisplay(
         AWYALootActor::GetTypeDisplayName(Actor->ItemType),
         Actor->GetPickupPrompt());
+}
+
+// ── Dr. Osei ──────────────────────────────────────────────────────────────────
+
+AWYADrOsei* AWYAPlayerController::FindClosestDrOsei() const
+{
+    APawn* MyPawn = GetPawn();
+    if (!MyPawn) return nullptr;
+    const FVector MyPos = MyPawn->GetActorLocation();
+
+    AWYADrOsei* Best     = nullptr;
+    float        BestDist = InteractionRadius;
+
+    for (TActorIterator<AWYADrOsei> It(GetWorld()); It; ++It)
+    {
+        AWYADrOsei* Candidate = *It;
+        if (!IsValid(Candidate)) continue;
+
+        const float Dist = FVector::Dist(MyPos, Candidate->GetActorLocation());
+        if (Dist < BestDist)
+        {
+            BestDist = Dist;
+            Best     = Candidate;
+        }
+    }
+
+    return Best;
+}
+
+// ── HUD tick ──────────────────────────────────────────────────────────────────
+
+void AWYAPlayerController::TickHUD(float DeltaSeconds)
+{
+    if (!MainHUDWidget) return;
+
+    HUDUpdateAccumulator += DeltaSeconds;
+    if (HUDUpdateAccumulator < HUDUpdateInterval) return;
+    HUDUpdateAccumulator = 0.f;
+
+    AWYACharacter* Char = Cast<AWYACharacter>(GetPawn());
+    if (!Char) return;
+
+    // Health + wound state
+    if (Char->Combat)
+    {
+        MainHUDWidget->UpdateHealthDisplay(
+            Char->Combat->GetHealthPercent(),
+            Char->Combat->GetWoundState());
+    }
+
+    // Survival
+    if (Char->Survival)
+    {
+        MainHUDWidget->UpdateSurvivalDisplay(
+            Char->Survival->GetWaterPercent(), Char->Survival->GetWaterState(),
+            Char->Survival->GetFoodPercent(),  Char->Survival->GetFoodState());
+    }
+
+    // Currency
+    if (UWYACurrencySubsystem* CurrSub = GetGameInstance()->GetSubsystem<UWYACurrencySubsystem>())
+    {
+        MainHUDWidget->UpdateCurrencyDisplay(CurrSub->GetGold(), CurrSub->GetSilver());
+    }
 }

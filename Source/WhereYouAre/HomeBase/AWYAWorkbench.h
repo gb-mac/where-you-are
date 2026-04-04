@@ -31,7 +31,7 @@ public:
      *
      * Install order:
      *   1. Mobility  — no prerequisite
-     *   2. Power     — requires Mobility done
+     *   2. Power     — requires Mobility + Processing (Dr. Osei) done
      *   3. Comms     — requires Power done
      *
      * On success: removes item from inventory, fires the corresponding
