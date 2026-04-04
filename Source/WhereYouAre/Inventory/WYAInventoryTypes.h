@@ -13,9 +13,10 @@ enum class EWYACarriedItemType : uint8
     None                    UMETA(DisplayName = "None"),
 
     // ── Fix-Him repair components ─────────────────────────────────────────────
-    FixHim_MobilityParts    UMETA(DisplayName = "Chassis Joint Actuators"),   // installs via workbench → Stage 2
-    FixHim_PowerCore        UMETA(DisplayName = "Industrial Capacitor Array"), // installs via workbench → Stage 4
-    FixHim_CommHardware     UMETA(DisplayName = "Communication Coprocessor"),  // installs via workbench → Stage 5
+    FixHim_MobilityParts       UMETA(DisplayName = "Chassis Joint Actuators"),    // installs via workbench → Stage 2
+    FixHim_DiagnosticLogPackage UMETA(DisplayName = "Diagnostic Log Package"),    // delivered to Dr. Osei → Stage 3
+    FixHim_PowerCore           UMETA(DisplayName = "Industrial Capacitor Array"), // installs via workbench → Stage 4
+    FixHim_CommHardware        UMETA(DisplayName = "Communication Coprocessor"),  // installs via workbench → Stage 5
 
     // ── General loot stubs ────────────────────────────────────────────────────
     MeleeWeapon             UMETA(DisplayName = "Melee Weapon"),

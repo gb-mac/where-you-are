@@ -110,7 +110,7 @@ FText AWYAWorkbench::GetInteractionPrompt(APlayerController* PC) const
     if (!FixHim->IsPowerRepaired())
     {
         if (!FixHim->IsProcessingRepaired())
-            return FText::FromString(TEXT("Find Dr. Osei — processing core needs his help"));
+            return FText::FromString(TEXT("Find Dr. Osei — processing needs her help"));
 
         if (Inv->HasItem(EWYACarriedItemType::FixHim_PowerCore))
             return FText::FromString(TEXT("Install power core"));
