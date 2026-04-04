@@ -233,9 +233,10 @@ void AWYAGameMode::SpawnDebugLoot(float TerrainZ)
     };
 
     const FLootEntry LootTable[] = {
-        { EWYACarriedItemType::FixHim_MobilityParts, 1 },
-        { EWYACarriedItemType::Food,                 3 },
-        { EWYACarriedItemType::Scrap,                2 },
+        { EWYACarriedItemType::FixHim_MobilityParts,       1 },
+        { EWYACarriedItemType::FixHim_DiagnosticLogPackage, 1 },
+        { EWYACarriedItemType::Food,                       3 },
+        { EWYACarriedItemType::Scrap,                      2 },
     };
 
     FActorSpawnParameters Params;

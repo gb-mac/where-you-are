@@ -113,12 +113,17 @@ void UWYAFixHimQuestSubsystem::OnCommunicationRepairCompleted()
 // ---------------------------------------------------------------------------
 
 void UWYAFixHimQuestSubsystem::LoadRepairState(
-	bool bMobility, bool bProcessing, bool bPower, bool bComms)
+	bool bMobility, bool bProcessing, bool bPower, bool bComms,
+	bool bOseiDiagnostic, bool bOseiContact, bool bOseiStage4)
 {
 	bMobilityRepaired   = bMobility;
 	bProcessingRepaired = bProcessing;
 	bPowerRepaired      = bPower;
 	bCommsRepaired      = bComms;
+
+	bOseiDiagnosticRequested    = bOseiDiagnostic;
+	bOseiOfferedDirectContact   = bOseiContact;
+	bOseiRequestedStage4Presence = bOseiStage4;
 
 	if (bMobility || bProcessing || bPower || bComms)
 	{
@@ -138,8 +143,11 @@ void UWYAFixHimQuestSubsystem::LoadRepairState(
 	}
 
 	UE_LOG(LogTemp, Log,
-		TEXT("WYAFixHimQuestSubsystem: loaded repair state — mobility=%d processing=%d power=%d comms=%d → Stage %d"),
-		bMobility, bProcessing, bPower, bComms, static_cast<int32>(LoadedStage));
+		TEXT("WYAFixHimQuestSubsystem: loaded repair state — mobility=%d processing=%d power=%d comms=%d "
+		     "osei_diag=%d osei_contact=%d osei_stage4=%d → Stage %d"),
+		bMobility, bProcessing, bPower, bComms,
+		bOseiDiagnostic, bOseiContact, bOseiStage4,
+		static_cast<int32>(LoadedStage));
 }
 
 // ---------------------------------------------------------------------------

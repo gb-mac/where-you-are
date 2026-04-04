@@ -93,12 +93,50 @@ public:
 	UFUNCTION(BlueprintPure, Category = "WYA|FixHim")
 	bool IsCommsRepaired()      const { return bCommsRepaired; }
 
+	// -----------------------------------------------------------------------
+	// Dr. Osei / Stage 3 narrative state
+	// -----------------------------------------------------------------------
+
+	/**
+	 * True after the player has spoken with Dr. Osei (Phase 1) and she has issued
+	 * the diagnostic log objective. The player must now retrieve and deliver
+	 * FixHim_DiagnosticLogPackage before OnProcessingRepairCompleted() fires.
+	 */
+	UFUNCTION(BlueprintPure, Category = "WYA|FixHim")
+	bool IsOseiDiagnosticRequested() const { return bOseiDiagnosticRequested; }
+
+	UFUNCTION(BlueprintCallable, Category = "WYA|FixHim")
+	void SetOseiDiagnosticRequested(bool bValue) { bOseiDiagnosticRequested = bValue; }
+
+	/**
+	 * Set true when the player chooses "He'd probably want to hear that from you"
+	 * (OSEI_FH_B05_FROM_YOU). Enables optional Osei→Assistant Meshtastic message
+	 * after Stage 4 voice. Wired by dialogue system at Stage 4 implementation.
+	 */
+	UFUNCTION(BlueprintPure, Category = "WYA|FixHim|Narrative")
+	bool IsOseiOfferedDirectContact() const { return bOseiOfferedDirectContact; }
+
+	UFUNCTION(BlueprintCallable, Category = "WYA|FixHim|Narrative")
+	void SetOseiOfferedDirectContact(bool bValue) { bOseiOfferedDirectContact = bValue; }
+
+	/**
+	 * Set true when the player chooses "He said you'd want to know he's still carrying it"
+	 * (OSEI_FH_C02_CARRYING). Enables optional Osei attendance at Stage 4 morning delivery.
+	 * Narrative-only — no gameplay effect.
+	 */
+	UFUNCTION(BlueprintPure, Category = "WYA|FixHim|Narrative")
+	bool IsOseiRequestedStage4Presence() const { return bOseiRequestedStage4Presence; }
+
+	UFUNCTION(BlueprintCallable, Category = "WYA|FixHim|Narrative")
+	void SetOseiRequestedStage4Presence(bool bValue) { bOseiRequestedStage4Presence = bValue; }
+
 	/**
 	 * Restore repair state from a save game without firing stage transition dialogue.
 	 * Call this before SpawnPlayer() during load so the assistant starts at the
 	 * correct stage.
 	 */
-	void LoadRepairState(bool bMobility, bool bProcessing, bool bPower, bool bComms);
+	void LoadRepairState(bool bMobility, bool bProcessing, bool bPower, bool bComms,
+	                     bool bOseiDiagnostic, bool bOseiContact, bool bOseiStage4);
 
 	/** Fired after each stage advance. NewStage is the stage that was just entered. */
 	FOnRepairStageChanged OnRepairStageChanged;
@@ -112,6 +150,11 @@ private:
 	bool bProcessingRepaired = false;
 	bool bPowerRepaired      = false;
 	bool bCommsRepaired      = false;
+
+	// Dr. Osei narrative state (saved, not replicated)
+	bool bOseiDiagnosticRequested    = false;
+	bool bOseiOfferedDirectContact   = false;
+	bool bOseiRequestedStage4Presence = false;
 
 	/** Advance assistant to NewStage, log it, fire the delegate. */
 	void AdvanceStage(EWYAAssistantStage NewStage, const TCHAR* RepairName);

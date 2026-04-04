@@ -54,6 +54,20 @@ public:
     UPROPERTY(SaveGame, BlueprintReadWrite, Category = "WYA|Save")
     bool bFixHimQuestlineTriggered = false;
 
+    // ── Dr. Osei / Stage 3 narrative state ───────────────────────────────────
+
+    /** True after Phase 1 interaction — player has the diagnostic log objective. */
+    UPROPERTY(SaveGame, BlueprintReadWrite, Category = "WYA|Save")
+    bool bOseiDiagnosticRequested = false;
+
+    /** Player chose "He'd probably want to hear that from you" (OSEI_FH_B05_FROM_YOU). */
+    UPROPERTY(SaveGame, BlueprintReadWrite, Category = "WYA|Save")
+    bool bOseiOfferedDirectContact = false;
+
+    /** Player chose "He said you'd want to know he's still carrying it" (OSEI_FH_C02_CARRYING). */
+    UPROPERTY(SaveGame, BlueprintReadWrite, Category = "WYA|Save")
+    bool bOseiRequestedStage4Presence = false;
+
     // ── Currency ──────────────────────────────────────────────────────────────
 
     UPROPERTY(SaveGame, BlueprintReadWrite, Category = "WYA|Save")

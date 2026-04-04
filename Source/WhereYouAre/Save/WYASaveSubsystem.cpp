@@ -54,6 +54,10 @@ void UWYASaveSubsystem::SaveGame()
         SaveObj->bPowerRepaired      = FixHim->IsPowerRepaired();
         SaveObj->bCommsRepaired      = FixHim->IsCommsRepaired();
         SaveObj->bQuestlineActive    = FixHim->IsQuestlineActive();
+
+        SaveObj->bOseiDiagnosticRequested    = FixHim->IsOseiDiagnosticRequested();
+        SaveObj->bOseiOfferedDirectContact   = FixHim->IsOseiOfferedDirectContact();
+        SaveObj->bOseiRequestedStage4Presence = FixHim->IsOseiRequestedStage4Presence();
     }
 
     // Carry forward playtime / session / trigger flag from cached save
@@ -127,7 +131,10 @@ void UWYASaveSubsystem::LoadGame()
                 CachedSave->bMobilityRepaired,
                 CachedSave->bProcessingRepaired,
                 CachedSave->bPowerRepaired,
-                CachedSave->bCommsRepaired);
+                CachedSave->bCommsRepaired,
+                CachedSave->bOseiDiagnosticRequested,
+                CachedSave->bOseiOfferedDirectContact,
+                CachedSave->bOseiRequestedStage4Presence);
 
             // If the questline was already triggered on a previous session, mark it
             // on the subsystem so we don't fire it again.

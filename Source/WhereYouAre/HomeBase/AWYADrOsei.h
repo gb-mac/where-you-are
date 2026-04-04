@@ -54,20 +54,6 @@ public:
 
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "WYA|FixHim")
     TObjectPtr<UStaticMeshComponent> Mesh;
-
-    /**
-     * Set true when the player selects "He'd probably want to hear that from you" (OSEI_FH_B05_FROM_YOU).
-     * Enables an optional Osei→Assistant Meshtastic message after Stage 4 voice.
-     * Low priority — used when Stage 4 voice implementation begins.
-     */
-    UPROPERTY(BlueprintReadWrite, Category = "WYA|FixHim|Narrative")
-    bool bOseiOfferedDirectContact = false;
-
-    /**
-     * Set true when the player selects "He said you'd want to know he's still carrying it" (OSEI_FH_C02_CARRYING).
-     * Enables optional Osei attendance at Stage 4 morning delivery if player arranges it.
-     * Narrative-only — no gameplay effect.
-     */
-    UPROPERTY(BlueprintReadWrite, Category = "WYA|FixHim|Narrative")
-    bool bOseiRequestedStage4Presence = false;
+    // Narrative flags (bOseiOfferedDirectContact, bOseiRequestedStage4Presence) live in
+    // UWYAFixHimQuestSubsystem so they persist through the save system correctly.
 };
