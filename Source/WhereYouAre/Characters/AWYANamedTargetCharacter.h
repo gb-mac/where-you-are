@@ -84,12 +84,25 @@ private:
     void BeginRetreat();
     void EndRetreat();
 
+    /**
+     * Starts polling for nearby living security after the target goes down.
+     * First guard to walk within BodyDiscoveryRadius fires NotifyBodyDiscovered.
+     */
+    void StartBodyDiscoveryWatch();
+
+    /** Timer callback — checks for guards near the body location. */
+    void CheckBodyDiscovery();
+
     // ── Tier config ───────────────────────────────────────────────────────────
 
     static constexpr float RetreatHealthFraction = 0.30f;
+
+    /** Radius (UU) within which a living security NPC discovers the body. ~8m. */
+    static constexpr float BodyDiscoveryRadius = 800.f;
 
     /** True once retreat has been triggered this life (one retreat per fight). */
     bool bHasRetreated = false;
 
     FTimerHandle RetreatTimerHandle;
+    FTimerHandle BodyDiscoveryTimerHandle;
 };

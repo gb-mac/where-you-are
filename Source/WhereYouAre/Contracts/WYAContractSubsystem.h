@@ -70,9 +70,17 @@ public:
 
     /**
      * Called by AWYASecurityCharacter when it reaches Alerted state.
-     * Increments AlertCount on all active run states — voids Ghost bonus.
+     * Increments AlertCount on all active run states for stats/phase-weight.
+     * Does NOT void Ghost — body discovery does.
      */
     void NotifySecurityAlerted();
+
+    /**
+     * Called by AWYANamedTargetCharacter when a living security NPC walks
+     * within discovery range of the downed target's body.
+     * Voids the Ghost bonus for the matching run.
+     */
+    void NotifyBodyDiscovered(const FString& ContractID);
 
     /**
      * Called by AWYAExfilPoint when a player enters the exfil trigger.

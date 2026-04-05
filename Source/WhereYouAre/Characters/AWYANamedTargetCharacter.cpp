@@ -2,6 +2,7 @@
 #include "Characters/AWYASecurityCharacter.h"
 #include "Contracts/WYAContractSubsystem.h"
 #include "Actors/AWYAExfilPoint.h"
+#include "EngineUtils.h"
 #include "Combat/WYACombatComponent.h"
 #include "Loot/AWYALootActor.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -236,6 +237,49 @@ void AWYANamedTargetCharacter::SpawnSecurity()
     }
 }
 
+// ── Body discovery watch ──────────────────────────────────────────────────────
+
+void AWYANamedTargetCharacter::StartBodyDiscoveryWatch()
+{
+    UWorld* World = GetWorld();
+    if (!World || ContractID.IsEmpty()) return;
+
+    // Poll every second until a guard finds the body or the actor is destroyed.
+    World->GetTimerManager().SetTimer(BodyDiscoveryTimerHandle,
+        this, &AWYANamedTargetCharacter::CheckBodyDiscovery,
+        1.f, /*bLooping=*/true);
+}
+
+void AWYANamedTargetCharacter::CheckBodyDiscovery()
+{
+    UWorld* World = GetWorld();
+    if (!World) return;
+
+    const FVector BodyLoc = GetActorLocation();
+
+    for (TActorIterator<AWYASecurityCharacter> It(World); It; ++It)
+    {
+        AWYASecurityCharacter* Guard = *It;
+        if (!IsValid(Guard) || Guard->Combat->IsDown()) continue;
+
+        if (FVector::Dist(BodyLoc, Guard->GetActorLocation()) <= BodyDiscoveryRadius)
+        {
+            // Guard found the body — void Ghost for this contract
+            if (UGameInstance* GI = GetGameInstance())
+            {
+                if (UWYAContractSubsystem* ContractSub = GI->GetSubsystem<UWYAContractSubsystem>())
+                {
+                    ContractSub->NotifyBodyDiscovered(ContractID);
+                }
+            }
+
+            // Stop polling — discovery already fired
+            World->GetTimerManager().ClearTimer(BodyDiscoveryTimerHandle);
+            return;
+        }
+    }
+}
+
 // ── Contract completion (exfil spawn) ────────────────────────────────────────
 
 void AWYANamedTargetCharacter::HandleContractTargetDowned(AActor* Attacker)
@@ -244,6 +288,9 @@ void AWYANamedTargetCharacter::HandleContractTargetDowned(AActor* Attacker)
 
     UWorld* World = GetWorld();
     if (!World) return;
+
+    // Start watching for body discovery — this is what voids Ghost, not alert state.
+    StartBodyDiscoveryWatch();
 
     // Target is down — spawn the extraction point 100–200m away.
     // Gold is not awarded until the player reaches it.

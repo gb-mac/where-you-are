@@ -258,7 +258,20 @@ void UWYAContractSubsystem::NotifySecurityAlerted()
     {
         Pair.Value.AlertCount++;
     }
-    UE_LOG(LogTemp, Log, TEXT("WYAContractSubsystem: security alerted — Ghost bonus voided for all active runs"));
+    UE_LOG(LogTemp, Log, TEXT("WYAContractSubsystem: security alerted — run is hot (AlertCount++)"));
+}
+
+void UWYAContractSubsystem::NotifyBodyDiscovered(const FString& ContractID)
+{
+    FWYAContractRunState* RunState = RunStates.Find(ContractID);
+    if (!RunState) return;
+
+    if (!RunState->bBodyDiscovered)
+    {
+        RunState->bBodyDiscovered = true;
+        UE_LOG(LogTemp, Log, TEXT("WYAContractSubsystem: body discovered — Ghost bonus voided for contract '%s'"),
+            *ContractID);
+    }
 }
 
 void UWYAContractSubsystem::NotifyPlayerTookDamage(APlayerController* PC)
@@ -331,11 +344,12 @@ int32 UWYAContractSubsystem::CalculateAndAwardBonus(APlayerController* PC,
     const int32 Base  = Contract.GoldReward;
     int32       Bonus = 0;
 
-    // Ghost: no security alerted this run → +50%
-    if (RunState.AlertCount == 0)
+    // Ghost: exfil'd before any guard found the body → +50%
+    if (!RunState.bBodyDiscovered)
     {
         Bonus += FMath::RoundToInt(Base * 0.5f);
-        UE_LOG(LogTemp, Log, TEXT("WYAContractSubsystem: Ghost bonus +%dG"), FMath::RoundToInt(Base * 0.5f));
+        UE_LOG(LogTemp, Log, TEXT("WYAContractSubsystem: Ghost bonus +%dG (body undiscovered)"),
+            FMath::RoundToInt(Base * 0.5f));
     }
 
     // Swift: completed under tier time limit → +25%

@@ -88,8 +88,18 @@ struct FWYAContractRunState
     /** World time when TakeContract() was called. */
     float StartTimeSecs = 0.f;
 
-    /** How many security NPCs reached EWYAAlertState::Alerted during this run. */
+    /**
+     * How many security NPCs reached EWYAAlertState::Alerted during this run.
+     * Tracked for stats and phase-weight analysis — does NOT void Ghost.
+     */
     int32 AlertCount = 0;
+
+    /**
+     * True once a living security NPC walks within discovery range of the
+     * downed target's body. This is what voids the Ghost bonus.
+     * An alerted guard does NOT void Ghost — leaving before body discovery does.
+     */
+    bool bBodyDiscovered = false;
 
     /** True if the player took any damage during this run. */
     bool bTookDamage = false;
