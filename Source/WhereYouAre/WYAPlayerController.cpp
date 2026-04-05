@@ -9,6 +9,8 @@
 #include "Vehicles/WYAVehicleBase.h"
 #include "HomeBase/AWYAWorkbench.h"
 #include "HomeBase/AWYADrOsei.h"
+#include "Contracts/AWYAContractBoard.h"
+#include "Save/WYASaveSubsystem.h"
 #include "Inventory/WYAInventoryComponent.h"
 #include "Combat/WYACombatComponent.h"
 #include "Survival/WYASurvivalComponent.h"
@@ -55,6 +57,13 @@ void AWYAPlayerController::BeginPlay()
         QuestSub->OnQuestAssigned.AddUObject(this, &AWYAPlayerController::OnQuestAssigned);
         QuestSub->OnQuestCompleted.AddUObject(this, &AWYAPlayerController::OnQuestCompleted);
     }
+
+    // Restore saved active contracts — targets aren't re-spawned, but the contracts
+    // stay in the active list so the player can abandon or they'll resolve naturally.
+    if (UWYASaveSubsystem* SaveSub = GetGameInstance()->GetSubsystem<UWYASaveSubsystem>())
+    {
+        SaveSub->ApplySavedContractsToController(this);
+    }
 }
 
 void AWYAPlayerController::SetupInputComponent()
@@ -89,6 +98,13 @@ void AWYAPlayerController::Tick(float DeltaSeconds)
 
 void AWYAPlayerController::OnInteract()
 {
+    // Contract board — view and take AI-generated hits
+    if (AWYAContractBoard* Board = FindClosestContractBoard())
+    {
+        Board->InteractWithBoard(this);
+        return;
+    }
+
     // Workbench — fix-him component installation
     if (AWYAWorkbench* Bench = FindClosestWorkbench())
     {
@@ -256,6 +272,33 @@ AWYAWorkbench* AWYAPlayerController::FindClosestWorkbench() const
         {
             BestDist = Dist;
             Best     = Bench;
+        }
+    }
+
+    return Best;
+}
+
+// ── Contract board ────────────────────────────────────────────────────────────
+
+AWYAContractBoard* AWYAPlayerController::FindClosestContractBoard() const
+{
+    APawn* MyPawn = GetPawn();
+    if (!MyPawn) return nullptr;
+    const FVector MyPos = MyPawn->GetActorLocation();
+
+    AWYAContractBoard* Best     = nullptr;
+    float              BestDist = InteractionRadius;
+
+    for (TActorIterator<AWYAContractBoard> It(GetWorld()); It; ++It)
+    {
+        AWYAContractBoard* Candidate = *It;
+        if (!IsValid(Candidate)) continue;
+
+        const float Dist = FVector::Dist(MyPos, Candidate->GetActorLocation());
+        if (Dist < BestDist)
+        {
+            BestDist = Dist;
+            Best     = Candidate;
         }
     }
 

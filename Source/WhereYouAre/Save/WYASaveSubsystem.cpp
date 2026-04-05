@@ -1,6 +1,7 @@
 #include "Save/WYASaveSubsystem.h"
 #include "Save/WYASaveGame.h"
 #include "Quest/WYAFixHimQuestSubsystem.h"
+#include "Contracts/WYAContractSubsystem.h"
 #include "Inventory/WYAInventoryComponent.h"
 #include "WYACharacter.h"
 #include "Survival/WYASurvivalComponent.h"
@@ -91,6 +92,15 @@ void UWYASaveSubsystem::SaveGame()
                     Surv->GetSaveData(SaveObj->SavedWater, SaveObj->SavedFood);
                 }
             }
+        }
+    }
+
+    // Active contracts — local player only
+    if (APlayerController* PC = GI->GetFirstLocalPlayerController())
+    {
+        if (UWYAContractSubsystem* ContractSub = GI->GetSubsystem<UWYAContractSubsystem>())
+        {
+            ContractSub->GetSaveData(PC, SaveObj->SavedActiveContracts, SaveObj->SavedContractRunStates);
         }
     }
 
@@ -194,6 +204,20 @@ void UWYASaveSubsystem::OnPlaytimeTick()
         UE_LOG(LogTemp, Verbose, TEXT("WYASaveSubsystem: periodic save (%.0fs played)"),
             CachedSave->TotalPlaytimeSecs);
         SaveGame();
+    }
+}
+
+void UWYASaveSubsystem::ApplySavedContractsToController(APlayerController* PC)
+{
+    if (!CachedSave || !PC) return;
+    if (CachedSave->SavedActiveContracts.IsEmpty()) return;
+
+    if (UWYAContractSubsystem* ContractSub = GetGameInstance()->GetSubsystem<UWYAContractSubsystem>())
+    {
+        ContractSub->LoadSavedContracts(
+            PC,
+            CachedSave->SavedActiveContracts,
+            CachedSave->SavedContractRunStates);
     }
 }
 

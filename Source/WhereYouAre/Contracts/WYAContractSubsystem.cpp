@@ -207,6 +207,49 @@ bool UWYAContractSubsystem::HasActiveContract(APlayerController* PC) const
     return Found && Found->Num() > 0;
 }
 
+// ── Save / load ───────────────────────────────────────────────────────────────
+
+void UWYAContractSubsystem::GetSaveData(APlayerController* PC,
+                                         TArray<FWYAContract>& OutContracts,
+                                         TArray<FWYAContractRunState>& OutStates) const
+{
+    OutContracts.Empty();
+    OutStates.Empty();
+
+    const TArray<FWYAContract>* Active = ActiveContracts.Find(PC);
+    if (!Active || Active->IsEmpty()) return;
+
+    OutContracts = *Active;
+
+    for (const FWYAContract& C : *Active)
+    {
+        if (const FWYAContractRunState* State = RunStates.Find(C.ID))
+        {
+            OutStates.Add(*State);
+        }
+    }
+}
+
+void UWYAContractSubsystem::LoadSavedContracts(APlayerController* PC,
+                                                const TArray<FWYAContract>& Contracts,
+                                                const TArray<FWYAContractRunState>& States)
+{
+    if (!PC || Contracts.IsEmpty()) return;
+
+    TArray<FWYAContract>& Active = ActiveContracts.FindOrAdd(PC);
+    Active = Contracts;
+
+    for (const FWYAContractRunState& State : States)
+    {
+        RunStates.Add(State.ContractID, State);
+    }
+
+    UE_LOG(LogTemp, Log, TEXT("WYAContractSubsystem: restored %d active contract(s) for %s"),
+        Contracts.Num(), *GetNameSafe(PC));
+
+    OnBoardRefreshed.Broadcast(Board); // update board UI in case it's open
+}
+
 // ── Security / damage / exfil hooks ──────────────────────────────────────────
 
 void UWYAContractSubsystem::NotifySecurityAlerted()

@@ -4,6 +4,7 @@
 #include "GameFramework/SaveGame.h"
 #include "Inventory/WYAInventoryTypes.h"
 #include "Api/WYAApiTypes.h"
+#include "Contracts/WYAContractTypes.h"
 #include "WYASaveGame.generated.h"
 
 /**
@@ -83,6 +84,16 @@ public:
 
     UPROPERTY(SaveGame, BlueprintReadWrite, Category = "WYA|Save")
     float SavedFood = 100.f;
+
+    // ── Active contracts ──────────────────────────────────────────────────────
+
+    /** Contracts currently in the player's active list — restored on load. */
+    UPROPERTY(SaveGame, BlueprintReadWrite, Category = "WYA|Save")
+    TArray<FWYAContract> SavedActiveContracts;
+
+    /** Run state for each active contract — preserves Ghost/Swift/Clean tracking. */
+    UPROPERTY(SaveGame, BlueprintReadWrite, Category = "WYA|Save")
+    TArray<FWYAContractRunState> SavedContractRunStates;
 
     // ── Slot metadata ─────────────────────────────────────────────────────────
 

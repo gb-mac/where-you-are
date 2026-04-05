@@ -6,6 +6,7 @@
 
 class UWYASaveGame;
 class UWYAFixHimQuestSubsystem;
+class APlayerController;
 
 /** Fired after LoadGame() completes (even when no save data exists). */
 DECLARE_MULTICAST_DELEGATE(FOnSaveLoaded);
@@ -46,6 +47,13 @@ public:
 
     /** Fired after LoadGame() completes (even when no save data was found). */
     FOnSaveLoaded OnSaveLoaded;
+
+    /**
+     * Call from AWYAPlayerController::BeginPlay() once the PC is valid.
+     * Restores the player's active contracts from the loaded save into
+     * WYAContractSubsystem — targets are NOT re-spawned (they're gone).
+     */
+    void ApplySavedContractsToController(APlayerController* PC);
 
     /** Minimum playtime before the fix-him questline can trigger (seconds). Default 7200 = 2 hours. */
     UPROPERTY(EditDefaultsOnly, Category = "WYA|Save")

@@ -94,6 +94,25 @@ public:
     UFUNCTION(BlueprintPure, Category = "WYA|Contracts")
     bool HasActiveContract(APlayerController* PC) const;
 
+    // ── Save / load ───────────────────────────────────────────────────────────
+
+    /**
+     * Called by WYASaveSubsystem::SaveGame() to gather the player's active
+     * contracts and run states for serialisation.
+     */
+    void GetSaveData(APlayerController* PC,
+                     TArray<FWYAContract>& OutContracts,
+                     TArray<FWYAContractRunState>& OutStates) const;
+
+    /**
+     * Called by WYASaveSubsystem on load (after PC is valid) to restore
+     * active contracts and their run states into the subsystem.
+     * Does NOT re-spawn targets — those are gone after a session.
+     */
+    void LoadSavedContracts(APlayerController* PC,
+                            const TArray<FWYAContract>& Contracts,
+                            const TArray<FWYAContractRunState>& States);
+
     // ── Events ────────────────────────────────────────────────────────────────
 
     /** Fired whenever the board gains or loses a contract. */

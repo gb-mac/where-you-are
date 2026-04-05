@@ -12,6 +12,7 @@ class AWYAVehicleBase;
 class AWYAWorkbench;
 class AWYADrOsei;
 class AWYALootActor;
+class AWYAContractBoard;
 
 UCLASS()
 class WHEREYOUARE_API AWYAPlayerController : public APlayerController
@@ -43,13 +44,14 @@ private:
     void OnPlaceItem();
     void OnVehicle();   // F key — enter nearby vehicle or exit current
 
-    AWYAWorkbench*   FindClosestWorkbench()  const;
-    AWYADrOsei*      FindClosestDrOsei()     const;
-    AWYAWorldItem*   FindClosestItem()       const;
-    AWYAVehicleBase* FindClosestVehicle()    const;
-    AWYALootActor*   FindClosestLootActor()  const;
-    void             SetFocusedItem(AWYAWorldItem* Item);
-    void             SetFocusedLootActor(AWYALootActor* Actor);
+    AWYAWorkbench*    FindClosestWorkbench()    const;
+    AWYADrOsei*       FindClosestDrOsei()       const;
+    AWYAContractBoard* FindClosestContractBoard() const;
+    AWYAWorldItem*    FindClosestItem()          const;
+    AWYAVehicleBase*  FindClosestVehicle()       const;
+    AWYALootActor*    FindClosestLootActor()     const;
+    void              SetFocusedItem(AWYAWorldItem* Item);
+    void              SetFocusedLootActor(AWYALootActor* Actor);
 
     /** Push current character/subsystem state to the persistent HUD. */
     void TickHUD(float DeltaSeconds);
