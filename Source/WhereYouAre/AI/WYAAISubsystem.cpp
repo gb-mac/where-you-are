@@ -46,6 +46,7 @@ void UWYAAISubsystem::OnLocationResolved(FWYAGeoCoord Coord, bool bSuccess)
 	LastResolvedCoord  = Coord;
 	bHasResolvedCoord  = true;
 	RefillBuffer();
+	RefillContractBuffer();
 }
 
 void UWYAAISubsystem::RefillBuffer()
@@ -291,6 +292,260 @@ void UWYAAISubsystem::OnRequestComplete(
 	ResponseText.TrimStartAndEndInline();
 
 	Callback(true, ResponseText);
+}
+
+// ---------------------------------------------------------------------------
+// Contract pre-generation
+// ---------------------------------------------------------------------------
+
+void UWYAAISubsystem::RefillContractBuffer()
+{
+	if (!bHasResolvedCoord) return;
+
+	// One in-flight request at a time — same serialised pattern as quest pre-gen.
+	// Distribute tiers: roughly 60% Standard, 30% Priority, 10% HighTable.
+	while (PregeneratedContracts.Num() < DesiredContractBufferSize)
+	{
+		const float Roll = FMath::FRand();
+		EWYAContractTier Tier = EWYAContractTier::Standard;
+		if      (Roll > 0.90f) Tier = EWYAContractTier::HighTable;
+		else if (Roll > 0.60f) Tier = EWYAContractTier::Priority;
+
+		ScheduleOneContractPregen(LastResolvedCoord, Tier);
+		break; // only one at a time — callback chains back here
+	}
+}
+
+void UWYAAISubsystem::ScheduleOneContractPregen(FWYAGeoCoord Coord, EWYAContractTier Tier)
+{
+	// Reserve a slot immediately
+	FWYAPregeneratedContract Pending;
+	Pending.Contract.GeneratedForCoord = Coord;
+	Pending.Contract.Tier = Tier;
+	Pending.bReady = false;
+	PregeneratedContracts.Add(Pending);
+
+	// ── Variety seeds ─────────────────────────────────────────────────────────
+	// 6 archetypes × 6 crimes × 4 factions = 144 base combos before LLM variance.
+
+	static const TCHAR* Archetypes[] = {
+		TEXT("Enforcer"),
+		TEXT("Information broker"),
+		TEXT("Fixer"),
+		TEXT("Courier"),
+		TEXT("Black market supplier"),
+		TEXT("Faction traitor"),
+	};
+	static const TCHAR* Crimes[] = {
+		TEXT("defaulted on a substantial debt to a faction"),
+		TEXT("violated territorial boundaries and cost lives"),
+		TEXT("sold information to the wrong side"),
+		TEXT("broke a sanctioned contract"),
+		TEXT("is actively extorting civilians under faction protection"),
+		TEXT("stole material from a protected supply line"),
+	};
+	static const TCHAR* Clients[] = {
+		TEXT("the Wardens"),
+		TEXT("the Covenant"),
+		TEXT("the Iron Compact"),
+		TEXT("a Riven cell"),
+	};
+	static const TCHAR* TierLabels[] = { TEXT("Standard"), TEXT("Priority"), TEXT("HighTable") };
+
+	const int32 ArchIdx   = FMath::RandRange(0, 5);
+	const int32 CrimeIdx  = FMath::RandRange(0, 5);
+	const int32 ClientIdx = FMath::RandRange(0, 3);
+	const int32 TierIdx   = static_cast<int32>(Tier);
+
+	// Gold reward range per tier
+	int32 GoldMin = 10, GoldMax = 20;
+	if      (Tier == EWYAContractTier::Priority)  { GoldMin = 20; GoldMax = 35; }
+	else if (Tier == EWYAContractTier::HighTable)  { GoldMin = 35; GoldMax = 50; }
+	const int32 GoldReward = FMath::RandRange(GoldMin, GoldMax);
+
+	auto BuildAndSend = [this, Tier, TierIdx, GoldReward, ArchIdx, CrimeIdx, ClientIdx]
+	                    (const FString& LocationDisplay)
+	{
+		static const TCHAR* Archetypes2[] = {
+			TEXT("Enforcer"), TEXT("Information broker"), TEXT("Fixer"),
+			TEXT("Courier"), TEXT("Black market supplier"), TEXT("Faction traitor"),
+		};
+		static const TCHAR* Crimes2[] = {
+			TEXT("defaulted on a substantial debt to a faction"),
+			TEXT("violated territorial boundaries and cost lives"),
+			TEXT("sold information to the wrong side"),
+			TEXT("broke a sanctioned contract"),
+			TEXT("is actively extorting civilians under faction protection"),
+			TEXT("stole material from a protected supply line"),
+		};
+		static const TCHAR* Clients2[] = {
+			TEXT("the Wardens"), TEXT("the Covenant"),
+			TEXT("the Iron Compact"), TEXT("a Riven cell"),
+		};
+		static const TCHAR* TierLabels2[] = { TEXT("Standard"), TEXT("Priority"), TEXT("HighTable") };
+
+		const FString Prompt = FString::Printf(
+			TEXT("You are generating a hit contract for a post-collapse urban faction game.\n\n"
+			     "Location: %s\n"
+			     "Contract tier: %s\n"
+			     "Target archetype: %s\n"
+			     "Reason for contract: This person %s. The contract is posted by %s.\n"
+			     "Gold reward: %d\n\n"
+			     "Respond with exactly these lines and nothing else:\n"
+			     "TARGET_NAME: <a believable full name or alias, no titles>\n"
+			     "TARGET_ROLE: <one line — faction, location, role>\n"
+			     "LAST_SEEN: <specific location description near %s>\n"
+			     "INTEL: <2-3 sentences — backstory, current threat, urgency. No fluff.>\n"
+			     "REWARD: %d\n"
+			     "TIER: %s\n\n"
+			     "TARGET_NAME:"),
+			*LocationDisplay,
+			TierLabels2[TierIdx],
+			Archetypes2[ArchIdx],
+			Crimes2[CrimeIdx],
+			Clients2[ClientIdx],
+			GoldReward,
+			*LocationDisplay,
+			GoldReward,
+			TierLabels2[TierIdx]);
+
+		SendRequest(Prompt, [this, GoldReward, Tier](bool bOk, const FString& Raw)
+		{
+			const int32 SlotIndex = PregeneratedContracts.IndexOfByPredicate(
+				[](const FWYAPregeneratedContract& C){ return !C.bReady; });
+
+			if (SlotIndex != INDEX_NONE)
+			{
+				if (bOk)
+				{
+					FWYAContract Parsed;
+					if (ParseContract(Raw, Parsed))
+					{
+						Parsed.ID = FString::Printf(TEXT("contract_%lld"), FDateTime::UtcNow().GetTicks());
+						Parsed.Tier = PregeneratedContracts[SlotIndex].Contract.Tier;
+						Parsed.GeneratedForCoord = PregeneratedContracts[SlotIndex].Contract.GeneratedForCoord;
+						// Use the LLM-parsed reward if in tier range, else keep seeded value
+						if (Parsed.GoldReward <= 0) Parsed.GoldReward = GoldReward;
+						PregeneratedContracts[SlotIndex].Contract = Parsed;
+						PregeneratedContracts[SlotIndex].bReady = true;
+					}
+					else
+					{
+						PregeneratedContracts.RemoveAt(SlotIndex);
+					}
+				}
+				else
+				{
+					PregeneratedContracts.RemoveAt(SlotIndex);
+				}
+			}
+
+			const int32 ReadyCount = PregeneratedContracts.FilterByPredicate(
+				[](const FWYAPregeneratedContract& C){ return C.bReady; }).Num();
+			UE_LOG(LogTemp, Log, TEXT("WYAAISubsystem: contract pre-gen %s (buffer=%d ready, %d total)"),
+				bOk ? TEXT("ready") : TEXT("failed — retrying"),
+				ReadyCount, PregeneratedContracts.Num());
+
+			RefillContractBuffer();
+		});
+	};
+
+	if (LocationNameResolver)
+	{
+		LocationNameResolver->Resolve(Coord, [BuildAndSend](bool bOk, FWYALocationContext Ctx)
+		{
+			BuildAndSend(Ctx.DisplayName);
+		});
+	}
+	else
+	{
+		BuildAndSend(FString::Printf(TEXT("%.4f, %.4f"), Coord.Latitude, Coord.Longitude));
+	}
+}
+
+bool UWYAAISubsystem::TryPopPregeneratedContract(FWYAContract& OutContract)
+{
+	for (int32 i = 0; i < PregeneratedContracts.Num(); ++i)
+	{
+		if (PregeneratedContracts[i].bReady)
+		{
+			OutContract = PregeneratedContracts[i].Contract;
+			PregeneratedContracts.RemoveAt(i);
+			RefillContractBuffer();
+			return true;
+		}
+	}
+	return false;
+}
+
+bool UWYAAISubsystem::ParseContract(const FString& Raw, FWYAContract& Out)
+{
+	// Expected format (model continues from trailing "TARGET_NAME:"):
+	//   <name>\nTARGET_ROLE: <role>\nLAST_SEEN: <loc>\nINTEL: <text>\nREWARD: <n>\nTIER: <tier>
+
+	TArray<FString> Lines;
+	Raw.ParseIntoArrayLines(Lines, /*bCullEmpty=*/true);
+
+	// The first line is the target name (model continues from the prompt's trailing "TARGET_NAME:")
+	// or it echoes "TARGET_NAME: <name>" — handle both.
+	bool bGotName = false;
+
+	for (FString& Line : Lines)
+	{
+		Line.TrimStartAndEndInline();
+		if (Line.IsEmpty()) continue;
+
+		auto Extract = [&Line](const TCHAR* Prefix) -> FString
+		{
+			if (Line.StartsWith(Prefix, ESearchCase::IgnoreCase))
+				return Line.Mid(FCString::Strlen(Prefix)).TrimStart();
+			return FString();
+		};
+
+		if (!bGotName)
+		{
+			// Could be "TARGET_NAME: Foo" or just "Foo" as continuation
+			if (FString V = Extract(TEXT("TARGET_NAME:")); !V.IsEmpty())
+				Out.TargetName = V;
+			else
+				Out.TargetName = Line;
+			bGotName = true;
+		}
+		else if (FString V = Extract(TEXT("TARGET_ROLE:")); !V.IsEmpty())
+		{
+			Out.TargetRole = V;
+		}
+		else if (FString V = Extract(TEXT("LAST_SEEN:")); !V.IsEmpty())
+		{
+			Out.LastSeen = V;
+		}
+		else if (FString V = Extract(TEXT("INTEL:")); !V.IsEmpty())
+		{
+			Out.Intel = V;
+		}
+		else if (Out.Intel.Len() > 0 && !Line.Contains(TEXT(":")))
+		{
+			// Continuation line for INTEL (multi-line body)
+			Out.Intel += TEXT(" ") + Line;
+		}
+		else if (FString V = Extract(TEXT("REWARD:")); !V.IsEmpty())
+		{
+			Out.GoldReward = FMath::Clamp(FCString::Atoi(*V), 5, 60);
+		}
+		else if (FString V = Extract(TEXT("TIER:")); !V.IsEmpty())
+		{
+			V.TrimStartAndEndInline();
+			if (V.Contains(TEXT("High"), ESearchCase::IgnoreCase))
+				Out.Tier = EWYAContractTier::HighTable;
+			else if (V.Contains(TEXT("Prior"), ESearchCase::IgnoreCase))
+				Out.Tier = EWYAContractTier::Priority;
+			else
+				Out.Tier = EWYAContractTier::Standard;
+		}
+	}
+
+	// Valid if we got at minimum a name and some intel
+	return !Out.TargetName.IsEmpty() && !Out.Intel.IsEmpty();
 }
 
 // ---------------------------------------------------------------------------

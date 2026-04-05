@@ -7,6 +7,7 @@
 #include "AI/WYALocationNameResolver.h"
 #include "AI/WYAOpponentPersonality.h"
 #include "AI/WYAAssistantTypes.h"
+#include "Contracts/WYAContractTypes.h"
 #include "WYAAISubsystem.generated.h"
 
 DECLARE_DYNAMIC_DELEGATE_TwoParams(FOnQuestGenerated, bool, bSuccess, const FString&, QuestText);
@@ -108,6 +109,13 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "WYA|AI")
 	bool TryPopPregeneratedQuest(FWYAPregeneratedQuest& OutQuest);
 
+	/**
+	 * Pop the next ready pre-generated contract, if any.
+	 * Returns false if none are ready yet (generation still in flight).
+	 * WYAContractSubsystem calls this to refill the contract board.
+	 */
+	bool TryPopPregeneratedContract(FWYAContract& OutContract);
+
 	/** True if ollama was reachable on last request. */
 	UFUNCTION(BlueprintPure, Category = "WYA|AI")
 	bool IsAvailable() const { return bOllamaAvailable; }
@@ -170,6 +178,26 @@ private:
 	 * Num() therefore reflects total pipeline depth (ready + in-flight).
 	 */
 	TArray<FWYAPregeneratedQuest> PregeneratedQuests;
+
+	// ── Contract pre-generation ───────────────────────────────────────────────
+
+	/** Target number of ready+in-flight contracts to maintain. */
+	static constexpr int32 DesiredContractBufferSize = 6;
+
+	TArray<FWYAPregeneratedContract> PregeneratedContracts;
+
+	/**
+	 * Schedule one contract pre-gen for Coord.
+	 * Seeds the prompt with a random archetype/crime/faction combination
+	 * so each generated contract has a distinct premise.
+	 */
+	void ScheduleOneContractPregen(FWYAGeoCoord Coord, EWYAContractTier Tier);
+
+	/** Top up the contract buffer to DesiredContractBufferSize. */
+	void RefillContractBuffer();
+
+	/** Parse a contract key:value response into an FWYAContract. */
+	static bool ParseContract(const FString& Raw, FWYAContract& Out);
 
 	UPROPERTY()
 	TObjectPtr<UWYALocationNameResolver> LocationNameResolver;
