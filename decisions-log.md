@@ -146,6 +146,38 @@ Record of major architectural and design decisions. Add an entry whenever a sign
 ### Dead Drop Gap: Payment Infrastructure Missing (Flagged to Core)
 **Decision:** Dead Drop payment flow is unimplemented. `FWYAItemData` has no price field; `ClaimItem` sends no payment; backend has no payment transfer logic. Spec documented in `docs/economy/dead-drop-audit.md`. Recommended approach: Option A (backend-implicit, 402 on insufficient funds). Not a blocker today; must be addressed before vertical slice economy ships.
 
+## 2026-04-04 (Core)
+
+### Side Mode: GPS Centroid PvP Arena
+
+**Decision:** Build a standalone PvP side mode where the match map is determined by the real-world GPS centroid of all participating players, with centroid-snapping to the nearest landmass.
+
+**How it works:**
+1. Players queue from anywhere in the world. Their real GPS coordinates are submitted to the backend.
+2. Backend calculates the geographic centroid (average lat/lon) of all queued players.
+3. If the centroid falls over ocean, it snaps to the nearest landmass coastline — players in Calgary vs. players in Tokyo might land anywhere: central Africa, a Pacific island, Antarctica. Nobody knows in advance.
+4. That GPS coordinate becomes the `CesiumGeoreference` world origin. Cesium loads whatever real terrain exists there — the terrain IS the map.
+5. All players spawn at randomised positions within a radius of the centroid (e.g. 200–500m). Real-world distance between players is irrelevant — it only selects the terrain.
+6. When a player drops in or out mid-match, backend recalculates the centroid, snaps to nearest landmass, and smoothly lerps the world origin to the new position over 2–3 seconds.
+
+**Design intent:** The terrain wildcard is the feature, not a side effect. A mountain range, a salt flat, an Antarctic research station — nobody picks the map. Their combined real-world locations do. No repeated maps, no memorised callouts.
+
+**Option A vs B:** Players spawn near the centroid regardless of real-world distance (Option A). Option B (preserving relative distances) was considered but rejected — a Calgary/Tokyo pair would spawn thousands of km apart in-game. Option A is correct.
+
+**Landmass snap:** Required. Ocean centroids are unplayable. Backend uses a coastline proximity lookup (e.g. Natural Earth dataset or equivalent) to find the nearest land point. Antarctica and remote islands are valid — that's a feature.
+
+**Technical build order:**
+1. Backend: `/pvp/match` endpoint — accept join/leave, compute centroid, snap to nearest land, return result + spawn offsets
+2. `WYAPvPSessionSubsystem` — manages match state, polls for centroid updates, shifts CesiumGeoreference, handles player reposition on centroid change
+3. `AWYAPvPGameMode` — kill tracking, match end conditions, reward payout in Gold
+4. Smooth centroid shift — lerp geo origin to avoid jarring snaps on late joins
+
+**Scope:** This is a side game — a discrete session mode players opt into, separate from the persistent open world. It does not affect the main game's economy, factions, or world state. Gold rewards from PvP should be modest to prevent it from becoming the primary Gold farm over contracts.
+
+**Status:** Logged for future build. Not blocking current work. Flag to backend agent when ready to spec the `/pvp/match` endpoint.
+
+---
+
 ### Bittensor Integration: Fully Deferred Post-EA
 **Decision:** No Bittensor/blockchain integration in scope for Early Access. Placeholder doc created at `docs/economy/blockchain/bittensor-placeholder.md`. Any future design requires legal review in all operating jurisdictions before work begins.
 **Legal flags logged:** Securities law (TAO classification), gambling regulations, platform terms (Steam policy), tax reporting obligations.
