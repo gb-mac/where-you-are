@@ -13,6 +13,8 @@
 #include "Combat/WYACombatComponent.h"
 #include "Survival/WYASurvivalComponent.h"
 #include "Economy/WYACurrencySubsystem.h"
+#include "Quest/WYAQuestSubsystem.h"
+#include "Quest/WYAQuestTypes.h"
 #include "WYACharacter.h"
 #include "Blueprint/UserWidget.h"
 #include "Kismet/GameplayStatics.h"
@@ -45,6 +47,13 @@ void AWYAPlayerController::BeginPlay()
         {
             MainHUDWidget->AddToViewport(1); // above interaction widget
         }
+    }
+
+    // Subscribe to quest events — push to HUD immediately on assign or complete
+    if (UWYAQuestSubsystem* QuestSub = GetGameInstance()->GetSubsystem<UWYAQuestSubsystem>())
+    {
+        QuestSub->OnQuestAssigned.AddUObject(this, &AWYAPlayerController::OnQuestAssigned);
+        QuestSub->OnQuestCompleted.AddUObject(this, &AWYAPlayerController::OnQuestCompleted);
     }
 }
 
@@ -385,6 +394,22 @@ AWYADrOsei* AWYAPlayerController::FindClosestDrOsei() const
     }
 
     return Best;
+}
+
+// ── Quest events ─────────────────────────────────────────────────────────────
+
+void AWYAPlayerController::OnQuestAssigned(APlayerController* PC, const FWYAQuest& Quest)
+{
+    if (PC != this) return;
+    if (MainHUDWidget)
+        MainHUDWidget->UpdateQuestDisplay(true, Quest.Title, Quest.Body);
+}
+
+void AWYAPlayerController::OnQuestCompleted(APlayerController* PC)
+{
+    if (PC != this) return;
+    if (MainHUDWidget)
+        MainHUDWidget->UpdateQuestDisplay(false, TEXT(""), TEXT(""));
 }
 
 // ── HUD tick ──────────────────────────────────────────────────────────────────

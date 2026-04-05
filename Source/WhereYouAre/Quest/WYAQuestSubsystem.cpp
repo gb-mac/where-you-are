@@ -23,8 +23,10 @@ bool UWYAQuestSubsystem::TryAssignSideQuest(APlayerController* PC)
 	Quest.Title = PreGen.Title;
 	Quest.Body  = PreGen.Text;
 
-	UE_LOG(LogTemp, Log, TEXT("WYAQuestSubsystem: assigned side quest to %s"),
-	       *GetNameSafe(PC));
+	ActiveQuests.Add(PC, Quest);
+
+	UE_LOG(LogTemp, Log, TEXT("WYAQuestSubsystem: assigned side quest '%s' to %s"),
+	       *Quest.Title, *GetNameSafe(PC));
 
 	OnQuestAssigned.Broadcast(PC, Quest);
 	return true;
@@ -37,4 +39,28 @@ void UWYAQuestSubsystem::AdvanceMainStory(APlayerController* PC)
 	UE_LOG(LogTemp, Warning,
 	       TEXT("WYAQuestSubsystem: AdvanceMainStory called but main quest data not yet authored. "
 	            "Narrative agent owns Content/Quests/DT_MainStory.uasset."));
+}
+
+void UWYAQuestSubsystem::CompleteCurrentQuest(APlayerController* PC)
+{
+	if (!ActiveQuests.Contains(PC)) return;
+
+	const FWYAQuest& Completed = ActiveQuests[PC];
+	UE_LOG(LogTemp, Log, TEXT("WYAQuestSubsystem: quest '%s' completed for %s"),
+	       *Completed.Title, *GetNameSafe(PC));
+
+	ActiveQuests.Remove(PC);
+	OnQuestCompleted.Broadcast(PC);
+}
+
+FWYAQuest UWYAQuestSubsystem::GetCurrentQuest(APlayerController* PC) const
+{
+	const FWYAQuest* Found = ActiveQuests.Find(PC);
+	return Found ? *Found : FWYAQuest{};
+}
+
+bool UWYAQuestSubsystem::HasActiveQuest(APlayerController* PC) const
+{
+	const FWYAQuest* Found = ActiveQuests.Find(PC);
+	return Found && Found->IsValid();
 }

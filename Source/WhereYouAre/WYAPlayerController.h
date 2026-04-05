@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+#include "Quest/WYAQuestTypes.h"
 #include "WYAPlayerController.generated.h"
 
 class UWYAInteractionWidget;
@@ -52,6 +53,9 @@ private:
 
     /** Push current character/subsystem state to the persistent HUD. */
     void TickHUD(float DeltaSeconds);
+
+    void OnQuestAssigned(APlayerController* PC, const FWYAQuest& Quest);
+    void OnQuestCompleted(APlayerController* PC);
 
     /** Radius (UU) in which vehicles are enterable. */
     UPROPERTY(EditDefaultsOnly, Category = "WYA|Vehicles")

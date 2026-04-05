@@ -45,12 +45,34 @@ public:
 	 */
 	void AdvanceMainStory(APlayerController* PC);
 
+	/**
+	 * Mark the current quest as complete for this player.
+	 * Clears the active quest slot. GameMode or player can call this.
+	 */
+	void CompleteCurrentQuest(APlayerController* PC);
+
+	/**
+	 * Returns the active quest for this player, or an empty FWYAQuest if none assigned.
+	 * Check FWYAQuest::IsValid() to distinguish "has quest" from "no quest".
+	 */
+	FWYAQuest GetCurrentQuest(APlayerController* PC) const;
+
+	/** True if the player currently has an active quest. */
+	bool HasActiveQuest(APlayerController* PC) const;
+
 	/** Fired whenever a quest (either type) is assigned to a player. */
 	FOnQuestAssigned OnQuestAssigned;
+
+	/** Fired when the active quest is completed. */
+	DECLARE_MULTICAST_DELEGATE_OneParam(FOnQuestCompleted, APlayerController*);
+	FOnQuestCompleted OnQuestCompleted;
 
 private:
 	UPROPERTY()
 	TObjectPtr<UWYAAISubsystem> AISub;
+
+	/** Active quest per player. One quest at a time — new assignment replaces old. */
+	TMap<APlayerController*, FWYAQuest> ActiveQuests;
 
 	// -----------------------------------------------------------------------
 	// Main story data — STUB for narrative agent
