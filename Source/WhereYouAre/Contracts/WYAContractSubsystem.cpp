@@ -1,4 +1,5 @@
 #include "Contracts/WYAContractSubsystem.h"
+#include "Characters/AWYANamedTargetCharacter.h"
 #include "AI/WYAAISubsystem.h"
 #include "Economy/WYACurrencySubsystem.h"
 #include "GameFramework/PlayerController.h"
@@ -93,6 +94,41 @@ bool UWYAContractSubsystem::TakeContract(APlayerController* PC, const FString& C
 
     OnContractTaken.Broadcast(PC, Taken);
     OnBoardRefreshed.Broadcast(Board);
+
+    // Spawn the named target 50–150m from the player
+    if (APawn* Pawn = PC->GetPawn())
+    {
+        if (UWorld* World = GetGameInstance()->GetWorld())
+        {
+            const float Angle = FMath::RandRange(0.f, 360.f);
+            const float Dist  = FMath::RandRange(5000.f, 15000.f); // 50-150m in UU
+
+            const FVector SpawnOffset(
+                FMath::Cos(FMath::DegreesToRadians(Angle)) * Dist,
+                FMath::Sin(FMath::DegreesToRadians(Angle)) * Dist,
+                200.f);
+
+            const FVector SpawnLoc = Pawn->GetActorLocation() + SpawnOffset;
+
+            FActorSpawnParameters SpawnParams;
+            SpawnParams.SpawnCollisionHandlingOverride =
+                ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
+
+            AWYANamedTargetCharacter* Target = World->SpawnActor<AWYANamedTargetCharacter>(
+                AWYANamedTargetCharacter::StaticClass(), SpawnLoc, FRotator::ZeroRotator, SpawnParams);
+
+            if (Target)
+            {
+                Target->ContractID        = Taken.ID;
+                Target->TargetDisplayName = Taken.TargetName;
+                Target->Tier              = Taken.Tier;
+                Target->FactionTag        = Taken.TargetRole; // role text as faction context for AI personality
+
+                UE_LOG(LogTemp, Log, TEXT("WYAContractSubsystem: spawned named target '%s' %.0fm from player"),
+                    *Taken.TargetName, Dist / 100.f);
+            }
+        }
+    }
 
     // Refill the open board slot from the pre-gen buffer
     TryFillBoard();

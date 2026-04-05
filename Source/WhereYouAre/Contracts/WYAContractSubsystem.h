@@ -7,6 +7,7 @@
 
 class UWYAAISubsystem;
 class UWYACurrencySubsystem;
+class AWYANamedTargetCharacter;
 
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnContractBoardRefreshed, const TArray<FWYAContract>& /*Board*/);
 DECLARE_MULTICAST_DELEGATE_TwoParams(FOnContractTaken,     APlayerController*, const FWYAContract&);
@@ -45,7 +46,8 @@ public:
     // ── Take / complete / abandon ─────────────────────────────────────────────
 
     /**
-     * Take a contract from the board — moves it to the player's active list.
+     * Take a contract from the board — moves it to the player's active list
+     * and spawns the named target in the world 50–150m from the player.
      * Returns false if the player already has MaxActiveContracts active,
      * or if ContractID is not on the board.
      */
