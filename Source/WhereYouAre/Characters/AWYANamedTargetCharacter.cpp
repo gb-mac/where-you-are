@@ -1,5 +1,7 @@
 #include "Characters/AWYANamedTargetCharacter.h"
+#include "Characters/AWYASecurityCharacter.h"
 #include "Contracts/WYAContractSubsystem.h"
+#include "Actors/AWYAExfilPoint.h"
 #include "Combat/WYACombatComponent.h"
 #include "Loot/AWYALootActor.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -91,8 +93,9 @@ void AWYANamedTargetCharacter::BeginPlay()
     // ── Bind downed delegate for contract completion ──────────────────────────
     Combat->OnDowned.AddDynamic(this, &AWYANamedTargetCharacter::HandleContractTargetDowned);
 
-    // ── Spawn guards ─────────────────────────────────────────────────────────
+    // ── Spawn guards and security perimeter ──────────────────────────────────
     SpawnGuards();
+    SpawnSecurity();
 
     BP_OnTargetSpawned(TargetDisplayName, Tier);
 
@@ -196,38 +199,77 @@ void AWYANamedTargetCharacter::EndRetreat()
     UE_LOG(LogTemp, Log, TEXT("AWYANamedTargetCharacter: '%s' re-engaging"), *TargetDisplayName);
 }
 
-// ── Contract completion ───────────────────────────────────────────────────────
+// ── Security perimeter ────────────────────────────────────────────────────────
+
+void AWYANamedTargetCharacter::SpawnSecurity()
+{
+    UWorld* World = GetWorld();
+    if (!World) return;
+
+    const int32 TierIdx = FMath::Clamp(static_cast<int32>(Tier), 0, 2);
+
+    // Security count per tier: Standard=2, Priority=3, HighTable=5
+    static constexpr int32 SecurityCounts[] = { 2, 3, 5 };
+    const int32 SecurityCount = SecurityCounts[TierIdx];
+
+    FActorSpawnParameters Params;
+    Params.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
+
+    for (int32 i = 0; i < SecurityCount; ++i)
+    {
+        const float Angle = FMath::RandRange(0.f, 360.f);
+        const float Dist  = FMath::RandRange(800.f, 2000.f); // 8–20m patrol ring
+
+        const FVector Offset(
+            FMath::Cos(FMath::DegreesToRadians(Angle)) * Dist,
+            FMath::Sin(FMath::DegreesToRadians(Angle)) * Dist,
+            0.f);
+
+        AWYASecurityCharacter* Guard = World->SpawnActor<AWYASecurityCharacter>(
+            AWYASecurityCharacter::StaticClass(), GetActorLocation() + Offset, FRotator::ZeroRotator, Params);
+
+        if (Guard)
+        {
+            UE_LOG(LogTemp, Log, TEXT("AWYANamedTargetCharacter: security %d/%d spawned for '%s'"),
+                i + 1, SecurityCount, *TargetDisplayName);
+        }
+    }
+}
+
+// ── Contract completion (exfil spawn) ────────────────────────────────────────
 
 void AWYANamedTargetCharacter::HandleContractTargetDowned(AActor* Attacker)
 {
     if (ContractID.IsEmpty()) return;
 
-    UGameInstance* GI = GetGameInstance();
-    if (!GI) return;
-
-    UWYAContractSubsystem* ContractSub = GI->GetSubsystem<UWYAContractSubsystem>();
-    if (!ContractSub) return;
-
-    // Complete for any player who holds this contract — supports co-op
     UWorld* World = GetWorld();
     if (!World) return;
 
-    for (FConstPlayerControllerIterator It = World->GetPlayerControllerIterator(); It; ++It)
+    // Target is down — spawn the extraction point 100–200m away.
+    // Gold is not awarded until the player reaches it.
+    const float Angle = FMath::RandRange(0.f, 360.f);
+    const float Dist  = FMath::RandRange(10000.f, 20000.f); // 100–200m in UU
+
+    const FVector ExfilLoc = GetActorLocation() + FVector(
+        FMath::Cos(FMath::DegreesToRadians(Angle)) * Dist,
+        FMath::Sin(FMath::DegreesToRadians(Angle)) * Dist,
+        200.f);
+
+    FActorSpawnParameters SpawnParams;
+    SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
+
+    AWYAExfilPoint* Exfil = World->SpawnActor<AWYAExfilPoint>(
+        AWYAExfilPoint::StaticClass(), ExfilLoc, FRotator::ZeroRotator, SpawnParams);
+
+    if (Exfil)
     {
-        APlayerController* PC = It->Get();
-        if (PC && ContractSub->HasActiveContract(PC))
-        {
-            // Check if this specific contract is in their active list
-            for (const FWYAContract& C : ContractSub->GetActiveContracts(PC))
-            {
-                if (C.ID == ContractID)
-                {
-                    ContractSub->CompleteContract(PC, ContractID);
-                    UE_LOG(LogTemp, Log, TEXT("AWYANamedTargetCharacter: contract '%s' completed for %s"),
-                        *TargetDisplayName, *GetNameSafe(PC));
-                    break;
-                }
-            }
-        }
+        Exfil->ContractID = ContractID;
+        UE_LOG(LogTemp, Log, TEXT("AWYANamedTargetCharacter: '%s' down — exfil spawned %.0fm away (contract %s)"),
+            *TargetDisplayName, Dist / 100.f, *ContractID);
+    }
+    else
+    {
+        UE_LOG(LogTemp, Warning, TEXT("AWYANamedTargetCharacter: failed to spawn exfil for contract '%s'"),
+            *ContractID);
     }
 }

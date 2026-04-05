@@ -1,5 +1,6 @@
 #include "WYACharacter.h"
 #include "Combat/WYACombatComponent.h"
+#include "Contracts/WYAContractSubsystem.h"
 #include "Inventory/WYAInventoryComponent.h"
 #include "Survival/WYASurvivalComponent.h"
 #include "Inventory/WYAInventoryTypes.h"
@@ -213,8 +214,21 @@ void AWYACharacter::OnWoundStateChanged(EWYAWoundState NewState)
 
 void AWYACharacter::OnHealthChanged(float NewHealth, float MaxHealth)
 {
-    // Notify Blueprint for HUD updates etc.
-    // Currently a stub — BP_OnPlayerHitReact is fired contextually from combat.
+    // Detect damage (health decreased) and void the Clean bonus for any active contract run.
+    if (NewHealth < LastKnownHealth)
+    {
+        if (APlayerController* PC = Cast<APlayerController>(GetController()))
+        {
+            if (UGameInstance* GI = GetGameInstance())
+            {
+                if (UWYAContractSubsystem* ContractSub = GI->GetSubsystem<UWYAContractSubsystem>())
+                {
+                    ContractSub->NotifyPlayerTookDamage(PC);
+                }
+            }
+        }
+    }
+    LastKnownHealth = NewHealth;
 }
 
 void AWYACharacter::HandleDowned(AActor* Attacker)

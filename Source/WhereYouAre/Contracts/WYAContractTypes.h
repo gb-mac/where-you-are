@@ -73,3 +73,29 @@ struct FWYAPregeneratedContract
     FWYAContract Contract;
     bool bReady = false;
 };
+
+/**
+ * Live tracking state for a contract in progress.
+ * Created when TakeContract() fires, consumed on CompleteContract().
+ */
+USTRUCT()
+struct FWYAContractRunState
+{
+    GENERATED_BODY()
+
+    FString ContractID;
+
+    /** World time when TakeContract() was called. */
+    float StartTimeSecs = 0.f;
+
+    /** How many security NPCs reached EWYAAlertState::Alerted during this run. */
+    int32 AlertCount = 0;
+
+    /** True if the player took any damage during this run. */
+    bool bTookDamage = false;
+
+    /** True once the player has reached the exfil point. */
+    bool bExfilReached = false;
+
+    bool IsValid() const { return !ContractID.IsEmpty(); }
+};

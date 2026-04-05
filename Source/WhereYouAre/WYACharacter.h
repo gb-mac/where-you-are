@@ -97,5 +97,8 @@ private:
 
     FTimerHandle RecoveryHandle;
 
+    /** Tracks previous health to detect damage vs healing in OnHealthChanged. */
+    float LastKnownHealth = 100.f;
+
     static constexpr float WalkSpeed = 600.0f;
 };

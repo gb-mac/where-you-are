@@ -68,6 +68,24 @@ public:
     UFUNCTION(BlueprintCallable, Category = "WYA|Contracts")
     bool AbandonContract(APlayerController* PC, const FString& ContractID);
 
+    /**
+     * Called by AWYASecurityCharacter when it reaches Alerted state.
+     * Increments AlertCount on all active run states — voids Ghost bonus.
+     */
+    void NotifySecurityAlerted();
+
+    /**
+     * Called by AWYAExfilPoint when a player enters the exfil trigger.
+     * Marks the run as extracted, calculates bonuses, awards Gold.
+     */
+    void ReachExfil(APlayerController* PC, const FString& ContractID);
+
+    /**
+     * Called by WYACombatComponent (via player character) when the player takes damage
+     * during an active contract run. Voids the Clean bonus.
+     */
+    void NotifyPlayerTookDamage(APlayerController* PC);
+
     /** All active contracts for this player. Empty array if none. */
     UFUNCTION(BlueprintPure, Category = "WYA|Contracts")
     TArray<FWYAContract> GetActiveContracts(APlayerController* PC) const;
@@ -96,10 +114,21 @@ private:
     /** Try to pop from AI pre-gen buffer and fill any open board slots. */
     void TryFillBoard();
 
+    /**
+     * Calculate and award bonus Gold based on run state.
+     * Ghost (no alerts): +50%. Swift (under time limit): +25%. Clean (no damage): +25%.
+     * Returns total Gold awarded.
+     */
+    int32 CalculateAndAwardBonus(APlayerController* PC, const FWYAContract& Contract,
+                                  const FWYAContractRunState& RunState);
+
     TArray<FWYAContract> Board;
 
     /** Active contracts per player controller. */
     TMap<APlayerController*, TArray<FWYAContract>> ActiveContracts;
+
+    /** Live run state per contract ID. */
+    TMap<FString, FWYAContractRunState> RunStates;
 
     UPROPERTY()
     TObjectPtr<UWYAAISubsystem> AISub;
@@ -109,4 +138,9 @@ private:
 
     /** Polls TryFillBoard() every few seconds while the board has open slots. */
     FTimerHandle BoardFillTimerHandle;
+
+    // ── Swift time limits by tier (seconds) ───────────────────────────────────
+    static constexpr float SwiftLimit_Standard  = 180.f; // 3 min
+    static constexpr float SwiftLimit_Priority  = 300.f; // 5 min
+    static constexpr float SwiftLimit_HighTable = 480.f; // 8 min
 };

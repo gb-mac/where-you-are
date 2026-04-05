@@ -67,8 +67,11 @@ protected:
 private:
     // ── Internal ──────────────────────────────────────────────────────────────
 
-    /** Spawn bodyguards in a ring around self. Count determined by Tier. */
+    /** Spawn bodyguards in a close ring around self. Count determined by Tier. */
     void SpawnGuards();
+
+    /** Spawn security patrols in a wider perimeter ring. Count determined by Tier. */
+    void SpawnSecurity();
 
     /** Triggered by OnHealthChanged when health falls below RetreatThreshold. */
     UFUNCTION()
