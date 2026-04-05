@@ -544,6 +544,9 @@ bool UWYAAISubsystem::ParseContract(const FString& Raw, FWYAContract& Out)
 		}
 	}
 
+	// Derive phase weight from tier — can be overridden by a future PHASE_WEIGHT: field
+	Out.PhaseWeight = FWYAContract::DerivePhaseWeight(Out.Tier);
+
 	// Valid if we got at minimum a name and some intel
 	return !Out.TargetName.IsEmpty() && !Out.Intel.IsEmpty();
 }

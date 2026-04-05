@@ -59,6 +59,16 @@ private:
     void OnQuestAssigned(APlayerController* PC, const FWYAQuest& Quest);
     void OnQuestCompleted(APlayerController* PC);
 
+    /**
+     * Fired once per session when the player is near the workbench and
+     * carrying at least one IntelFragment. Drive assistant dialogue from BP.
+     */
+    UFUNCTION(BlueprintImplementableEvent, Category = "WYA|Intel")
+    void BP_OnIntelFragmentBroughtHome(int32 FragmentCount);
+
+    /** Prevents BP_OnIntelFragmentBroughtHome firing more than once per session. */
+    bool bIntelFragmentNotifiedThisSession = false;
+
     /** Radius (UU) in which vehicles are enterable. */
     UPROPERTY(EditDefaultsOnly, Category = "WYA|Vehicles")
     float VehicleEnterRadius = 300.f;

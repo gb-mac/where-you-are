@@ -70,10 +70,11 @@ void AWYANamedTargetCharacter::BeginPlay()
     switch (Tier)
     {
     case EWYAContractTier::HighTable:
-        AddLoot(EWYACarriedItemType::RangedWeapon, 1);
-        AddLoot(EWYACarriedItemType::Ammo,         8);
-        AddLoot(EWYACarriedItemType::Scrap,        4);
-        AddLoot(EWYACarriedItemType::Food,         2, 0.7f);
+        AddLoot(EWYACarriedItemType::RangedWeapon,  1);
+        AddLoot(EWYACarriedItemType::Ammo,          8);
+        AddLoot(EWYACarriedItemType::Scrap,         4);
+        AddLoot(EWYACarriedItemType::Food,          2, 0.7f);
+        AddLoot(EWYACarriedItemType::IntelFragment, 1);  // always drops — HighTable targets carry intel
         break;
     case EWYAContractTier::Priority:
         AddLoot(EWYACarriedItemType::MeleeWeapon,  1);

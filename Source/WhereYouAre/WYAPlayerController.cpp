@@ -489,4 +489,15 @@ void AWYAPlayerController::TickHUD(float DeltaSeconds)
     {
         MainHUDWidget->UpdateCurrencyDisplay(CurrSub->GetGold(), CurrSub->GetSilver());
     }
+
+    // Intel Fragment home-return — fire once per session when near workbench + carrying intel
+    if (!bIntelFragmentNotifiedThisSession && Char->Inventory)
+    {
+        const int32 FragCount = Char->Inventory->GetQuantity(EWYACarriedItemType::IntelFragment);
+        if (FragCount > 0 && FindClosestWorkbench() != nullptr)
+        {
+            bIntelFragmentNotifiedThisSession = true;
+            BP_OnIntelFragmentBroughtHome(FragCount);
+        }
+    }
 }

@@ -331,6 +331,10 @@ void UWYAContractSubsystem::ReachExfil(APlayerController* PC, const FString& Con
 
     const int32 TotalGold = CalculateAndAwardBonus(PC, Contract, RunState);
 
+    // Record phase weight and check for Burke pattern
+    PhaseHistory.Add({ Contract.PhaseWeight, FDateTime::UtcNow() });
+    CheckPhasePattern(Contract.PhaseWeight);
+
     OnContractCompleted.Broadcast(PC, Contract);
 
     UE_LOG(LogTemp, Log, TEXT("WYAContractSubsystem: %s exfil'd '%s' — total %dG awarded"),
@@ -389,4 +393,36 @@ int32 UWYAContractSubsystem::CalculateAndAwardBonus(APlayerController* PC,
     }
 
     return Total;
+}
+
+// ── Burke phase pattern detection ─────────────────────────────────────────────
+
+void UWYAContractSubsystem::CheckPhasePattern(EWYAPhaseWeight Phase)
+{
+    static constexpr int32 DayWindow    = 14;
+    static constexpr int32 PatternCount = 2;
+
+    const FDateTime Cutoff = FDateTime::UtcNow() - FTimespan::FromDays(DayWindow);
+
+    int32 Count = 0;
+    for (const FPhaseRecord& Record : PhaseHistory)
+    {
+        if (Record.Phase == Phase && Record.CompletedAt >= Cutoff)
+        {
+            Count++;
+        }
+    }
+
+    if (Count >= PatternCount)
+    {
+        UE_LOG(LogTemp, Log,
+            TEXT("WYAContractSubsystem: Burke pattern detected — %d %s runs in %d days"),
+            Count,
+            Phase == EWYAPhaseWeight::Phase1Heavy ? TEXT("Phase1Heavy") :
+            Phase == EWYAPhaseWeight::Phase2Heavy ? TEXT("Phase2Heavy") :
+            Phase == EWYAPhaseWeight::Phase3Heavy ? TEXT("Phase3Heavy") : TEXT("Compound"),
+            DayWindow);
+
+        OnBurkePhasePatternDetected.Broadcast(Phase, Count, DayWindow);
+    }
 }

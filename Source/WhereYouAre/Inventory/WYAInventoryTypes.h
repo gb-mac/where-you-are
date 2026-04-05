@@ -25,6 +25,15 @@ enum class EWYACarriedItemType : uint8
     Food                    UMETA(DisplayName = "Food"),
     Water                   UMETA(DisplayName = "Water"),
     Scrap                   UMETA(DisplayName = "Scrap"),
+
+    // ── Intelligence ─────────────────────────────────────────────────────────
+    /**
+     * A fragment of pre-Cascade intelligence — data shards, encrypted logs,
+     * physical dossiers. Not craftable, not tradeable.
+     * Triggers assistant dialogue when the player returns home.
+     * Drops from HighTable named targets and special world locations (Antarctica).
+     */
+    IntelFragment           UMETA(DisplayName = "Intel Fragment"),
 };
 
 /** A single inventory entry. Same type stacks — Quantity accumulates. */

@@ -5,6 +5,25 @@
 #include "WYAContractTypes.generated.h"
 
 /**
+ * Which phase of a contract run carries the most load.
+ * Derived at generation time from Tier (and eventually SecurityType/LocationType).
+ * Passed to the assistant on contract taken. Burke tracks patterns over time.
+ *
+ *   Phase1Heavy — approach is the problem (heavy security, indoor, hard to reach)
+ *   Phase2Heavy — the hit runs long (tough target, guards, retreat mechanic prominent)
+ *   Phase3Heavy — extraction is contested (fast response, many security, exit is hot)
+ *   Compound    — all three phases are loaded (HighTable tier)
+ */
+UENUM(BlueprintType)
+enum class EWYAPhaseWeight : uint8
+{
+    Phase1Heavy  UMETA(DisplayName = "Phase 1 Heavy — Approach"),
+    Phase2Heavy  UMETA(DisplayName = "Phase 2 Heavy — Hit"),
+    Phase3Heavy  UMETA(DisplayName = "Phase 3 Heavy — Extraction"),
+    Compound     UMETA(DisplayName = "Compound — All Phases"),
+};
+
+/**
  * Contract payout tier — drives Gold reward range and implied difficulty.
  *
  *   Standard   — street-level, 10–20 Gold. Posted by local factions.
@@ -57,11 +76,30 @@ struct FWYAContract
     UPROPERTY(BlueprintReadOnly)
     EWYAContractTier Tier = EWYAContractTier::Standard;
 
+    /**
+     * Phase load profile — derived at generation time from Tier.
+     * Passed to the assistant on contract taken so it can frame the briefing.
+     * Tracked by WYAContractSubsystem for Burke pattern detection.
+     */
+    UPROPERTY(BlueprintReadOnly)
+    EWYAPhaseWeight PhaseWeight = EWYAPhaseWeight::Phase2Heavy;
+
     /** GPS coord the contract was generated for */
     UPROPERTY(BlueprintReadOnly)
     FWYAGeoCoord GeneratedForCoord;
 
     bool IsValid() const { return !ID.IsEmpty() && !TargetName.IsEmpty(); }
+
+    /** Derive PhaseWeight from Tier — used at parse time and on load. */
+    static EWYAPhaseWeight DerivePhaseWeight(EWYAContractTier InTier)
+    {
+        switch (InTier)
+        {
+        case EWYAContractTier::HighTable: return EWYAPhaseWeight::Compound;
+        case EWYAContractTier::Priority:  return EWYAPhaseWeight::Phase3Heavy;
+        default:                          return EWYAPhaseWeight::Phase2Heavy;
+        }
+    }
 };
 
 /** In-flight or ready contract waiting in the pre-gen buffer */

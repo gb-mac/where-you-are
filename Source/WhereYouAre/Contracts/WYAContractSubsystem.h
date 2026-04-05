@@ -14,6 +14,15 @@ DECLARE_MULTICAST_DELEGATE_TwoParams(FOnContractTaken,     APlayerController*, c
 DECLARE_MULTICAST_DELEGATE_TwoParams(FOnContractCompleted, APlayerController*, const FWYAContract&);
 
 /**
+ * Fired when the player has completed 2+ contracts with the same PhaseWeight
+ * within the trailing DayWindow days. The assistant uses this to flag recurring
+ * problems ("You keep getting caught in extraction") and Burke tracks the pattern.
+ * NOTE: currently in-session only — cross-session history is a future save addition.
+ */
+DECLARE_MULTICAST_DELEGATE_ThreeParams(FOnBurkePhasePatternDetected,
+    EWYAPhaseWeight /*Phase*/, int32 /*Count*/, int32 /*DayWindow*/);
+
+/**
  * Contract board — constantly refilled from the AI pre-gen pipeline.
  *
  * Six slots on the board. Players can take up to MaxActiveContracts (3) at once.
@@ -126,8 +135,9 @@ public:
     /** Fired whenever the board gains or loses a contract. */
     FOnContractBoardRefreshed OnBoardRefreshed;
 
-    FOnContractTaken     OnContractTaken;
-    FOnContractCompleted OnContractCompleted;
+    FOnContractTaken               OnContractTaken;
+    FOnContractCompleted           OnContractCompleted;
+    FOnBurkePhasePatternDetected   OnBurkePhasePatternDetected;
 
     // ── Config ────────────────────────────────────────────────────────────────
 
@@ -156,6 +166,13 @@ private:
 
     /** Live run state per contract ID. */
     TMap<FString, FWYAContractRunState> RunStates;
+
+    /** Phase weight history — recorded on exfil. Used for Burke pattern detection. */
+    struct FPhaseRecord { EWYAPhaseWeight Phase; FDateTime CompletedAt; };
+    TArray<FPhaseRecord> PhaseHistory;
+
+    /** Check PhaseHistory for a pattern and fire OnBurkePhasePatternDetected if found. */
+    void CheckPhasePattern(EWYAPhaseWeight Phase);
 
     UPROPERTY()
     TObjectPtr<UWYAAISubsystem> AISub;
